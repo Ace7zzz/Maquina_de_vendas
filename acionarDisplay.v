@@ -4,6 +4,7 @@ module acionarDisplay(output a,b,c,d,e,f,g,D1,D2,D3,D4, input[2:0] estado, input
 	reg[3:0] L1, L2, L3, L4;
 	wire[3:0] letraAtual;
 	
+	//comentario de amanda
 	
 	always @(estado or num1 or num2) begin
 		case(estado)

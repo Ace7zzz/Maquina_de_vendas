@@ -123,14 +123,5 @@ always @(E) begin
 		end
 	endcase;
 end
-		
-		
-			
-		
+//mudanças	
 endmodule
-		
-	
-
-
-
-
