@@ -123,14 +123,4 @@ always @(E) begin
 		end
 	endcase;
 end
-		
-		
-			
-		
 endmodule
-		
-	
-
-
-
-
