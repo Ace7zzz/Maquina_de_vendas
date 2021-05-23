@@ -1,127 +1,25 @@
-module decodificador(output reg a,b,c,d,e,f,g, input [3:0] E);
+module decodificador(output reg segmentos[7:0], input [3:0] E);
+
+//abcdefg.
 
 always @(E) begin
 	case(E)
-		4'b0000: begin  //O
-			a<=1;
-			b<=1;
-			c<=1;
-			d<=1;
-			e<=1;
-			f<=1;
-			g<=0;
-		end
-		
-		4'b0001: begin  //1
-			a<=0;
-			b<=1;
-			c<=1;
-			d<=0;
-			e<=0;
-			f<=0;
-			g<=0;
-		end
-		
-		4'b0010: begin  //2
-			a<=1;
-			b<=1;
-			c<=0;
-			d<=1;
-			e<=1;
-			f<=0;
-			g<=1;
-		end
-		
-		4'b0011: begin  //3
-			a<=1;
-			b<=1;
-			c<=1;
-			d<=1;
-			e<=0;
-			f<=0;
-			g<=1;
-		end
-		
-		4'b0100: begin //4
-			a<=0;
-			b<=1;
-			c<=1;
-			d<=0;
-			e<=0;
-			f<=1;
-			g<=1;
-		end
-		
-		4'b0101: begin //5
-			a<=1;
-			b<=0;
-			c<=1;
-			d<=1;
-			e<=0;
-			f<=1;
-			g<=1;
-		end
-		
-		4'b0110: begin  //C
-			a<=1;
-			b<=0;
-			c<=0;
-			d<=1;
-			e<=1;
-			f<=1;
-			g<=0;
-		end
-		
-		4'b0111: begin  //E
-			a<=1;
-			b<=0;
-			c<=0;
-			d<=1;
-			e<=1;
-			f<=1;
-			g<=1;
-		end
-		
-		4'b1000: begin  //I
-			a<=0;
-			b<=0;
-			c<=0;
-			d<=0;
-			e<=1;
-			f<=1;
-			g<=0;
-		end
-		
-		4'b1001: begin  //n
-			a<=0;
-			b<=0;
-			c<=1;
-			d<=0;
-			e<=1;
-			f<=0;
-			g<=1;
-		end
-		
-		4'b1010: begin  //P
-			a<=1;
-			b<=1;
-			c<=0;
-			d<=0;
-			e<=1;
-			f<=1;
-			g<=1;
-		end
-		
-		default: begin
-			a<=0;
-			b<=0;
-			c<=0;
-			d<=0;
-			e<=0;
-			f<=0;
-			g<=0;
-		end
+		4'b0000: segmentos<=11111100; //O
+		4'b0001: segmentos<=01100000; //1
+		4'b0010: segmentos<=01100000; //2
+		4'b0011: segmentos<=11011010  //3
+		4'b0100: segmentos<=01100110; //4
+		4'b0101: segmentos<=10110110; //5
+		4'b0110: segmentos<=10111110; //6
+		4'b0111: segmentos<=11100000; //7
+		4'b1000: segmentos<=11111110; //8
+		4'b1001: segmentos<=11100000; //9
+		4'b1010: segmentos<=10011110; //E
+		4'b1011: segmentos<=00101010; //n
+		4'b1100: segmentos<=11001110; //P
+		4'b1101: segmentos<=00000001; //.
+		default: segmentos<=00000000;
 	endcase;
 end
-//mudanças	
+
 endmodule
