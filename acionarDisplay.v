@@ -1,4 +1,4 @@
-module acionarDisplay(output a,b,c,d,e,f,g,D1,D2,D3,D4, input[2:0] estado, input [1:0] num1, num2, input clk);
+module acionarDisplay(output a,b,c,d,e,f,g,D1,D2,D3,D4, input[2:0] estado, input [1:0] num1, num2, input valorMoedas, input clk);
 
 	wire [1:0] cont_out;
 	reg[3:0] L1, L2, L3, L4;
@@ -30,7 +30,7 @@ module acionarDisplay(output a,b,c,d,e,f,g,D1,D2,D3,D4, input[2:0] estado, input
 			L4 <= 4'b0101; //5
 			end
 			
-			3: begin // AGUARDANDO MOEDAS
+			3: begin // VALOR TOTAL MOEDAS
 			L1 <= 4'b0110; //C
 			L2 <= 4'b0000; //O
 			L3 <= 4'b1000; //I
