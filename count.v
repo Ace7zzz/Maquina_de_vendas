@@ -1,6 +1,6 @@
 module count(out, clk, max, reset);
-   output reg [2:0] out;
-	input [2:0] max;
+   output reg [1:0] out;
+	input [1:0] max;
 	input clk;
 	input wire reset;
 
