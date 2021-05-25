@@ -1,4 +1,4 @@
-module decodificador(output reg [7:0] s, input [3:0] E);
+module decodificador(output reg s[7:0], input [3:0] E);
 
 //abcdefg.
 
@@ -7,7 +7,7 @@ always @(E) begin
 		4'b0000: s<=11111100; //O
 		4'b0001: s<=01100000; //1
 		4'b0010: s<=01100000; //2
-		4'b0011: s<=11011010; //3
+		4'b0011: s<=11011010  //3
 		4'b0100: s<=01100110; //4
 		4'b0101: s<=10110110; //5
 		4'b0110: s<=10011110; //E
