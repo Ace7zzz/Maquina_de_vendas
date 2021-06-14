@@ -1,4 +1,4 @@
-module acumuladorMEF(input wire clk, input wire tempoLimite, input wire [1:0] valorMoeda, output wire comparar, output wire [3:0] valorAcumulado);
+module acumuladorMEF(input wire clk, input wire tempoLimite, input wire [1:0] valorMoeda, output wire comparar, output reg [3:0] valorAcumulado);
 
     reg [3:0] estadoAtual, proxEstado;
 
@@ -44,6 +44,7 @@ module acumuladorMEF(input wire clk, input wire tempoLimite, input wire [1:0] va
         case (estadoAtual)
             E0_00: begin
                 case (valorMoeda)
+                2'b00: comparar <= 0;
                 0_25 : proxEstado <= E0_25;  
                 0_50 : proxEstado <= E0_50;  
                 1_00 : proxEstado <= E1_00;  
