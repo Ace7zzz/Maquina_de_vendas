@@ -5,7 +5,7 @@
     localparam ESPERA = 2'b00,
             LINHA = 2'b01,
             COLUNA = 2'b10,
-            BLOQUEADO = 2'b11,
+            BLOQUEADO = 2'b11
             ;
 
 
@@ -63,4 +63,4 @@
     end
 
 
-    endmodule
+endmodule

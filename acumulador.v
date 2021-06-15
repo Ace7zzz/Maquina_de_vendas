@@ -1,4 +1,4 @@
-module acumuladorMEF(input wire clk, input wire tempoLimite, input wire [1:0] valorMoeda, output wire comparar, output reg [3:0] valorAcumulado);
+module acumulador(input wire clk, input wire tempoLimite, input wire [1:0] valorMoeda, output reg comparar, output reg [3:0] valorAcumulado);
 
     reg [3:0] estadoAtual, proxEstado;
 
@@ -14,9 +14,9 @@ module acumuladorMEF(input wire clk, input wire tempoLimite, input wire [1:0] va
 
 
                // Valor Moedas
-               0_25 = 2'b01,
-               0_50 = 2'b10,
-               1_00 = 2'b11,
+               M0_25 = 2'b01,
+               M0_50 = 2'b10,
+               M1_00 = 2'b11,
 
 
                //Estados Inválidos
@@ -35,7 +35,10 @@ module acumuladorMEF(input wire clk, input wire tempoLimite, input wire [1:0] va
             estadoAtual <= E0_00;
             comparar <= 1;
         end 
-        else estadoAtual <= proxEstado;
+        else begin 
+			estadoAtual <= proxEstado;
+			comparar <= 0;
+			end
     end
     
     always @(estadoAtual or valorMoeda) begin //Lógica de transição de estado e da saída valorAcumulado
@@ -44,79 +47,78 @@ module acumuladorMEF(input wire clk, input wire tempoLimite, input wire [1:0] va
         case (estadoAtual)
             E0_00: begin
                 case (valorMoeda)
-                2'b00: comparar <= 0;
-                0_25 : proxEstado <= E0_25;  
-                0_50 : proxEstado <= E0_50;  
-                1_00 : proxEstado <= E1_00;  
+                M0_25 : proxEstado <= E0_25;  
+                M0_50 : proxEstado <= E0_50;  
+                M1_00 : proxEstado <= E1_00;  
               endcase
             end
             E0_25: begin
                 case (valorMoeda)
-                0_25 : proxEstado <= E0_50;  
-                0_50 : proxEstado <= E0_75;  
-                1_00 : proxEstado <= E1_25; 
+                M0_25 : proxEstado <= E0_50;  
+                M0_50 : proxEstado <= E0_75;  
+                M1_00 : proxEstado <= E1_25; 
                 endcase
             end
 
             E0_50: begin
                 case (valorMoeda)
-                0_25 : proxEstado <= E0_75;  
-                0_50 : proxEstado <= E1_00;  
-                1_00 : proxEstado <= E1_50; 
+                M0_25 : proxEstado <= E0_75;  
+                M0_50 : proxEstado <= E1_00;  
+                M1_00 : proxEstado <= E1_50; 
                 endcase
             end
 
             E0_75: begin
                 case (valorMoeda)
-                0_25 : proxEstado <= E1_00;  
-                0_50:  proxEstado <= E1_25;  
-                1_00 : proxEstado <= E1_75; 
+                M0_25 : proxEstado <= E1_00;  
+                M0_50:  proxEstado <= E1_25;  
+                M1_00 : proxEstado <= E1_75; 
                 endcase
             end
 
             E1_00: begin
                case (valorMoeda)
-                0_25 : proxEstado <= E1_25;  
-                0_50 : proxEstado <= E1_50;  
-                1_00 : proxEstado <= E2_00; 
+                M0_25 : proxEstado <= E1_25;  
+                M0_50 : proxEstado <= E1_50;  
+                M1_00 : proxEstado <= E2_00; 
                 endcase
             end
 
             E1_25: begin
                case (valorMoeda)
-                0_25 : proxEstado <= E1_50;  
-                0_50 : proxEstado <= E1_75;  
-                1_00 : proxEstado <= E0_00; 
+                M0_25 : proxEstado <= E1_50;  
+                M0_50 : proxEstado <= E1_75;  
+                M1_00 : proxEstado <= E0_00; 
                 endcase
             end
 
 
             E1_50: begin
                case (valorMoeda)
-                0_25 : proxEstado <= E1_75;  
-                0_50 : proxEstado <= E2_00;  
-                1_00 : proxEstado <= E0_00; 
+                M0_25 : proxEstado <= E1_75;  
+                M0_50 : proxEstado <= E2_00;  
+                M1_00 : proxEstado <= E0_00; 
                 endcase
             end
 
             E1_75: begin
                case (valorMoeda)
-                0_25 : proxEstado <= E2_00;  
-                0_50 : proxEstado <= E0_00;  
-                1_00 : proxEstado <= E0_00; 
+                M0_25 : proxEstado <= E2_00;  
+                M0_50 : proxEstado <= E0_00;  
+                M1_00 : proxEstado <= E0_00; 
                 endcase
             end
 
             E2_00: begin
                case (valorMoeda)
-                0_25 : proxEstado <= E0_00;  
-                0_50 : proxEstado <= E0_00;  
-                1_00 : proxEstado <= E0_00; 
+                M0_25 : proxEstado <= E0_00;  
+                M0_50 : proxEstado <= E0_00;  
+                M1_00 : proxEstado <= E0_00; 
                 endcase
             end
             default: proxEstado <= E0_00; //Estado Inválidos
-            valorAcumulado <= proxEstado;
         endcase
+		  valorAcumulado <= proxEstado;
     end
 
 
