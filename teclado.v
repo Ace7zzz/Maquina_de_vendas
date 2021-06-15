@@ -17,7 +17,7 @@ always @ (in) begin
 	out <= 3'b011;
 	end
 	else begin
-	out <= 2'b000;
+	out <= 3'b000;
 	end
 end
 endmodule 
