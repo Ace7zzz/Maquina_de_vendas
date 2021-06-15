@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Maquina_de_vendas
-Tue May 25 15:21:41 2021
+Tue Jun 15 15:08:33 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -14,7 +14,8 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Analysis & Synthesis Messages
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 10. Analysis & Synthesis Messages
 
 
 
@@ -41,13 +42,13 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Tue May 25 15:21:41 2021       ;
+; Analysis & Synthesis Status ; Successful - Tue Jun 15 15:08:33 2021       ;
 ; Quartus Prime Version       ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name               ; Maquina_de_vendas                           ;
-; Top-level Entity Name       ; count                                       ;
+; Top-level Entity Name       ; teclado                                     ;
 ; Family                      ; MAX II                                      ;
 ; Total logic elements        ; 2                                           ;
-; Total pins                  ; 6                                           ;
+; Total pins                  ; 8                                           ;
 ; Total virtual pins          ; 0                                           ;
 ; UFM blocks                  ; 0 / 1 ( 0 % )                               ;
 +-----------------------------+---------------------------------------------+
@@ -59,7 +60,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; EPM240T100C5       ;                    ;
-; Top-level entity name                                            ; count              ; Maquina_de_vendas  ;
+; Top-level entity name                                            ; teclado            ; Maquina_de_vendas  ;
 ; Family name                                                      ; MAX II             ; Cyclone V          ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
@@ -140,47 +141,47 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                 ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                   ; Library ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------------------------------------------+---------+
-; count.v                          ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/햞ea de Trabalho/PDFS UNI/2020.1/Maquina_de_vendas/count.v ;         ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                    ;
++----------------------------------+-----------------+------------------------+-------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                      ; Library ;
++----------------------------------+-----------------+------------------------+-------------------------------------------------------------------+---------+
+; teclado.v                        ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/teclado.v ;         ;
++----------------------------------+-----------------+------------------------+-------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary               ;
-+---------------------------------------------+-------------+
-; Resource                                    ; Usage       ;
-+---------------------------------------------+-------------+
-; Total logic elements                        ; 2           ;
-;     -- Combinational with no register       ; 0           ;
-;     -- Register only                        ; 0           ;
-;     -- Combinational with a register        ; 2           ;
-;                                             ;             ;
-; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 2           ;
-;     -- 3 input functions                    ; 0           ;
-;     -- 2 input functions                    ; 0           ;
-;     -- 1 input functions                    ; 0           ;
-;     -- 0 input functions                    ; 0           ;
-;                                             ;             ;
-; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 2           ;
-;     -- arithmetic mode                      ; 0           ;
-;     -- qfbk mode                            ; 0           ;
-;     -- register cascade mode                ; 0           ;
-;     -- synchronous clear/load mode          ; 0           ;
-;     -- asynchronous clear/load mode         ; 2           ;
-;                                             ;             ;
-; Total registers                             ; 2           ;
-; I/O pins                                    ; 6           ;
-; Maximum fan-out node                        ; out[0]~reg0 ;
-; Maximum fan-out                             ; 3           ;
-; Total fan-out                               ; 14          ;
-; Average fan-out                             ; 1.75        ;
-+---------------------------------------------+-------------+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Total logic elements                        ; 2     ;
+;     -- Combinational with no register       ; 2     ;
+;     -- Register only                        ; 0     ;
+;     -- Combinational with a register        ; 0     ;
+;                                             ;       ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 2     ;
+;     -- 3 input functions                    ; 0     ;
+;     -- 2 input functions                    ; 0     ;
+;     -- 1 input functions                    ; 0     ;
+;     -- 0 input functions                    ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 2     ;
+;     -- arithmetic mode                      ; 0     ;
+;     -- qfbk mode                            ; 0     ;
+;     -- register cascade mode                ; 0     ;
+;     -- synchronous clear/load mode          ; 0     ;
+;     -- asynchronous clear/load mode         ; 0     ;
+;                                             ;       ;
+; Total registers                             ; 0     ;
+; I/O pins                                    ; 8     ;
+; Maximum fan-out node                        ; in[0] ;
+; Maximum fan-out                             ; 3     ;
+; Total fan-out                               ; 11    ;
+; Average fan-out                             ; 1.10  ;
++---------------------------------------------+-------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -188,7 +189,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
-; |count                     ; 2 (2)       ; 2            ; 0          ; 6    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (2)            ; 0 (0)           ; 0 (0)      ; |count              ; count       ; work         ;
+; |teclado                   ; 2 (2)       ; 0            ; 0          ; 8    ; 0            ; 2 (2)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |teclado            ; teclado     ; work         ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -198,14 +199,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 2     ;
+; Total registers                              ; 0     ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 2     ;
+; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |teclado|out               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
 +-------------------------------+
@@ -214,30 +224,39 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Tue May 25 15:21:22 2021
+    Info: Processing started: Tue Jun 15 15:08:14 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Maquina_de_vendas -c Maquina_de_vendas
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file controleprincipal.v
+    Info (12023): Found entity 1: controlePrincipal File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/controlePrincipal.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file controledigitos.v
+    Info (12023): Found entity 1: controleDigitos File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/controleDigitos.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file acumulador.v
+    Info (12023): Found entity 1: acumulador File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/acumulador.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file mux_4bits.v
-    Info (12023): Found entity 1: mux_4bits File: C:/Users/A/OneDrive/햞ea de Trabalho/PDFS UNI/2020.1/Maquina_de_vendas/mux_4bits.v Line: 1
+    Info (12023): Found entity 1: mux_4bits File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/mux_4bits.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file demux.v
-    Info (12023): Found entity 1: demux File: C:/Users/A/OneDrive/햞ea de Trabalho/PDFS UNI/2020.1/Maquina_de_vendas/demux.v Line: 1
+    Info (12023): Found entity 1: demux File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/demux.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file decodificador.v
-    Info (12023): Found entity 1: decodificador File: C:/Users/A/OneDrive/햞ea de Trabalho/PDFS UNI/2020.1/Maquina_de_vendas/decodificador.v Line: 1
+    Info (12023): Found entity 1: decodificador File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/decodificador.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file count.v
-    Info (12023): Found entity 1: count File: C:/Users/A/OneDrive/햞ea de Trabalho/PDFS UNI/2020.1/Maquina_de_vendas/count.v Line: 1
+    Info (12023): Found entity 1: count File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/count.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file acionardisplay.v
-    Info (12023): Found entity 1: acionarDisplay File: C:/Users/A/OneDrive/햞ea de Trabalho/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 1
-Info (12127): Elaborating entity "count" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at count.v(15): truncated value with size 32 to match size of target (2) File: C:/Users/A/OneDrive/햞ea de Trabalho/PDFS UNI/2020.1/Maquina_de_vendas/count.v Line: 15
-Info (21057): Implemented 8 device resources after synthesis - the final resource count might be different
+    Info (12023): Found entity 1: acionarDisplay File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/acionarDisplay.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file teclado.v
+    Info (12023): Found entity 1: teclado File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/teclado.v Line: 1
+Info (12127): Elaborating entity "teclado" for the top level hierarchy
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "out[3]" is stuck at GND File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/teclado.v Line: 4
+Info (21057): Implemented 10 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 4 input pins
-    Info (21059): Implemented 2 output pins
+    Info (21059): Implemented 4 output pins
     Info (21061): Implemented 2 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 2 warnings
-    Info: Peak virtual memory: 4705 megabytes
-    Info: Processing ended: Tue May 25 15:21:41 2021
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 4697 megabytes
+    Info: Processing ended: Tue Jun 15 15:08:33 2021
     Info: Elapsed time: 00:00:19
-    Info: Total CPU time (on all processors): 00:00:30
+    Info: Total CPU time (on all processors): 00:00:34
 
 

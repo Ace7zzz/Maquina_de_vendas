@@ -1,0 +1,6 @@
+
+State Machine - |controlePrincipal|estadoAtual
+Name estadoAtual.ESPERA estadoAtual.COMPARADOR estadoAtual.PRODUTO 
+estadoAtual.ESPERA 0 0 0 
+estadoAtual.PRODUTO 1 0 1 
+estadoAtual.COMPARADOR 1 1 0 
