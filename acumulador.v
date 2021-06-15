@@ -30,95 +30,192 @@ module acumulador(input wire clk, input wire tempoLimite, input wire [1:0] valor
                E_INV7 = 4'b1111;
 
 
-    always @(posedge clk) begin   // atualização do estado e da saída comparar
-        if(tempoLimite) begin
-            estadoAtual <= E0_00;
-            comparar <= 1;
-        end 
-        else begin 
-			estadoAtual <= proxEstado;
-			comparar <= 0;
-			end
+    always @(posedge clk) begin   // atualização do estado
+        estadoAtual <= proxEstado;
     end
     
-    always @(estadoAtual or valorMoeda) begin //Lógica de transição de estado e da saída valorAcumulado
+    always @(estadoAtual or valorMoeda or tempoLimite) begin //Lógica de transição de estado e da saídas
         proxEstado <= estadoAtual;
+		  comparar <= 0;
         valorAcumulado <= 4'b0000;
         case (estadoAtual)
             E0_00: begin
-                case (valorMoeda)
-                M0_25 : proxEstado <= E0_25;  
-                M0_50 : proxEstado <= E0_50;  
-                M1_00 : proxEstado <= E1_00;  
-              endcase
+				
+					 if(tempoLimite) begin
+						proxEstado <= E0_00;
+						valorAcumulado <= estadoAtual;
+						comparar <= 1;
+					 end
+					 
+					 else begin 
+						case (valorMoeda)
+							M0_25 : proxEstado <= E0_25;
+							M0_50 : proxEstado <= E0_50;  
+							M1_00 : proxEstado <= E1_00;  
+						endcase
+						valorAcumulado <= proxEstado;
+					 end
             end
+				
             E0_25: begin
-                case (valorMoeda)
-                M0_25 : proxEstado <= E0_50;  
-                M0_50 : proxEstado <= E0_75;  
-                M1_00 : proxEstado <= E1_25; 
-                endcase
+					 if(tempoLimite) begin
+						proxEstado <= E0_00;
+						valorAcumulado <= estadoAtual;
+						comparar <= 1;
+					 end
+					 
+					 else begin
+						 case (valorMoeda)
+							 M0_25 : proxEstado <= E0_50;  
+							 M0_50 : proxEstado <= E0_75;  
+							 M1_00 : proxEstado <= E1_25; 
+						 endcase
+						 valorAcumulado <= proxEstado;
+					 end
             end
 
             E0_50: begin
-                case (valorMoeda)
-                M0_25 : proxEstado <= E0_75;  
-                M0_50 : proxEstado <= E1_00;  
-                M1_00 : proxEstado <= E1_50; 
-                endcase
+					 if(tempoLimite) begin
+						proxEstado <= E0_00;
+						valorAcumulado <= estadoAtual;
+						comparar <= 1;
+					 end
+					 
+					 else begin
+						 case (valorMoeda)
+							 M0_25 : proxEstado <= E0_75;  
+							 M0_50 : proxEstado <= E1_00;  
+							 M1_00 : proxEstado <= E1_50; 
+						 endcase
+						 valorAcumulado <= proxEstado;
+					 end
             end
 
             E0_75: begin
-                case (valorMoeda)
-                M0_25 : proxEstado <= E1_00;  
-                M0_50:  proxEstado <= E1_25;  
-                M1_00 : proxEstado <= E1_75; 
-                endcase
+				
+						if(tempoLimite) begin
+							proxEstado <= E0_00;
+							valorAcumulado <= estadoAtual;
+							comparar <= 1;
+						end
+					 
+						else begin
+						 case (valorMoeda)
+							 M0_25 : proxEstado <= E1_00;  
+							 M0_50:  proxEstado <= E1_25;  
+							 M1_00 : proxEstado <= E1_75; 
+						 endcase
+						 valorAcumulado <= proxEstado;
+					 end
             end
 
             E1_00: begin
-               case (valorMoeda)
-                M0_25 : proxEstado <= E1_25;  
-                M0_50 : proxEstado <= E1_50;  
-                M1_00 : proxEstado <= E2_00; 
-                endcase
+				
+					if(tempoLimite) begin
+						proxEstado <= E0_00;
+						valorAcumulado <= estadoAtual;
+						comparar <= 1;
+					end
+					 
+					else begin
+						case (valorMoeda)
+							M0_25 : proxEstado <= E1_25;  
+							M0_50 : proxEstado <= E1_50;  
+							M1_00 : proxEstado <= E2_00; 
+						endcase
+						valorAcumulado <= proxEstado;
+					end
             end
 
             E1_25: begin
-               case (valorMoeda)
-                M0_25 : proxEstado <= E1_50;  
-                M0_50 : proxEstado <= E1_75;  
-                M1_00 : proxEstado <= E0_00; 
-                endcase
+					
+					if(tempoLimite) begin
+						proxEstado <= E0_00;
+						valorAcumulado <= estadoAtual;
+						comparar <= 1;
+					end
+					 
+					else begin
+						case (valorMoeda)
+							M0_25 : proxEstado <= E1_50;  
+							M0_50 : proxEstado <= E1_75;  
+							M1_00 : begin
+								proxEstado <= E0_00; 
+								comparar <=1;
+							end
+								
+						endcase
+						valorAcumulado <= proxEstado;
+					end
             end
 
 
             E1_50: begin
-               case (valorMoeda)
-                M0_25 : proxEstado <= E1_75;  
-                M0_50 : proxEstado <= E2_00;  
-                M1_00 : proxEstado <= E0_00; 
-                endcase
+					
+					if(tempoLimite) begin
+						proxEstado <= E0_00;
+						valorAcumulado <= estadoAtual;
+						comparar <= 1;
+					end
+					 
+					else begin
+						case (valorMoeda)
+							M0_25 : proxEstado <= E1_75;  
+							M0_50 : proxEstado <= E2_00;  
+							M1_00 : begin
+								proxEstado <= E0_00; 
+								comparar <=1;
+							end 
+						endcase
+						valorAcumulado <= proxEstado;
+						comparar <= 0;
+					end
             end
 
             E1_75: begin
-               case (valorMoeda)
-                M0_25 : proxEstado <= E2_00;  
-                M0_50 : proxEstado <= E0_00;  
-                M1_00 : proxEstado <= E0_00; 
-                endcase
+				
+					if(tempoLimite) begin
+						proxEstado <= E0_00;
+						valorAcumulado <= estadoAtual;
+						comparar <= 1;
+					end
+					 
+					else begin	
+						case (valorMoeda)
+							M0_25 : proxEstado <= E2_00;  
+							M0_50 : begin
+								proxEstado <= E0_00; 
+								comparar <=1;
+							end  
+							M1_00 : begin
+								proxEstado <= E0_00; 
+								comparar <=1;
+							end 
+						endcase
+						valorAcumulado <= proxEstado;
+					end
             end
 
             E2_00: begin
-               case (valorMoeda)
-                M0_25 : proxEstado <= E0_00;  
-                M0_50 : proxEstado <= E0_00;  
-                M1_00 : proxEstado <= E0_00; 
-                endcase
+					
+					if(tempoLimite) begin
+						proxEstado <= E0_00;
+						valorAcumulado <= estadoAtual;
+						comparar <= 1;
+					end
+					 
+					else begin	
+						case (valorMoeda)
+							M0_25 : proxEstado <= E0_00;  
+							M0_50 : proxEstado <= E0_00;  
+							M1_00 : proxEstado <= E0_00; 
+						endcase
+						valorAcumulado <= proxEstado;
+						comparar <= 1;
+					end
             end
             default: proxEstado <= E0_00; //Estado Inválidos
         endcase
-		  valorAcumulado <= proxEstado;
     end
 
 

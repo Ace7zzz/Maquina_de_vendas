@@ -14,7 +14,7 @@
     end
 
 
-    always @(estadoAtual or tempoLimite or OK) begin
+    always @(estadoAtual or tempoLimite or OK or enable) begin
         proxEstado <= estadoAtual;
         case (estadoAtual)
             ESPERA: begin
