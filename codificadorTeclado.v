@@ -1,4 +1,4 @@
-module teclado (
+module codificadorTeclado (
 input [3:0] in,
 output reg [1:0] out,
 output reg press
