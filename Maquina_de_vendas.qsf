@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "MAX II"
 set_global_assignment -name DEVICE EPM240T100C5
-set_global_assignment -name TOP_LEVEL_ENTITY teclado
+set_global_assignment -name TOP_LEVEL_ENTITY reg_fim
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:48:47  MAY 25, 2021"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
@@ -49,6 +49,11 @@ set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR "-1"
 set_global_assignment -name POWER_EXT_SUPPLY_VOLTAGE_TO_REGULATOR 3.3V
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "NO HEAT SINK WITH STILL AIR"
+set_global_assignment -name VERILOG_FILE reg_fim.v
+set_global_assignment -name VERILOG_FILE codificadorTeclado.v
+set_global_assignment -name VERILOG_FILE selecionador.v
+set_global_assignment -name VERILOG_FILE registradores.v
+set_global_assignment -name VERILOG_FILE comparador.v
 set_global_assignment -name VERILOG_FILE controlePrincipal.v
 set_global_assignment -name VERILOG_FILE controleDigitos.v
 set_global_assignment -name VERILOG_FILE acumulador.v
@@ -58,3 +63,6 @@ set_global_assignment -name VERILOG_FILE decodificador.v
 set_global_assignment -name VERILOG_FILE count.v
 set_global_assignment -name VERILOG_FILE acionarDisplay.v
 set_global_assignment -name VERILOG_FILE teclado.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform_teclado.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform_comparador.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform_fim.vwf

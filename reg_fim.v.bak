@@ -1,0 +1,23 @@
+module reg_fim (
+    input LP, DM, CLK,      // liberar produto, devolver moeda, clock(dividido, 1seg)
+    output reg FIM,
+);
+reg [1:0] conta;
+always @ (CLK) begin
+    if (conta == 2'b11) begin       // passou-se 3 segs
+        conta <= 2'b00;
+    end
+    else begin
+        conta <= conta + 1;
+    end
+end
+always @ (LP or DM) begin
+    if (conta == 2'b11) begin       // se chegou 3 segs ele diz FIM
+        FIM <= 1;
+    end
+    else begin
+        FIM <= 0;       // enquanto não conta 3 segs ele transmite LP ou DM para o display
+    end
+end
+
+endmodule 

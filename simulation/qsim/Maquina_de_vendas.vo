@@ -17,7 +17,7 @@
 // PROGRAM "Quartus Prime"
 // VERSION "Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition"
 
-// DATE "06/15/2021 23:19:11"
+// DATE "06/16/2021 18:58:26"
 
 // 
 // Device: Altera EPM240T100C5 Package TQFP100
@@ -29,17 +29,15 @@
 
 `timescale 1 ps/ 1 ps
 
-module acumulador (
+module reg_fim (
+	LP,
+	DM,
 	clk,
-	tempoLimite,
-	valorMoeda,
-	comparar,
-	valorAcumulado);
+	FIM);
+input 	LP;
+input 	DM;
 input 	clk;
-input 	tempoLimite;
-input 	[1:0] valorMoeda;
-output 	comparar;
-output 	[3:0] valorAcumulado;
+output 	FIM;
 
 // Design Ports Information
 
@@ -55,83 +53,14 @@ assign unknown = 1'bx;
 tri1 devclrn;
 tri1 devpor;
 tri1 devoe;
-wire \tempoLimite~combout ;
 wire \clk~combout ;
-wire \Selector13~5_combout ;
-wire \proxEstado~6_combout ;
-wire \proxEstado~7_combout ;
-wire \Selector0~1_combout ;
-wire \Selector0~0_combout ;
-wire \Selector3~0_combout ;
-wire \estadoAtual.E0_25~regout ;
-wire \Selector1~0_combout ;
-wire \Selector2~0 ;
-wire \estadoAtual.E0_50~regout ;
-wire \Selector3~1_combout ;
-wire \estadoAtual.E0_75~regout ;
-wire \Selector13~1_combout ;
-wire \Selector0~2_combout ;
-wire \estadoAtual.E0_00~regout ;
-wire \Selector4~1_combout ;
-wire \Selector4~0_combout ;
-wire \estadoAtual.E1_00~regout ;
-wire \Selector5~0_combout ;
-wire \Selector5~1_combout ;
-wire \estadoAtual.E1_25~regout ;
-wire \Selector6~0_combout ;
-wire \Selector6~1_combout ;
-wire \estadoAtual.E1_50~regout ;
-wire \Selector7~0_combout ;
-wire \Selector7~1_combout ;
-wire \estadoAtual.E1_75~regout ;
-wire \Selector13~0_combout ;
-wire \Selector13~2_combout ;
-wire \Selector13~3_combout ;
-wire \Selector13~4_combout ;
-wire \Selector12~1_combout ;
-wire \Selector5~2 ;
-wire \Selector7~2 ;
-wire \Selector3~2 ;
-wire \valorAcumulado~0_combout ;
-wire \Selector12~0_combout ;
-wire \Selector12~2_combout ;
-wire \Selector11~0_combout ;
-wire \Selector6~2 ;
-wire \Selector2~1 ;
-wire \valorAcumulado~1_combout ;
-wire \Selector11~1_combout ;
-wire \Selector11~2_combout ;
-wire \Selector10~0_combout ;
-wire \Selector4~2 ;
-wire \valorAcumulado~2_combout ;
-wire \Selector10~1_combout ;
-wire \Selector9~0_combout ;
-wire \Selector8~0_combout ;
-wire \estadoAtual.E2_00~regout ;
-wire \Selector8~1 ;
-wire \Selector9~1_combout ;
-wire [1:0] \valorMoeda~combout ;
+wire \DM~combout ;
+wire \LP~combout ;
+wire \D3~regout ;
+wire \D2~regout ;
+wire \D1~regout ;
+wire \D0~regout ;
 
-
-// Location: PIN_17,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
-maxii_io \tempoLimite~I (
-	.datain(gnd),
-	.oe(gnd),
-	.combout(\tempoLimite~combout ),
-	.padio(tempoLimite));
-// synopsys translate_off
-defparam \tempoLimite~I .operation_mode = "input";
-// synopsys translate_on
-
-// Location: PIN_12,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
-maxii_io \valorMoeda[1]~I (
-	.datain(gnd),
-	.oe(gnd),
-	.combout(\valorMoeda~combout [1]),
-	.padio(valorMoeda[1]));
-// synopsys translate_off
-defparam \valorMoeda[1]~I .operation_mode = "input";
-// synopsys translate_on
 
 // Location: PIN_14,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
 maxii_io \clk~I (
@@ -143,243 +72,72 @@ maxii_io \clk~I (
 defparam \clk~I .operation_mode = "input";
 // synopsys translate_on
 
-// Location: PIN_66,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
-maxii_io \valorMoeda[0]~I (
+// Location: PIN_83,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \DM~I (
 	.datain(gnd),
 	.oe(gnd),
-	.combout(\valorMoeda~combout [0]),
-	.padio(valorMoeda[0]));
+	.combout(\DM~combout ),
+	.padio(DM));
 // synopsys translate_off
-defparam \valorMoeda[0]~I .operation_mode = "input";
+defparam \DM~I .operation_mode = "input";
 // synopsys translate_on
 
-// Location: LC_X3_Y3_N4
-maxii_lcell \Selector13~5 (
-// Equation(s):
-// \Selector13~5_combout  = (!\valorMoeda~combout [1] & (((!\tempoLimite~combout ))))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [1]),
-	.datab(vcc),
-	.datac(vcc),
-	.datad(\tempoLimite~combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector13~5_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
+// Location: PIN_84,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: Default
+maxii_io \LP~I (
+	.datain(gnd),
+	.oe(gnd),
+	.combout(\LP~combout ),
+	.padio(LP));
 // synopsys translate_off
-defparam \Selector13~5 .lut_mask = "0055";
-defparam \Selector13~5 .operation_mode = "normal";
-defparam \Selector13~5 .output_mode = "comb_only";
-defparam \Selector13~5 .register_cascade_mode = "off";
-defparam \Selector13~5 .sum_lutc_input = "datac";
-defparam \Selector13~5 .synch_mode = "off";
+defparam \LP~I .operation_mode = "input";
 // synopsys translate_on
 
-// Location: LC_X6_Y3_N4
-maxii_lcell \proxEstado~6 (
+// Location: LC_X6_Y4_N4
+maxii_lcell D3(
 // Equation(s):
-// \proxEstado~6_combout  = (!\valorMoeda~combout [1] & (((!\tempoLimite~combout  & \valorMoeda~combout [0]))))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [1]),
-	.datab(vcc),
-	.datac(\tempoLimite~combout ),
-	.datad(\valorMoeda~combout [0]),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\proxEstado~6_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \proxEstado~6 .lut_mask = "0500";
-defparam \proxEstado~6 .operation_mode = "normal";
-defparam \proxEstado~6 .output_mode = "comb_only";
-defparam \proxEstado~6 .register_cascade_mode = "off";
-defparam \proxEstado~6 .sum_lutc_input = "datac";
-defparam \proxEstado~6 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X6_Y3_N8
-maxii_lcell \proxEstado~7 (
-// Equation(s):
-// \proxEstado~7_combout  = (((!\tempoLimite~combout  & \valorMoeda~combout [1])))
-
-	.clk(gnd),
-	.dataa(vcc),
-	.datab(vcc),
-	.datac(\tempoLimite~combout ),
-	.datad(\valorMoeda~combout [1]),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\proxEstado~7_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \proxEstado~7 .lut_mask = "0f00";
-defparam \proxEstado~7 .operation_mode = "normal";
-defparam \proxEstado~7 .output_mode = "comb_only";
-defparam \proxEstado~7 .register_cascade_mode = "off";
-defparam \proxEstado~7 .sum_lutc_input = "datac";
-defparam \proxEstado~7 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y3_N0
-maxii_lcell \Selector0~1 (
-// Equation(s):
-// \Selector0~1_combout  = (\valorMoeda~combout [0] & ((\valorMoeda~combout [1]) # ((!\estadoAtual.E1_50~regout  & !\estadoAtual.E1_25~regout )))) # (!\valorMoeda~combout [0] & (((!\estadoAtual.E1_50~regout  & !\estadoAtual.E1_25~regout ))))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\valorMoeda~combout [1]),
-	.datac(\estadoAtual.E1_50~regout ),
-	.datad(\estadoAtual.E1_25~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector0~1_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector0~1 .lut_mask = "888f";
-defparam \Selector0~1 .operation_mode = "normal";
-defparam \Selector0~1 .output_mode = "comb_only";
-defparam \Selector0~1 .register_cascade_mode = "off";
-defparam \Selector0~1 .sum_lutc_input = "datac";
-defparam \Selector0~1 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X6_Y3_N6
-maxii_lcell \Selector0~0 (
-// Equation(s):
-// \Selector0~0_combout  = (\tempoLimite~combout ) # ((!\valorMoeda~combout [0] & (!\valorMoeda~combout [1] & !\estadoAtual.E0_00~regout )))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\tempoLimite~combout ),
-	.datac(\valorMoeda~combout [1]),
-	.datad(\estadoAtual.E0_00~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector0~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector0~0 .lut_mask = "cccd";
-defparam \Selector0~0 .operation_mode = "normal";
-defparam \Selector0~0 .output_mode = "comb_only";
-defparam \Selector0~0 .register_cascade_mode = "off";
-defparam \Selector0~0 .sum_lutc_input = "datac";
-defparam \Selector0~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X6_Y3_N7
-maxii_lcell \Selector3~0 (
-// Equation(s):
-// \Selector3~0_combout  = (\valorMoeda~combout [1] & (((!\tempoLimite~combout  & !\valorMoeda~combout [0]))))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [1]),
-	.datab(vcc),
-	.datac(\tempoLimite~combout ),
-	.datad(\valorMoeda~combout [0]),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector3~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector3~0 .lut_mask = "000a";
-defparam \Selector3~0 .operation_mode = "normal";
-defparam \Selector3~0 .output_mode = "comb_only";
-defparam \Selector3~0 .register_cascade_mode = "off";
-defparam \Selector3~0 .sum_lutc_input = "datac";
-defparam \Selector3~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X5_Y3_N7
-maxii_lcell \estadoAtual.E0_25 (
-// Equation(s):
-// \Selector2~0  = (\estadoAtual.E0_00~regout  & (\proxEstado~6_combout  & (estadoAtual.E0_25))) # (!\estadoAtual.E0_00~regout  & ((\Selector3~0_combout ) # ((\proxEstado~6_combout  & estadoAtual.E0_25))))
-// \estadoAtual.E0_25~regout  = DFFEAS(\Selector2~0 , GLOBAL(\clk~combout ), VCC, , , \Selector1~0_combout , , , VCC)
+// \D3~regout  = DFFEAS((((\DM~combout ) # (\LP~combout ))), GLOBAL(\clk~combout ), VCC, , , , , , )
 
 	.clk(\clk~combout ),
-	.dataa(\estadoAtual.E0_00~regout ),
-	.datab(\proxEstado~6_combout ),
-	.datac(\Selector1~0_combout ),
-	.datad(\Selector3~0_combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\DM~combout ),
+	.datad(\LP~combout ),
+	.aclr(gnd),
+	.aload(gnd),
+	.sclr(gnd),
+	.sload(gnd),
+	.ena(vcc),
+	.cin(gnd),
+	.cin0(gnd),
+	.cin1(vcc),
+	.inverta(gnd),
+	.regcascin(gnd),
+	.devclrn(devclrn),
+	.devpor(devpor),
+	.combout(),
+	.regout(\D3~regout ),
+	.cout(),
+	.cout0(),
+	.cout1());
+// synopsys translate_off
+defparam D3.lut_mask = "fff0";
+defparam D3.operation_mode = "normal";
+defparam D3.output_mode = "reg_only";
+defparam D3.register_cascade_mode = "off";
+defparam D3.sum_lutc_input = "datac";
+defparam D3.synch_mode = "off";
+// synopsys translate_on
+
+// Location: LC_X6_Y4_N6
+maxii_lcell D2(
+// Equation(s):
+// \D2~regout  = DFFEAS(GND, GLOBAL(\clk~combout ), VCC, , , \D3~regout , , , VCC)
+
+	.clk(\clk~combout ),
+	.dataa(vcc),
+	.datab(vcc),
+	.datac(\D3~regout ),
+	.datad(vcc),
 	.aclr(gnd),
 	.aload(gnd),
 	.sclr(gnd),
@@ -392,760 +150,34 @@ maxii_lcell \estadoAtual.E0_25 (
 	.regcascin(gnd),
 	.devclrn(devclrn),
 	.devpor(devpor),
-	.combout(\Selector2~0 ),
-	.regout(\estadoAtual.E0_25~regout ),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \estadoAtual.E0_25 .lut_mask = "d5c0";
-defparam \estadoAtual.E0_25 .operation_mode = "normal";
-defparam \estadoAtual.E0_25 .output_mode = "reg_and_comb";
-defparam \estadoAtual.E0_25 .register_cascade_mode = "off";
-defparam \estadoAtual.E0_25 .sum_lutc_input = "qfbk";
-defparam \estadoAtual.E0_25 .synch_mode = "on";
-// synopsys translate_on
-
-// Location: LC_X5_Y3_N6
-maxii_lcell \Selector1~0 (
-// Equation(s):
-// \Selector1~0_combout  = (\Selector13~5_combout  & ((\valorMoeda~combout [0] & (!\estadoAtual.E0_00~regout )) # (!\valorMoeda~combout [0] & ((\estadoAtual.E0_25~regout )))))
-
-	.clk(gnd),
-	.dataa(\estadoAtual.E0_00~regout ),
-	.datab(\estadoAtual.E0_25~regout ),
-	.datac(\valorMoeda~combout [0]),
-	.datad(\Selector13~5_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector1~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector1~0 .lut_mask = "5c00";
-defparam \Selector1~0 .operation_mode = "normal";
-defparam \Selector1~0 .output_mode = "comb_only";
-defparam \Selector1~0 .register_cascade_mode = "off";
-defparam \Selector1~0 .sum_lutc_input = "datac";
-defparam \Selector1~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X5_Y3_N8
-maxii_lcell \estadoAtual.E0_50 (
-// Equation(s):
-// \Selector2~1  = (\Selector2~0 ) # ((!\valorMoeda~combout [0] & (\Selector13~5_combout  & estadoAtual.E0_50)))
-// \estadoAtual.E0_50~regout  = DFFEAS(\Selector2~1 , GLOBAL(\clk~combout ), VCC, , , , , , )
-
-	.clk(\clk~combout ),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\Selector13~5_combout ),
-	.datac(vcc),
-	.datad(\Selector2~0 ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector2~1 ),
-	.regout(\estadoAtual.E0_50~regout ),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \estadoAtual.E0_50 .lut_mask = "ff40";
-defparam \estadoAtual.E0_50 .operation_mode = "normal";
-defparam \estadoAtual.E0_50 .output_mode = "reg_and_comb";
-defparam \estadoAtual.E0_50 .register_cascade_mode = "off";
-defparam \estadoAtual.E0_50 .sum_lutc_input = "qfbk";
-defparam \estadoAtual.E0_50 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X5_Y3_N0
-maxii_lcell \Selector3~1 (
-// Equation(s):
-// \Selector3~1_combout  = (\estadoAtual.E0_50~regout  & ((\proxEstado~6_combout ) # ((\estadoAtual.E0_25~regout  & \Selector3~0_combout )))) # (!\estadoAtual.E0_50~regout  & (((\estadoAtual.E0_25~regout  & \Selector3~0_combout ))))
-
-	.clk(gnd),
-	.dataa(\estadoAtual.E0_50~regout ),
-	.datab(\proxEstado~6_combout ),
-	.datac(\estadoAtual.E0_25~regout ),
-	.datad(\Selector3~0_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector3~1_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector3~1 .lut_mask = "f888";
-defparam \Selector3~1 .operation_mode = "normal";
-defparam \Selector3~1 .output_mode = "comb_only";
-defparam \Selector3~1 .register_cascade_mode = "off";
-defparam \Selector3~1 .sum_lutc_input = "datac";
-defparam \Selector3~1 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X5_Y3_N1
-maxii_lcell \estadoAtual.E0_75 (
-// Equation(s):
-// \Selector3~2  = (\Selector3~1_combout ) # ((!\valorMoeda~combout [0] & (\Selector13~5_combout  & estadoAtual.E0_75)))
-// \estadoAtual.E0_75~regout  = DFFEAS(\Selector3~2 , GLOBAL(\clk~combout ), VCC, , , , , , )
-
-	.clk(\clk~combout ),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\Selector13~5_combout ),
-	.datac(vcc),
-	.datad(\Selector3~1_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector3~2 ),
-	.regout(\estadoAtual.E0_75~regout ),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \estadoAtual.E0_75 .lut_mask = "ff40";
-defparam \estadoAtual.E0_75 .operation_mode = "normal";
-defparam \estadoAtual.E0_75 .output_mode = "reg_and_comb";
-defparam \estadoAtual.E0_75 .register_cascade_mode = "off";
-defparam \estadoAtual.E0_75 .sum_lutc_input = "qfbk";
-defparam \estadoAtual.E0_75 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X5_Y3_N2
-maxii_lcell \Selector13~1 (
-// Equation(s):
-// \Selector13~1_combout  = (!\estadoAtual.E0_50~regout  & (!\estadoAtual.E0_25~regout  & (!\estadoAtual.E0_75~regout  & \estadoAtual.E0_00~regout )))
-
-	.clk(gnd),
-	.dataa(\estadoAtual.E0_50~regout ),
-	.datab(\estadoAtual.E0_25~regout ),
-	.datac(\estadoAtual.E0_75~regout ),
-	.datad(\estadoAtual.E0_00~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector13~1_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector13~1 .lut_mask = "0100";
-defparam \Selector13~1 .operation_mode = "normal";
-defparam \Selector13~1 .output_mode = "comb_only";
-defparam \Selector13~1 .register_cascade_mode = "off";
-defparam \Selector13~1 .sum_lutc_input = "datac";
-defparam \Selector13~1 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X5_Y3_N3
-maxii_lcell \Selector0~2 (
-// Equation(s):
-// \Selector0~2_combout  = (((!\estadoAtual.E1_00~regout  & \Selector13~1_combout )))
-
-	.clk(gnd),
-	.dataa(vcc),
-	.datab(vcc),
-	.datac(\estadoAtual.E1_00~regout ),
-	.datad(\Selector13~1_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector0~2_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector0~2 .lut_mask = "0f00";
-defparam \Selector0~2 .operation_mode = "normal";
-defparam \Selector0~2 .output_mode = "comb_only";
-defparam \Selector0~2 .register_cascade_mode = "off";
-defparam \Selector0~2 .sum_lutc_input = "datac";
-defparam \Selector0~2 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X5_Y3_N4
-maxii_lcell \estadoAtual.E0_00 (
-// Equation(s):
-// \estadoAtual.E0_00~regout  = DFFEAS(((!\Selector0~0_combout  & ((!\Selector0~2_combout ) # (!\Selector0~1_combout )))) # (!\Selector13~0_combout ), GLOBAL(\clk~combout ), VCC, , , , , , )
-
-	.clk(\clk~combout ),
-	.dataa(\Selector0~1_combout ),
-	.datab(\Selector13~0_combout ),
-	.datac(\Selector0~0_combout ),
-	.datad(\Selector0~2_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
 	.combout(),
-	.regout(\estadoAtual.E0_00~regout ),
+	.regout(\D2~regout ),
 	.cout(),
 	.cout0(),
 	.cout1());
 // synopsys translate_off
-defparam \estadoAtual.E0_00 .lut_mask = "373f";
-defparam \estadoAtual.E0_00 .operation_mode = "normal";
-defparam \estadoAtual.E0_00 .output_mode = "reg_only";
-defparam \estadoAtual.E0_00 .register_cascade_mode = "off";
-defparam \estadoAtual.E0_00 .sum_lutc_input = "datac";
-defparam \estadoAtual.E0_00 .synch_mode = "off";
+defparam D2.lut_mask = "0000";
+defparam D2.operation_mode = "normal";
+defparam D2.output_mode = "reg_only";
+defparam D2.register_cascade_mode = "off";
+defparam D2.sum_lutc_input = "datac";
+defparam D2.synch_mode = "on";
 // synopsys translate_on
 
-// Location: LC_X5_Y3_N9
-maxii_lcell \Selector4~1 (
+// Location: LC_X6_Y4_N5
+maxii_lcell D1(
 // Equation(s):
-// \Selector4~1_combout  = (\proxEstado~7_combout  & ((\valorMoeda~combout [0] & (!\estadoAtual.E0_00~regout )) # (!\valorMoeda~combout [0] & ((\estadoAtual.E0_50~regout )))))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\proxEstado~7_combout ),
-	.datac(\estadoAtual.E0_00~regout ),
-	.datad(\estadoAtual.E0_50~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector4~1_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector4~1 .lut_mask = "4c08";
-defparam \Selector4~1 .operation_mode = "normal";
-defparam \Selector4~1 .output_mode = "comb_only";
-defparam \Selector4~1 .register_cascade_mode = "off";
-defparam \Selector4~1 .sum_lutc_input = "datac";
-defparam \Selector4~1 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y3_N2
-maxii_lcell \Selector4~0 (
-// Equation(s):
-// \Selector4~0_combout  = (\Selector13~5_combout  & ((\valorMoeda~combout [0] & (\estadoAtual.E0_75~regout )) # (!\valorMoeda~combout [0] & ((\estadoAtual.E1_00~regout )))))
-
-	.clk(gnd),
-	.dataa(\estadoAtual.E0_75~regout ),
-	.datab(\Selector13~5_combout ),
-	.datac(\valorMoeda~combout [0]),
-	.datad(\estadoAtual.E1_00~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector4~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector4~0 .lut_mask = "8c80";
-defparam \Selector4~0 .operation_mode = "normal";
-defparam \Selector4~0 .output_mode = "comb_only";
-defparam \Selector4~0 .register_cascade_mode = "off";
-defparam \Selector4~0 .sum_lutc_input = "datac";
-defparam \Selector4~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y3_N9
-maxii_lcell \estadoAtual.E1_00 (
-// Equation(s):
-// \Selector4~2  = (((\Selector4~1_combout ) # (\Selector4~0_combout )))
-// \estadoAtual.E1_00~regout  = DFFEAS(\Selector4~2 , GLOBAL(\clk~combout ), VCC, , , , , , )
+// \D1~regout  = DFFEAS(GND, GLOBAL(\clk~combout ), VCC, , , \D2~regout , , , VCC)
 
 	.clk(\clk~combout ),
 	.dataa(vcc),
 	.datab(vcc),
-	.datac(\Selector4~1_combout ),
-	.datad(\Selector4~0_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector4~2 ),
-	.regout(\estadoAtual.E1_00~regout ),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \estadoAtual.E1_00 .lut_mask = "fff0";
-defparam \estadoAtual.E1_00 .operation_mode = "normal";
-defparam \estadoAtual.E1_00 .output_mode = "reg_and_comb";
-defparam \estadoAtual.E1_00 .register_cascade_mode = "off";
-defparam \estadoAtual.E1_00 .sum_lutc_input = "datac";
-defparam \estadoAtual.E1_00 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y3_N4
-maxii_lcell \Selector5~0 (
-// Equation(s):
-// \Selector5~0_combout  = (!\valorMoeda~combout [0] & (!\tempoLimite~combout  & (!\valorMoeda~combout [1] & \estadoAtual.E1_25~regout )))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\tempoLimite~combout ),
-	.datac(\valorMoeda~combout [1]),
-	.datad(\estadoAtual.E1_25~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector5~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector5~0 .lut_mask = "0100";
-defparam \Selector5~0 .operation_mode = "normal";
-defparam \Selector5~0 .output_mode = "comb_only";
-defparam \Selector5~0 .register_cascade_mode = "off";
-defparam \Selector5~0 .sum_lutc_input = "datac";
-defparam \Selector5~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X5_Y3_N5
-maxii_lcell \Selector5~1 (
-// Equation(s):
-// \Selector5~1_combout  = (\proxEstado~7_combout  & ((\valorMoeda~combout [0] & ((\estadoAtual.E0_25~regout ))) # (!\valorMoeda~combout [0] & (\estadoAtual.E0_75~regout ))))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\estadoAtual.E0_75~regout ),
-	.datac(\estadoAtual.E0_25~regout ),
-	.datad(\proxEstado~7_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector5~1_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector5~1 .lut_mask = "e400";
-defparam \Selector5~1 .operation_mode = "normal";
-defparam \Selector5~1 .output_mode = "comb_only";
-defparam \Selector5~1 .register_cascade_mode = "off";
-defparam \Selector5~1 .sum_lutc_input = "datac";
-defparam \Selector5~1 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y3_N1
-maxii_lcell \estadoAtual.E1_25 (
-// Equation(s):
-// \Selector5~2  = (\Selector5~0_combout ) # ((\Selector5~1_combout ) # ((\proxEstado~6_combout  & \estadoAtual.E1_00~regout )))
-// \estadoAtual.E1_25~regout  = DFFEAS(\Selector5~2 , GLOBAL(\clk~combout ), VCC, , , , , , )
-
-	.clk(\clk~combout ),
-	.dataa(\proxEstado~6_combout ),
-	.datab(\estadoAtual.E1_00~regout ),
-	.datac(\Selector5~0_combout ),
-	.datad(\Selector5~1_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector5~2 ),
-	.regout(\estadoAtual.E1_25~regout ),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \estadoAtual.E1_25 .lut_mask = "fff8";
-defparam \estadoAtual.E1_25 .operation_mode = "normal";
-defparam \estadoAtual.E1_25 .output_mode = "reg_and_comb";
-defparam \estadoAtual.E1_25 .register_cascade_mode = "off";
-defparam \estadoAtual.E1_25 .sum_lutc_input = "datac";
-defparam \estadoAtual.E1_25 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y3_N6
-maxii_lcell \Selector6~0 (
-// Equation(s):
-// \Selector6~0_combout  = (!\valorMoeda~combout [0] & (!\valorMoeda~combout [1] & (\estadoAtual.E1_50~regout  & !\tempoLimite~combout )))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\valorMoeda~combout [1]),
-	.datac(\estadoAtual.E1_50~regout ),
-	.datad(\tempoLimite~combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector6~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector6~0 .lut_mask = "0010";
-defparam \Selector6~0 .operation_mode = "normal";
-defparam \Selector6~0 .output_mode = "comb_only";
-defparam \Selector6~0 .register_cascade_mode = "off";
-defparam \Selector6~0 .sum_lutc_input = "datac";
-defparam \Selector6~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y3_N3
-maxii_lcell \Selector6~1 (
-// Equation(s):
-// \Selector6~1_combout  = (\proxEstado~7_combout  & ((\valorMoeda~combout [0] & ((\estadoAtual.E0_50~regout ))) # (!\valorMoeda~combout [0] & (\estadoAtual.E1_00~regout ))))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\estadoAtual.E1_00~regout ),
-	.datac(\proxEstado~7_combout ),
-	.datad(\estadoAtual.E0_50~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector6~1_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector6~1 .lut_mask = "e040";
-defparam \Selector6~1 .operation_mode = "normal";
-defparam \Selector6~1 .output_mode = "comb_only";
-defparam \Selector6~1 .register_cascade_mode = "off";
-defparam \Selector6~1 .sum_lutc_input = "datac";
-defparam \Selector6~1 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y3_N5
-maxii_lcell \estadoAtual.E1_50 (
-// Equation(s):
-// \Selector6~2  = (\Selector6~0_combout ) # ((\Selector6~1_combout ) # ((\proxEstado~6_combout  & \estadoAtual.E1_25~regout )))
-// \estadoAtual.E1_50~regout  = DFFEAS(\Selector6~2 , GLOBAL(\clk~combout ), VCC, , , , , , )
-
-	.clk(\clk~combout ),
-	.dataa(\proxEstado~6_combout ),
-	.datab(\estadoAtual.E1_25~regout ),
-	.datac(\Selector6~0_combout ),
-	.datad(\Selector6~1_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector6~2 ),
-	.regout(\estadoAtual.E1_50~regout ),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \estadoAtual.E1_50 .lut_mask = "fff8";
-defparam \estadoAtual.E1_50 .operation_mode = "normal";
-defparam \estadoAtual.E1_50 .output_mode = "reg_and_comb";
-defparam \estadoAtual.E1_50 .register_cascade_mode = "off";
-defparam \estadoAtual.E1_50 .sum_lutc_input = "datac";
-defparam \estadoAtual.E1_50 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X3_Y3_N5
-maxii_lcell \Selector7~0 (
-// Equation(s):
-// \Selector7~0_combout  = (\Selector13~5_combout  & ((\valorMoeda~combout [0] & ((\estadoAtual.E1_50~regout ))) # (!\valorMoeda~combout [0] & (\estadoAtual.E1_75~regout ))))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\estadoAtual.E1_75~regout ),
-	.datac(\Selector13~5_combout ),
-	.datad(\estadoAtual.E1_50~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector7~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector7~0 .lut_mask = "e040";
-defparam \Selector7~0 .operation_mode = "normal";
-defparam \Selector7~0 .output_mode = "comb_only";
-defparam \Selector7~0 .register_cascade_mode = "off";
-defparam \Selector7~0 .sum_lutc_input = "datac";
-defparam \Selector7~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y3_N8
-maxii_lcell \Selector7~1 (
-// Equation(s):
-// \Selector7~1_combout  = (\proxEstado~7_combout  & ((\valorMoeda~combout [0] & ((\estadoAtual.E0_75~regout ))) # (!\valorMoeda~combout [0] & (\estadoAtual.E1_25~regout ))))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\estadoAtual.E1_25~regout ),
-	.datac(\proxEstado~7_combout ),
-	.datad(\estadoAtual.E0_75~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector7~1_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector7~1 .lut_mask = "e040";
-defparam \Selector7~1 .operation_mode = "normal";
-defparam \Selector7~1 .output_mode = "comb_only";
-defparam \Selector7~1 .register_cascade_mode = "off";
-defparam \Selector7~1 .sum_lutc_input = "datac";
-defparam \Selector7~1 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X3_Y3_N2
-maxii_lcell \estadoAtual.E1_75 (
-// Equation(s):
-// \Selector7~2  = (((\Selector7~0_combout ) # (\Selector7~1_combout )))
-// \estadoAtual.E1_75~regout  = DFFEAS(\Selector7~2 , GLOBAL(\clk~combout ), VCC, , , , , , )
-
-	.clk(\clk~combout ),
-	.dataa(vcc),
-	.datab(vcc),
-	.datac(\Selector7~0_combout ),
-	.datad(\Selector7~1_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector7~2 ),
-	.regout(\estadoAtual.E1_75~regout ),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \estadoAtual.E1_75 .lut_mask = "fff0";
-defparam \estadoAtual.E1_75 .operation_mode = "normal";
-defparam \estadoAtual.E1_75 .output_mode = "reg_and_comb";
-defparam \estadoAtual.E1_75 .register_cascade_mode = "off";
-defparam \estadoAtual.E1_75 .sum_lutc_input = "datac";
-defparam \estadoAtual.E1_75 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y3_N7
-maxii_lcell \Selector13~0 (
-// Equation(s):
-// \Selector13~0_combout  = ((\tempoLimite~combout ) # ((\valorMoeda~combout [1]) # (!\estadoAtual.E1_75~regout )))
-
-	.clk(gnd),
-	.dataa(vcc),
-	.datab(\tempoLimite~combout ),
-	.datac(\valorMoeda~combout [1]),
-	.datad(\estadoAtual.E1_75~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector13~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector13~0 .lut_mask = "fcff";
-defparam \Selector13~0 .operation_mode = "normal";
-defparam \Selector13~0 .output_mode = "comb_only";
-defparam \Selector13~0 .register_cascade_mode = "off";
-defparam \Selector13~0 .sum_lutc_input = "datac";
-defparam \Selector13~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y2_N0
-maxii_lcell \Selector13~2 (
-// Equation(s):
-// \Selector13~2_combout  = (!\estadoAtual.E1_00~regout  & (((!\estadoAtual.E1_50~regout ))))
-
-	.clk(gnd),
-	.dataa(\estadoAtual.E1_00~regout ),
-	.datab(vcc),
-	.datac(\estadoAtual.E1_50~regout ),
+	.datac(\D2~regout ),
 	.datad(vcc),
 	.aclr(gnd),
 	.aload(gnd),
 	.sclr(gnd),
-	.sload(gnd),
+	.sload(vcc),
 	.ena(vcc),
 	.cin(gnd),
 	.cin0(gnd),
@@ -1154,502 +186,34 @@ maxii_lcell \Selector13~2 (
 	.regcascin(gnd),
 	.devclrn(devclrn),
 	.devpor(devpor),
-	.combout(\Selector13~2_combout ),
-	.regout(),
+	.combout(),
+	.regout(\D1~regout ),
 	.cout(),
 	.cout0(),
 	.cout1());
 // synopsys translate_off
-defparam \Selector13~2 .lut_mask = "0505";
-defparam \Selector13~2 .operation_mode = "normal";
-defparam \Selector13~2 .output_mode = "comb_only";
-defparam \Selector13~2 .register_cascade_mode = "off";
-defparam \Selector13~2 .sum_lutc_input = "datac";
-defparam \Selector13~2 .synch_mode = "off";
+defparam D1.lut_mask = "0000";
+defparam D1.operation_mode = "normal";
+defparam D1.output_mode = "reg_only";
+defparam D1.register_cascade_mode = "off";
+defparam D1.sum_lutc_input = "datac";
+defparam D1.synch_mode = "on";
 // synopsys translate_on
 
-// Location: LC_X6_Y3_N9
-maxii_lcell \Selector13~3 (
+// Location: LC_X6_Y4_N2
+maxii_lcell D0(
 // Equation(s):
-// \Selector13~3_combout  = (\Selector13~2_combout  & (((\valorMoeda~combout [0] & \valorMoeda~combout [1])) # (!\estadoAtual.E1_25~regout )))
+// \D0~regout  = DFFEAS(GND, GLOBAL(\clk~combout ), VCC, , , \D1~regout , , , VCC)
 
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\Selector13~2_combout ),
-	.datac(\estadoAtual.E1_25~regout ),
-	.datad(\valorMoeda~combout [1]),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector13~3_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector13~3 .lut_mask = "8c0c";
-defparam \Selector13~3 .operation_mode = "normal";
-defparam \Selector13~3 .output_mode = "comb_only";
-defparam \Selector13~3 .register_cascade_mode = "off";
-defparam \Selector13~3 .sum_lutc_input = "datac";
-defparam \Selector13~3 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X6_Y3_N2
-maxii_lcell \Selector13~4 (
-// Equation(s):
-// \Selector13~4_combout  = (\Selector13~0_combout  & ((\tempoLimite~combout ) # ((\Selector13~1_combout  & \Selector13~3_combout ))))
-
-	.clk(gnd),
-	.dataa(\Selector13~0_combout ),
-	.datab(\Selector13~1_combout ),
-	.datac(\tempoLimite~combout ),
-	.datad(\Selector13~3_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector13~4_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector13~4 .lut_mask = "a8a0";
-defparam \Selector13~4 .operation_mode = "normal";
-defparam \Selector13~4 .output_mode = "comb_only";
-defparam \Selector13~4 .register_cascade_mode = "off";
-defparam \Selector13~4 .sum_lutc_input = "datac";
-defparam \Selector13~4 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y2_N3
-maxii_lcell \Selector12~1 (
-// Equation(s):
-// \Selector12~1_combout  = (\estadoAtual.E1_50~regout ) # ((\estadoAtual.E0_50~regout ) # ((\estadoAtual.E1_00~regout ) # (!\estadoAtual.E0_00~regout )))
-
-	.clk(gnd),
-	.dataa(\estadoAtual.E1_50~regout ),
-	.datab(\estadoAtual.E0_50~regout ),
-	.datac(\estadoAtual.E1_00~regout ),
-	.datad(\estadoAtual.E0_00~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector12~1_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector12~1 .lut_mask = "feff";
-defparam \Selector12~1 .operation_mode = "normal";
-defparam \Selector12~1 .output_mode = "comb_only";
-defparam \Selector12~1 .register_cascade_mode = "off";
-defparam \Selector12~1 .sum_lutc_input = "datac";
-defparam \Selector12~1 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X3_Y3_N9
-maxii_lcell \valorAcumulado~0 (
-// Equation(s):
-// \valorAcumulado~0_combout  = (!\Selector1~0_combout  & (!\Selector5~2  & (!\Selector7~2  & !\Selector3~2 )))
-
-	.clk(gnd),
-	.dataa(\Selector1~0_combout ),
-	.datab(\Selector5~2 ),
-	.datac(\Selector7~2 ),
-	.datad(\Selector3~2 ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\valorAcumulado~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \valorAcumulado~0 .lut_mask = "0001";
-defparam \valorAcumulado~0 .operation_mode = "normal";
-defparam \valorAcumulado~0 .output_mode = "comb_only";
-defparam \valorAcumulado~0 .register_cascade_mode = "off";
-defparam \valorAcumulado~0 .sum_lutc_input = "datac";
-defparam \valorAcumulado~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y2_N2
-maxii_lcell \Selector12~0 (
-// Equation(s):
-// \Selector12~0_combout  = (\estadoAtual.E0_25~regout ) # ((\estadoAtual.E0_75~regout ) # ((\estadoAtual.E1_75~regout ) # (\estadoAtual.E1_25~regout )))
-
-	.clk(gnd),
-	.dataa(\estadoAtual.E0_25~regout ),
-	.datab(\estadoAtual.E0_75~regout ),
-	.datac(\estadoAtual.E1_75~regout ),
-	.datad(\estadoAtual.E1_25~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector12~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector12~0 .lut_mask = "fffe";
-defparam \Selector12~0 .operation_mode = "normal";
-defparam \Selector12~0 .output_mode = "comb_only";
-defparam \Selector12~0 .register_cascade_mode = "off";
-defparam \Selector12~0 .sum_lutc_input = "datac";
-defparam \Selector12~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y2_N9
-maxii_lcell \Selector12~2 (
-// Equation(s):
-// \Selector12~2_combout  = (\tempoLimite~combout  & (((\Selector12~0_combout )))) # (!\tempoLimite~combout  & (!\valorAcumulado~0_combout  & ((\Selector12~1_combout ) # (\Selector12~0_combout ))))
-
-	.clk(gnd),
-	.dataa(\Selector12~1_combout ),
-	.datab(\valorAcumulado~0_combout ),
-	.datac(\tempoLimite~combout ),
-	.datad(\Selector12~0_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector12~2_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector12~2 .lut_mask = "f302";
-defparam \Selector12~2 .operation_mode = "normal";
-defparam \Selector12~2 .output_mode = "comb_only";
-defparam \Selector12~2 .register_cascade_mode = "off";
-defparam \Selector12~2 .sum_lutc_input = "datac";
-defparam \Selector12~2 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y2_N4
-maxii_lcell \Selector11~0 (
-// Equation(s):
-// \Selector11~0_combout  = (\estadoAtual.E1_50~regout ) # ((\estadoAtual.E0_50~regout ) # ((\estadoAtual.E1_75~regout ) # (\estadoAtual.E0_75~regout )))
-
-	.clk(gnd),
-	.dataa(\estadoAtual.E1_50~regout ),
-	.datab(\estadoAtual.E0_50~regout ),
-	.datac(\estadoAtual.E1_75~regout ),
-	.datad(\estadoAtual.E0_75~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector11~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector11~0 .lut_mask = "fffe";
-defparam \Selector11~0 .operation_mode = "normal";
-defparam \Selector11~0 .output_mode = "comb_only";
-defparam \Selector11~0 .register_cascade_mode = "off";
-defparam \Selector11~0 .sum_lutc_input = "datac";
-defparam \Selector11~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X3_Y3_N7
-maxii_lcell \valorAcumulado~1 (
-// Equation(s):
-// \valorAcumulado~1_combout  = (!\Selector6~2  & (!\Selector2~1  & (!\Selector7~2  & !\Selector3~2 )))
-
-	.clk(gnd),
-	.dataa(\Selector6~2 ),
-	.datab(\Selector2~1 ),
-	.datac(\Selector7~2 ),
-	.datad(\Selector3~2 ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\valorAcumulado~1_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \valorAcumulado~1 .lut_mask = "0001";
-defparam \valorAcumulado~1 .operation_mode = "normal";
-defparam \valorAcumulado~1 .output_mode = "comb_only";
-defparam \valorAcumulado~1 .register_cascade_mode = "off";
-defparam \valorAcumulado~1 .sum_lutc_input = "datac";
-defparam \valorAcumulado~1 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y2_N8
-maxii_lcell \Selector11~1 (
-// Equation(s):
-// \Selector11~1_combout  = (\estadoAtual.E0_25~regout ) # (((\estadoAtual.E1_00~regout ) # (\estadoAtual.E1_25~regout )) # (!\estadoAtual.E0_00~regout ))
-
-	.clk(gnd),
-	.dataa(\estadoAtual.E0_25~regout ),
-	.datab(\estadoAtual.E0_00~regout ),
-	.datac(\estadoAtual.E1_00~regout ),
-	.datad(\estadoAtual.E1_25~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector11~1_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector11~1 .lut_mask = "fffb";
-defparam \Selector11~1 .operation_mode = "normal";
-defparam \Selector11~1 .output_mode = "comb_only";
-defparam \Selector11~1 .register_cascade_mode = "off";
-defparam \Selector11~1 .sum_lutc_input = "datac";
-defparam \Selector11~1 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y2_N5
-maxii_lcell \Selector11~2 (
-// Equation(s):
-// \Selector11~2_combout  = (\tempoLimite~combout  & (\Selector11~0_combout )) # (!\tempoLimite~combout  & (!\valorAcumulado~1_combout  & ((\Selector11~0_combout ) # (\Selector11~1_combout ))))
-
-	.clk(gnd),
-	.dataa(\Selector11~0_combout ),
-	.datab(\valorAcumulado~1_combout ),
-	.datac(\tempoLimite~combout ),
-	.datad(\Selector11~1_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector11~2_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector11~2 .lut_mask = "a3a2";
-defparam \Selector11~2 .operation_mode = "normal";
-defparam \Selector11~2 .output_mode = "comb_only";
-defparam \Selector11~2 .register_cascade_mode = "off";
-defparam \Selector11~2 .sum_lutc_input = "datac";
-defparam \Selector11~2 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X4_Y2_N7
-maxii_lcell \Selector10~0 (
-// Equation(s):
-// \Selector10~0_combout  = (\estadoAtual.E1_50~regout ) # ((\estadoAtual.E1_75~regout ) # ((\estadoAtual.E1_00~regout ) # (\estadoAtual.E1_25~regout )))
-
-	.clk(gnd),
-	.dataa(\estadoAtual.E1_50~regout ),
-	.datab(\estadoAtual.E1_75~regout ),
-	.datac(\estadoAtual.E1_00~regout ),
-	.datad(\estadoAtual.E1_25~regout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector10~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector10~0 .lut_mask = "fffe";
-defparam \Selector10~0 .operation_mode = "normal";
-defparam \Selector10~0 .output_mode = "comb_only";
-defparam \Selector10~0 .register_cascade_mode = "off";
-defparam \Selector10~0 .sum_lutc_input = "datac";
-defparam \Selector10~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X3_Y3_N6
-maxii_lcell \valorAcumulado~2 (
-// Equation(s):
-// \valorAcumulado~2_combout  = (!\Selector4~2  & (!\Selector5~2  & (!\Selector7~2  & !\Selector6~2 )))
-
-	.clk(gnd),
-	.dataa(\Selector4~2 ),
-	.datab(\Selector5~2 ),
-	.datac(\Selector7~2 ),
-	.datad(\Selector6~2 ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\valorAcumulado~2_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \valorAcumulado~2 .lut_mask = "0001";
-defparam \valorAcumulado~2 .operation_mode = "normal";
-defparam \valorAcumulado~2 .output_mode = "comb_only";
-defparam \valorAcumulado~2 .register_cascade_mode = "off";
-defparam \valorAcumulado~2 .sum_lutc_input = "datac";
-defparam \valorAcumulado~2 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X6_Y3_N5
-maxii_lcell \Selector10~1 (
-// Equation(s):
-// \Selector10~1_combout  = (\tempoLimite~combout  & (\Selector10~0_combout )) # (!\tempoLimite~combout  & (!\valorAcumulado~2_combout  & ((\Selector10~0_combout ) # (!\Selector13~1_combout ))))
-
-	.clk(gnd),
-	.dataa(\Selector10~0_combout ),
-	.datab(\valorAcumulado~2_combout ),
-	.datac(\tempoLimite~combout ),
-	.datad(\Selector13~1_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector10~1_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector10~1 .lut_mask = "a2a3";
-defparam \Selector10~1 .operation_mode = "normal";
-defparam \Selector10~1 .output_mode = "comb_only";
-defparam \Selector10~1 .register_cascade_mode = "off";
-defparam \Selector10~1 .sum_lutc_input = "datac";
-defparam \Selector10~1 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X3_Y3_N8
-maxii_lcell \Selector9~0 (
-// Equation(s):
-// \Selector9~0_combout  = (!\valorMoeda~combout [1] & (((!\valorMoeda~combout [0]))))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [1]),
+	.clk(\clk~combout ),
+	.dataa(vcc),
 	.datab(vcc),
-	.datac(\valorMoeda~combout [0]),
+	.datac(\D1~regout ),
 	.datad(vcc),
 	.aclr(gnd),
 	.aload(gnd),
 	.sclr(gnd),
-	.sload(gnd),
+	.sload(vcc),
 	.ena(vcc),
 	.cin(gnd),
 	.cin0(gnd),
@@ -1658,177 +222,28 @@ maxii_lcell \Selector9~0 (
 	.regcascin(gnd),
 	.devclrn(devclrn),
 	.devpor(devpor),
-	.combout(\Selector9~0_combout ),
-	.regout(),
+	.combout(),
+	.regout(\D0~regout ),
 	.cout(),
 	.cout0(),
 	.cout1());
 // synopsys translate_off
-defparam \Selector9~0 .lut_mask = "0505";
-defparam \Selector9~0 .operation_mode = "normal";
-defparam \Selector9~0 .output_mode = "comb_only";
-defparam \Selector9~0 .register_cascade_mode = "off";
-defparam \Selector9~0 .sum_lutc_input = "datac";
-defparam \Selector9~0 .synch_mode = "off";
+defparam D0.lut_mask = "0000";
+defparam D0.operation_mode = "normal";
+defparam D0.output_mode = "reg_only";
+defparam D0.register_cascade_mode = "off";
+defparam D0.sum_lutc_input = "datac";
+defparam D0.synch_mode = "on";
 // synopsys translate_on
 
-// Location: LC_X3_Y3_N0
-maxii_lcell \Selector8~0 (
-// Equation(s):
-// \Selector8~0_combout  = (\proxEstado~7_combout  & ((\valorMoeda~combout [0] & ((\estadoAtual.E1_00~regout ))) # (!\valorMoeda~combout [0] & (\estadoAtual.E1_50~regout ))))
-
-	.clk(gnd),
-	.dataa(\valorMoeda~combout [0]),
-	.datab(\estadoAtual.E1_50~regout ),
-	.datac(\estadoAtual.E1_00~regout ),
-	.datad(\proxEstado~7_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector8~0_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector8~0 .lut_mask = "e400";
-defparam \Selector8~0 .operation_mode = "normal";
-defparam \Selector8~0 .output_mode = "comb_only";
-defparam \Selector8~0 .register_cascade_mode = "off";
-defparam \Selector8~0 .sum_lutc_input = "datac";
-defparam \Selector8~0 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X3_Y3_N1
-maxii_lcell \estadoAtual.E2_00 (
-// Equation(s):
-// \Selector8~1  = ((\Selector8~0_combout ) # ((\estadoAtual.E1_75~regout  & \proxEstado~6_combout )))
-// \estadoAtual.E2_00~regout  = DFFEAS(\Selector8~1 , GLOBAL(\clk~combout ), VCC, , , , , , )
-
-	.clk(\clk~combout ),
-	.dataa(vcc),
-	.datab(\estadoAtual.E1_75~regout ),
-	.datac(\proxEstado~6_combout ),
-	.datad(\Selector8~0_combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector8~1 ),
-	.regout(\estadoAtual.E2_00~regout ),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \estadoAtual.E2_00 .lut_mask = "ffc0";
-defparam \estadoAtual.E2_00 .operation_mode = "normal";
-defparam \estadoAtual.E2_00 .output_mode = "reg_and_comb";
-defparam \estadoAtual.E2_00 .register_cascade_mode = "off";
-defparam \estadoAtual.E2_00 .sum_lutc_input = "datac";
-defparam \estadoAtual.E2_00 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: LC_X3_Y3_N3
-maxii_lcell \Selector9~1 (
-// Equation(s):
-// \Selector9~1_combout  = (\estadoAtual.E2_00~regout  & (\Selector9~0_combout )) # (!\estadoAtual.E2_00~regout  & (((\Selector8~1  & !\tempoLimite~combout ))))
-
-	.clk(gnd),
-	.dataa(\Selector9~0_combout ),
-	.datab(\estadoAtual.E2_00~regout ),
-	.datac(\Selector8~1 ),
-	.datad(\tempoLimite~combout ),
-	.aclr(gnd),
-	.aload(gnd),
-	.sclr(gnd),
-	.sload(gnd),
-	.ena(vcc),
-	.cin(gnd),
-	.cin0(gnd),
-	.cin1(vcc),
-	.inverta(gnd),
-	.regcascin(gnd),
-	.devclrn(devclrn),
-	.devpor(devpor),
-	.combout(\Selector9~1_combout ),
-	.regout(),
-	.cout(),
-	.cout0(),
-	.cout1());
-// synopsys translate_off
-defparam \Selector9~1 .lut_mask = "88b8";
-defparam \Selector9~1 .operation_mode = "normal";
-defparam \Selector9~1 .output_mode = "comb_only";
-defparam \Selector9~1 .register_cascade_mode = "off";
-defparam \Selector9~1 .sum_lutc_input = "datac";
-defparam \Selector9~1 .synch_mode = "off";
-// synopsys translate_on
-
-// Location: PIN_69,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
-maxii_io \comparar~I (
-	.datain(\Selector13~4_combout ),
+// Location: PIN_82,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
+maxii_io \FIM~I (
+	.datain(\D0~regout ),
 	.oe(vcc),
 	.combout(),
-	.padio(comparar));
+	.padio(FIM));
 // synopsys translate_off
-defparam \comparar~I .operation_mode = "output";
-// synopsys translate_on
-
-// Location: PIN_36,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
-maxii_io \valorAcumulado[0]~I (
-	.datain(\Selector12~2_combout ),
-	.oe(vcc),
-	.combout(),
-	.padio(valorAcumulado[0]));
-// synopsys translate_off
-defparam \valorAcumulado[0]~I .operation_mode = "output";
-// synopsys translate_on
-
-// Location: PIN_37,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
-maxii_io \valorAcumulado[1]~I (
-	.datain(\Selector11~2_combout ),
-	.oe(vcc),
-	.combout(),
-	.padio(valorAcumulado[1]));
-// synopsys translate_off
-defparam \valorAcumulado[1]~I .operation_mode = "output";
-// synopsys translate_on
-
-// Location: PIN_64,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
-maxii_io \valorAcumulado[2]~I (
-	.datain(\Selector10~1_combout ),
-	.oe(vcc),
-	.combout(),
-	.padio(valorAcumulado[2]));
-// synopsys translate_off
-defparam \valorAcumulado[2]~I .operation_mode = "output";
-// synopsys translate_on
-
-// Location: PIN_6,	 I/O Standard: 3.3-V LVTTL,	 Current Strength: 16mA
-maxii_io \valorAcumulado[3]~I (
-	.datain(\Selector9~1_combout ),
-	.oe(vcc),
-	.combout(),
-	.padio(valorAcumulado[3]));
-// synopsys translate_off
-defparam \valorAcumulado[3]~I .operation_mode = "output";
+defparam \FIM~I .operation_mode = "output";
 // synopsys translate_on
 
 endmodule

@@ -1,11 +1,11 @@
-Fitter Status : Successful - Tue Jun 15 15:08:36 2021
+Fitter Status : Successful - Wed Jun 16 18:55:04 2021
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : Maquina_de_vendas
-Top-level Entity Name : teclado
+Top-level Entity Name : reg_fim
 Family : MAX II
 Device : EPM240T100C5
 Timing Models : Final
-Total logic elements : 2 / 240 ( < 1 % )
-Total pins : 8 / 80 ( 10 % )
+Total logic elements : 4 / 240 ( 2 % )
+Total pins : 4 / 80 ( 5 % )
 Total virtual pins : 0
 UFM blocks : 0 / 1 ( 0 % )

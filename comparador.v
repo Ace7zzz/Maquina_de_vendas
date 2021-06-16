@@ -2,7 +2,7 @@ module comparador(
 		input [3:0] valorMoedas,
 		input [2:0] valorProduto,
 		input enable,
-		output reg fim, liberarProduto, devolverMoedas,
+		output reg liberarProduto, devolverMoedas,
 		output reg [3:0] valorTotal);
 		
 		
@@ -81,9 +81,7 @@ module comparador(
 					devolverMoedas <= 1;
 				end
 			endcase
-			fim<= 1;
 			end
-			else fim<= 0;
 		end
 endmodule
 		

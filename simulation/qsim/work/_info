@@ -18,20 +18,20 @@ IA<5i1NJBUNMe`?JggQ<T[3
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 R0
 w1623809951
-8Maquina_de_vendas.vo
-FMaquina_de_vendas.vo
+Z4 8Maquina_de_vendas.vo
+Z5 FMaquina_de_vendas.vo
 !i122 30
 L0 32 1803
-Z4 OV;L;2020.1;71
+Z6 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1623809952.000000
-!s107 Maquina_de_vendas.vo|
-!s90 -work|work|Maquina_de_vendas.vo|
+Z7 !s108 1623809952.000000
+Z8 !s107 Maquina_de_vendas.vo|
+Z9 !s90 -work|work|Maquina_de_vendas.vo|
 !i113 1
-Z6 o-work work
-Z7 tCvgOpt 0
+Z10 o-work work
+Z11 tCvgOpt 0
 vacumulador_vlg_vec_tst
 R1
 !i10b 1
@@ -45,13 +45,153 @@ w1623809949
 FWaveform.vwf.vt
 !i122 31
 L0 30 58
-R4
+R6
 r1
 !s85 0
 31
-R5
+R7
 !s107 Waveform.vwf.vt|
 !s90 -work|work|Waveform.vwf.vt|
 !i113 1
+R10
+R11
+vcodificadorTeclado
+Z12 !s110 1623872834
+!i10b 1
+!s100 R]`=B7PaPIRM3oI:I8HV`2
+R2
+ILZ:=GT]C=m_JEOl6=f9G03
+R3
+R0
+w1623872833
+R4
+R5
+!i122 36
+L0 32 207
 R6
-R7
+r1
+!s85 0
+31
+Z13 !s108 1623872834.000000
+R8
+R9
+!i113 1
+R10
+R11
+ncodificador@teclado
+vcodificadorTeclado_vlg_vec_tst
+R12
+!i10b 1
+!s100 Mgaz<P6]ccl0za3`9<:dX0
+R2
+INSIazJcA_kY?7Y@8z;WkE0
+R3
+R0
+w1623872832
+8Waveform_teclado.vwf.vt
+FWaveform_teclado.vwf.vt
+!i122 37
+L0 30 51
+R6
+r1
+!s85 0
+31
+R13
+!s107 Waveform_teclado.vwf.vt|
+!s90 -work|work|Waveform_teclado.vwf.vt|
+!i113 1
+R10
+R11
+ncodificador@teclado_vlg_vec_tst
+vcomparador
+!s110 1623873625
+!i10b 1
+!s100 15LW0Gf3J5>BiaZI:kn?k2
+R2
+ILUOYW@h[jWZlj0>n:3=Ue2
+R3
+R0
+w1623873624
+R4
+R5
+!i122 44
+L0 32 408
+R6
+r1
+!s85 0
+31
+!s108 1623873625.000000
+R8
+R9
+!i113 1
+R10
+R11
+vcomparador_vlg_vec_tst
+!s110 1623873626
+!i10b 1
+!s100 oAEbo]^Z@0_6dndK4Xo`H0
+R2
+IXb;CaE^4ZA`3jRm9<zOLf1
+R3
+R0
+w1623873623
+8Waveform_comparador.vwf.vt
+FWaveform_comparador.vwf.vt
+!i122 45
+L0 30 85
+R6
+r1
+!s85 0
+31
+!s108 1623873626.000000
+!s107 Waveform_comparador.vwf.vt|
+!s90 -work|work|Waveform_comparador.vwf.vt|
+!i113 1
+R10
+R11
+vreg_fim
+Z14 !s110 1623880708
+!i10b 1
+!s100 ai3:KKn]DokS51kQ9f?4Z2
+R2
+Ih:6NPR4TC]Ch8_L36b96A1
+R3
+R0
+w1623880706
+R4
+R5
+!i122 54
+L0 32 218
+R6
+r1
+!s85 0
+31
+Z15 !s108 1623880708.000000
+R8
+R9
+!i113 1
+R10
+R11
+vreg_fim_vlg_vec_tst
+R14
+!i10b 1
+!s100 e3F`7[khzcY0P=MXj=NfU0
+R2
+I[6c9ZW1b0`7o3Ed8T?>1d3
+R3
+R0
+w1623880705
+8Waveform_fim.vwf.vt
+FWaveform_fim.vwf.vt
+!i122 55
+L0 30 46
+R6
+r1
+!s85 0
+31
+R15
+!s107 Waveform_fim.vwf.vt|
+!s90 -work|work|Waveform_fim.vwf.vt|
+!i113 1
+R10
+R11

@@ -1,9 +1,9 @@
-Analysis & Synthesis Status : Successful - Tue Jun 15 15:08:33 2021
+Analysis & Synthesis Status : Successful - Wed Jun 16 18:55:01 2021
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : Maquina_de_vendas
-Top-level Entity Name : teclado
+Top-level Entity Name : reg_fim
 Family : MAX II
-Total logic elements : 2
-Total pins : 8
+Total logic elements : 4
+Total pins : 4
 Total virtual pins : 0
 UFM blocks : 0 / 1 ( 0 % )

@@ -1,16 +1,10 @@
-|teclado
-in[0] => out.OUTPUTSELECT
-in[0] => out.OUTPUTSELECT
-in[0] => out[2].DATAIN
-in[1] => out.OUTPUTSELECT
-in[1] => out.OUTPUTSELECT
-in[2] => out.OUTPUTSELECT
-in[2] => out.OUTPUTSELECT
-in[3] => out.DATAA
-in[3] => out.DATAA
-out[0] <= out.DB_MAX_OUTPUT_PORT_TYPE
-out[1] <= out.DB_MAX_OUTPUT_PORT_TYPE
-out[2] <= in[0].DB_MAX_OUTPUT_PORT_TYPE
-out[3] <= <GND>
+|reg_fim
+LP => LP_DM.IN0
+DM => LP_DM.IN1
+clk => D3.CLK
+clk => D2.CLK
+clk => D1.CLK
+clk => D0.CLK
+FIM <= D0.DB_MAX_OUTPUT_PORT_TYPE
 
 

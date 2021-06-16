@@ -7,7 +7,7 @@ Note: if both ModelSim-Altera and ModelSim executables are available, ModelSim-A
 
 **** Generating the ModelSim Testbench ****
 
-quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off Maquina_de_vendas -c Maquina_de_vendas --vector_source="C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/Waveform.vwf" --testbench_file="C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/simulation/qsim/Waveform.vwf.vt"
+quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off Maquina_de_vendas -c Maquina_de_vendas --vector_source="C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/Waveform_fim.vwf" --testbench_file="C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/simulation/qsim/Waveform_fim.vwf.vt"
 
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
@@ -26,10 +26,9 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details, at
     Info: https://fpgasoftware.intel.com/eula.
-    Info: Processing started: Tue Jun 15 23:19:09 2021
-Info: Command: quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off Maquina_de_vendas -c Maquina_de_vendas --vector_source=C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/Waveform.vwf --testbench_file=C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/simulation/qsim/Waveform.vwf.vt
+    Info: Processing started: Wed Jun 16 18:58:25 2021
+Info: Command: quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off Maquina_de_vendas -c Maquina_de_vendas --vector_source=C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/Waveform_fim.vwf --testbench_file=C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/simulation/qsim/Waveform_fim.vwf.vt
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Warning (146050): Vector source file contains syntax error in  C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/Waveform.vwf, line 409, comment/time bar value cannot be set beyond simulation end time 1000000 ps File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/Waveform.vwf Line: 409
 
 Completed successfully. 
 
@@ -56,14 +55,14 @@ Info: Running Quartus Prime EDA Netlist Writer
     Info: Intel and sold by Intel or its authorized distributors.  Please
     Info: refer to the applicable agreement for further details, at
     Info: https://fpgasoftware.intel.com/eula.
-    Info: Processing started: Tue Jun 15 23:19:10 2021
+    Info: Processing started: Wed Jun 16 18:58:26 2021
 Info: Command: quartus_eda --write_settings_files=off --simulation=on --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory=C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/simulation/qsim/ Maquina_de_vendas -c Maquina_de_vendas
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file Maquina_de_vendas.vo in folder "C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/simulation/qsim//" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4618 megabytes
-    Info: Processing ended: Tue Jun 15 23:19:11 2021
-    Info: Elapsed time: 00:00:01
+    Info: Peak virtual memory: 4611 megabytes
+    Info: Processing ended: Wed Jun 16 18:58:26 2021
+    Info: Elapsed time: 00:00:00
     Info: Total CPU time (on all processors): 00:00:01
 
 Completed successfully. 
@@ -86,52 +85,52 @@ Reading pref.tcl
 # do Maquina_de_vendas.do
 
 # ** Warning: (vlib-34) Library already exists at "work".
+
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:19:12 on Jun 15,2021
+# Start time: 18:58:28 on Jun 16,2021
 # vlog -work work Maquina_de_vendas.vo 
-
-# -- Compiling module acumulador
+# -- Compiling module reg_fim
 # 
 # Top level modules:
-# 	acumulador
-# End time: 23:19:12 on Jun 15,2021, Elapsed time: 0:00:00
+# 	reg_fim
+# End time: 18:58:28 on Jun 16,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
+
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 23:19:12 on Jun 15,2021
-# vlog -work work Waveform.vwf.vt 
-
-# -- Compiling module acumulador_vlg_vec_tst
+# Start time: 18:58:28 on Jun 16,2021
+# vlog -work work Waveform_fim.vwf.vt 
+# -- Compiling module reg_fim_vlg_vec_tst
 # 
 # Top level modules:
-# 	acumulador_vlg_vec_tst
-# End time: 23:19:12 on Jun 15,2021, Elapsed time: 0:00:00
+# 	reg_fim_vlg_vec_tst
+# End time: 18:58:28 on Jun 16,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 
-# vsim -c -t 1ps -L maxii_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.acumulador_vlg_vec_tst 
-# Start time: 23:19:12 on Jun 15,2021
-# Loading work.acumulador_vlg_vec_tst
-# Loading work.acumulador
+# vsim -c -t 1ps -L maxii_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.reg_fim_vlg_vec_tst 
+# Start time: 18:58:28 on Jun 16,2021
+# Loading work.reg_fim_vlg_vec_tst
+# Loading work.reg_fim
 # Loading maxii_ver.maxii_io
 # Loading maxii_ver.maxii_lcell
 # Loading maxii_ver.maxii_asynch_lcell
 # Loading maxii_ver.maxii_lcell_register
 # after#25
-# ** Note: $finish    : Waveform.vwf.vt(51)
-#    Time: 1 us  Iteration: 0  Instance: /acumulador_vlg_vec_tst
-# End time: 23:19:13 on Jun 15,2021, Elapsed time: 0:00:01
+# ** Note: $finish    : Waveform_fim.vwf.vt(49)
+#    Time: 1 us  Iteration: 0  Instance: /reg_fim_vlg_vec_tst
+# End time: 18:58:28 on Jun 16,2021, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 
 Completed successfully. 
 
 **** Converting ModelSim VCD to vector waveform ****
 
-Reading C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/Waveform.vwf...
+Reading C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/Waveform_fim.vwf...
 
 Reading C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/simulation/qsim/Maquina_de_vendas.msim.vcd...
 
 Processing channel transitions... 
 
-Writing the resulting VWF to C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/simulation/qsim/Maquina_de_vendas_20210615231913.sim.vwf
+Writing the resulting VWF to C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/simulation/qsim/Maquina_de_vendas_20210616185828.sim.vwf
 
 Finished VCD to VWF conversion.
 
