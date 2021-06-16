@@ -1,60 +1,61 @@
 module selecionador (
-    input [2:0] linha, coluna, valor,
-    output [3:0] cod,
-    output existe,
+    input  wire [1:0] linha, coluna,
+	 output reg [2:0] valor,
+    output reg [3:0] codeOut,
+    output reg existe
 );
 reg [3:0] code;
 always @ (linha or coluna) begin
     code = {linha[1], linha[0], coluna[1], coluna[0]};
     case (code)
-        0000: begin     // refri
-            cod <= code;
+				4'b0000: begin     // refri
+            codeOut <= code;
             valor <= 3'b010;
             existe <= 1;
         end
-            0100: begin     // salgadinhos
-            cod <= code;
+            4'b0100: begin     // salgadinhos
+            codeOut <= code;
             valor <= 3'b110;
             existe <= 1;
         end
-            0101: begin     // amendoim
-            cod <= code;
+            4'b0101: begin     // amendoim
+            codeOut <= code;
             valor <= 3'b001;
             existe <= 1;
         end
-            1100: begin     //agua
-            cod <= code;
+            4'b1000: begin     //agua
+            codeOut <= code;
             valor <= 3'b001;    
             existe <= 1;
         end
-            1101: begin     //suco
-            cod <= code;
+            4'b1001: begin     //suco
+            codeOut <= code;
             valor <= 3'b011;
             existe <= 1;
         end
-            1111: begin     // agua de coco
-            cod <= code;
+            4'b1010: begin     // agua de coco
+            codeOut <= code;
             valor <= 3'b101;
             existe <= 1;
         end
-            1110: begin     // cafe
-            cod <= code;
+            4'b1011: begin     // cafe
+            codeOut <= code;
             valor <= 3'b100;
             existe <= 1;
         end
-            1000: begin     //sanduiche
-            cod <= code;
+            4'b1100: begin     //sanduiche
+            codeOut <= code;
             valor <= 3'b010;
             existe <= 1;
         end
-            1001: begin     //sanduiche nat
-            cod <= code;
+            4'b1101: begin     //sanduiche nat
+            codeOut <= code;
             valor <= 3'b101;
             existe <= 1;
         end
         default: begin      //prod inexistente
             existe <= 0;
-            cod <= 0;
+            codeOut <= 4'b1111;
             valor <= 0;
         end
     endcase
