@@ -27,7 +27,12 @@
             else if (enable)
                     proxEstado <= COLUNA;
             end
-            COLUNA: proxEstado <= BLOQUEADO;
+            COLUNA: begin
+				if (!enable & tempoLimite)
+                    proxEstado <= ESPERA;
+            else if (enable)
+                    proxEstado <= BLOQUEADO;
+				end
             BLOQUEADO: begin
                 if (OK)
                     proxEstado <= ESPERA; 
