@@ -1,9 +1,471 @@
-|timeOut
+|maquina_de_vendas
+tecla[0] => tecla[0].IN1
+tecla[1] => tecla[1].IN1
+tecla[2] => tecla[2].IN1
+tecla[3] => tecla[3].IN1
+moeda[0] => moeda[0].IN1
+moeda[1] => moeda[1].IN1
+clk => clk.IN6
+segmentos[0] <= acionarDisplay:display.segmentos
+segmentos[1] <= acionarDisplay:display.segmentos
+segmentos[2] <= acionarDisplay:display.segmentos
+segmentos[3] <= acionarDisplay:display.segmentos
+segmentos[4] <= acionarDisplay:display.segmentos
+segmentos[5] <= acionarDisplay:display.segmentos
+segmentos[6] <= acionarDisplay:display.segmentos
+segmentos[7] <= acionarDisplay:display.segmentos
+D1 <= acionarDisplay:display.D1
+D2 <= acionarDisplay:display.D2
+D3 <= acionarDisplay:display.D3
+D4 <= acionarDisplay:display.D4
+LP <= LP.DB_MAX_OUTPUT_PORT_TYPE
+DM <= DM.DB_MAX_OUTPUT_PORT_TYPE
+state[0] <= estados[0].DB_MAX_OUTPUT_PORT_TYPE
+state[1] <= estados[1].DB_MAX_OUTPUT_PORT_TYPE
+timeOut <= tO_mefDig.DB_MAX_OUTPUT_PORT_TYPE
+existeProduto <= existe.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|codificadorTeclado:codificadorTeclado
+in[0] => press.DATAA
+in[1] => press.OUTPUTSELECT
+in[1] => out.DATAA
+in[2] => out.OUTPUTSELECT
+in[2] => press.OUTPUTSELECT
+in[2] => out.DATAA
+in[3] => out.OUTPUTSELECT
+in[3] => out.OUTPUTSELECT
+in[3] => press.OUTPUTSELECT
+out[0] <= out.DB_MAX_OUTPUT_PORT_TYPE
+out[1] <= out.DB_MAX_OUTPUT_PORT_TYPE
+press <= press.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|controleDigitos:controleDigitos
+clk => estadoAtual~1.DATAIN
+enable => proxEstado.OUTPUTSELECT
+enable => proxEstado.OUTPUTSELECT
+enable => proxEstado.OUTPUTSELECT
+enable => proxEstado.OUTPUTSELECT
+enable => proxEstado.OUTPUTSELECT
+enable => proxEstado.OUTPUTSELECT
+enable => proxEstado.OUTPUTSELECT
+enable => always1.IN0
+tempoLimite => always1.IN1
+OK => proxEstado.OUTPUTSELECT
+OK => proxEstado.OUTPUTSELECT
+OK => proxEstado.OUTPUTSELECT
+OK => proxEstado.OUTPUTSELECT
+enableLinha <= enableLinha.DB_MAX_OUTPUT_PORT_TYPE
+enableColuna <= enableColuna.DB_MAX_OUTPUT_PORT_TYPE
+clear <= WideNor0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|registradores:regs
+clk => coluna[0]~reg0.CLK
+clk => coluna[1]~reg0.CLK
+clk => linha[0]~reg0.CLK
+clk => linha[1]~reg0.CLK
+clk => codeC[0].CLK
+clk => codeC[1].CLK
+clk => codeL[0].CLK
+clk => codeL[1].CLK
+enL => linha.OUTPUTSELECT
+enL => linha.OUTPUTSELECT
+enL => codeL[1].ENA
+enL => codeL[0].ENA
+enL => codeC[1].ENA
+enL => codeC[0].ENA
+enL => coluna[1]~reg0.ENA
+enL => coluna[0]~reg0.ENA
+enC => coluna.OUTPUTSELECT
+enC => coluna.OUTPUTSELECT
+enC => linha.OUTPUTSELECT
+enC => linha.OUTPUTSELECT
+clr => coluna[0]~reg0.ALOAD
+clr => coluna[1]~reg0.ALOAD
+clr => linha[0]~reg0.ALOAD
+clr => linha[1]~reg0.ALOAD
+clr => codeC[0].ACLR
+clr => codeC[1].ACLR
+clr => codeL[0].ACLR
+clr => codeL[1].ACLR
+code[0] => coluna.DATAB
+code[0] => linha.DATAB
+code[0] => codeL[0].DATAIN
+code[1] => coluna.DATAB
+code[1] => linha.DATAB
+code[1] => codeL[1].DATAIN
+linha[0] <= linha[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+linha[1] <= linha[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+coluna[0] <= coluna[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+coluna[1] <= coluna[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|selecionador:selecionador
+linha[0] => Decoder0.IN1
+linha[1] => Decoder0.IN0
+coluna[0] => Decoder0.IN3
+coluna[1] => Decoder0.IN2
+valor[0] <= WideOr7.DB_MAX_OUTPUT_PORT_TYPE
+valor[1] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+valor[2] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+codeOut[0] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+codeOut[1] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+codeOut[2] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+codeOut[3] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+existe <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|timeOut:temporizador
+clk => contar[0].CLK
+clk => contar[1].CLK
+clk => contar[2].CLK
+clk => contar[3].CLK
+clk => clk15segs~reg0.CLK
+clk15segs <= clk15segs~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|controlePrincipal:mef_principal
+clk => estadoAtual~1.DATAIN
+codigoDigitado => proxEstado.OUTPUTSELECT
+codigoDigitado => proxEstado.OUTPUTSELECT
+codigoDigitado => proxEstado.OUTPUTSELECT
+existeProduto => Selector2.IN2
+existeProduto => Selector0.IN1
+OK => proxEstado.OUTPUTSELECT
+OK => proxEstado.OUTPUTSELECT
+OK => proxEstado.OUTPUTSELECT
+estados[0] <= estados[0].DB_MAX_OUTPUT_PORT_TYPE
+estados[1] <= estados[1].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|acumulador:acumulador
+clk => estadoAtual~1.DATAIN
+reset => estadoAtual~3.DATAIN
+tempoLimite => proxEstado.E0_00.OUTPUTSELECT
+tempoLimite => proxEstado.E0_25.OUTPUTSELECT
+tempoLimite => proxEstado.E0_50.OUTPUTSELECT
+tempoLimite => proxEstado.E0_75.OUTPUTSELECT
+tempoLimite => proxEstado.E1_00.OUTPUTSELECT
+tempoLimite => proxEstado.E1_25.OUTPUTSELECT
+tempoLimite => proxEstado.E1_50.OUTPUTSELECT
+tempoLimite => proxEstado.E1_75.OUTPUTSELECT
+tempoLimite => proxEstado.E2_00.OUTPUTSELECT
+tempoLimite => proxEstado.EX.OUTPUTSELECT
+valorMoeda[0] => Decoder0.IN1
+valorMoeda[1] => Decoder0.IN0
+valorMoeda[1] => Selector8.IN6
+valorAcumulado[0] <= WideOr11.DB_MAX_OUTPUT_PORT_TYPE
+valorAcumulado[1] <= WideOr10.DB_MAX_OUTPUT_PORT_TYPE
+valorAcumulado[2] <= WideOr9.DB_MAX_OUTPUT_PORT_TYPE
+valorAcumulado[3] <= valorAcumulado.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|comparador:comparador
+valorMoedas[0] => valorTotal[0].DATAIN
+valorMoedas[0] => Equal0.IN3
+valorMoedas[0] => Equal1.IN3
+valorMoedas[0] => Equal2.IN1
+valorMoedas[0] => Equal3.IN3
+valorMoedas[0] => Equal4.IN2
+valorMoedas[0] => Equal5.IN3
+valorMoedas[1] => valorTotal[1].DATAIN
+valorMoedas[1] => Equal0.IN0
+valorMoedas[1] => Equal1.IN2
+valorMoedas[1] => Equal2.IN3
+valorMoedas[1] => Equal3.IN1
+valorMoedas[1] => Equal4.IN1
+valorMoedas[1] => Equal5.IN2
+valorMoedas[2] => valorTotal[2].DATAIN
+valorMoedas[2] => Equal0.IN2
+valorMoedas[2] => Equal1.IN0
+valorMoedas[2] => Equal2.IN0
+valorMoedas[2] => Equal3.IN0
+valorMoedas[2] => Equal4.IN0
+valorMoedas[2] => Equal5.IN1
+valorMoedas[3] => valorTotal[3].DATAIN
+valorMoedas[3] => Equal0.IN1
+valorMoedas[3] => Equal1.IN1
+valorMoedas[3] => Equal2.IN2
+valorMoedas[3] => Equal3.IN2
+valorMoedas[3] => Equal4.IN3
+valorMoedas[3] => Equal5.IN0
+valorProduto[0] => Mux0.IN10
+valorProduto[0] => Mux1.IN10
+valorProduto[1] => Mux0.IN9
+valorProduto[1] => Mux1.IN9
+valorProduto[2] => Mux0.IN8
+valorProduto[2] => Mux1.IN8
+enable => devolverMoedas.OUTPUTSELECT
+enable => liberarProduto.OUTPUTSELECT
+enable => liberarProduto.IN0
+reset => liberarProduto.IN1
+liberarProduto <= liberarProduto$latch.DB_MAX_OUTPUT_PORT_TYPE
+devolverMoedas <= devolverMoedas$latch.DB_MAX_OUTPUT_PORT_TYPE
+valorTotal[0] <= valorMoedas[0].DB_MAX_OUTPUT_PORT_TYPE
+valorTotal[1] <= valorMoedas[1].DB_MAX_OUTPUT_PORT_TYPE
+valorTotal[2] <= valorMoedas[2].DB_MAX_OUTPUT_PORT_TYPE
+valorTotal[3] <= valorMoedas[3].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|reg_fim:final
+LP => LP_DM.IN0
+DM => LP_DM.IN1
+clk => clk.IN4
+FIM <= DFlipFlop:D0.Q
+
+
+|maquina_de_vendas|reg_fim:final|DFlipFlop:D3
+D => Q~reg0.DATAIN
+CLK => Q~reg0.CLK
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|reg_fim:final|DFlipFlop:D2
+D => Q~reg0.DATAIN
+CLK => Q~reg0.CLK
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|reg_fim:final|DFlipFlop:D1
+D => Q~reg0.DATAIN
+CLK => Q~reg0.CLK
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|reg_fim:final|DFlipFlop:D0
+D => Q~reg0.DATAIN
+CLK => Q~reg0.CLK
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|clk_1Hz:clk_1HZ
 clk => contar[0].CLK
 clk => contar[1].CLK
 clk => contar[2].CLK
 clk => contar[3].CLK
 clk => contar[4].CLK
-clk30segs << contar[4].DB_MAX_OUTPUT_PORT_TYPE
+clk => contar[5].CLK
+clk => contar[6].CLK
+clk => contar[7].CLK
+clk => contar[8].CLK
+clk => contar[9].CLK
+clk => contar[10].CLK
+clk => contar[11].CLK
+clk => contar[12].CLK
+clk => contar[13].CLK
+clk => contar[14].CLK
+clk => contar[15].CLK
+clk => contar[16].CLK
+clk => contar[17].CLK
+clk => contar[18].CLK
+clk => contar[19].CLK
+clk => contar[20].CLK
+clk => contar[21].CLK
+clk => contar[22].CLK
+clk => contar[23].CLK
+clk => contar[24].CLK
+clk => contar[25].CLK
+out1Hz <= contar[0].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|clkVis:clkDisplay
+clk => contar[0].CLK
+clk => contar[1].CLK
+clk => contar[2].CLK
+clk => contar[3].CLK
+clk => contar[4].CLK
+clk => contar[5].CLK
+clk => contar[6].CLK
+clk => contar[7].CLK
+clk => contar[8].CLK
+clk => contar[9].CLK
+clk => contar[10].CLK
+clk => contar[11].CLK
+clk => contar[12].CLK
+clk => contar[13].CLK
+clk => contar[14].CLK
+clk => contar[15].CLK
+clkDisplay <= contar[3].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|acionarDisplay:display
+segmentos[0] <= decodificador:decoder7segs.s
+segmentos[1] <= decodificador:decoder7segs.s
+segmentos[2] <= decodificador:decoder7segs.s
+segmentos[3] <= decodificador:decoder7segs.s
+segmentos[4] <= decodificador:decoder7segs.s
+segmentos[5] <= decodificador:decoder7segs.s
+segmentos[6] <= decodificador:decoder7segs.s
+segmentos[7] <= decodificador:decoder7segs.s
+D1 <= demux:selecionarDigito.D1
+D2 <= demux:selecionarDigito.D2
+D3 <= demux:selecionarDigito.D3
+D4 <= demux:selecionarDigito.D4
+estado[0] => Mux0.IN5
+estado[0] => Mux1.IN5
+estado[0] => Mux2.IN5
+estado[0] => Mux3.IN5
+estado[0] => Mux4.IN5
+estado[0] => Mux5.IN4
+estado[0] => Mux6.IN5
+estado[0] => Mux7.IN5
+estado[0] => Mux8.IN5
+estado[0] => Mux9.IN5
+estado[0] => Mux10.IN5
+estado[0] => Mux11.IN5
+estado[0] => Mux12.IN5
+estado[0] => Mux13.IN5
+estado[0] => Mux14.IN5
+estado[0] => Mux15.IN5
+estado[1] => Mux0.IN4
+estado[1] => Mux1.IN4
+estado[1] => Mux2.IN4
+estado[1] => Mux3.IN4
+estado[1] => Mux4.IN4
+estado[1] => Mux5.IN3
+estado[1] => Mux6.IN4
+estado[1] => Mux7.IN4
+estado[1] => Mux8.IN4
+estado[1] => Mux9.IN4
+estado[1] => Mux10.IN4
+estado[1] => Mux11.IN4
+estado[1] => Mux12.IN4
+estado[1] => Mux13.IN4
+estado[1] => Mux14.IN4
+estado[1] => Mux15.IN4
+produto[0] => Decoder5.IN3
+produto[0] => Decoder6.IN3
+produto[0] => Decoder7.IN3
+produto[0] => Decoder8.IN3
+produto[0] => Decoder10.IN3
+produto[0] => Equal0.IN3
+produto[1] => Decoder5.IN2
+produto[1] => Decoder6.IN2
+produto[1] => Decoder7.IN2
+produto[1] => Decoder8.IN2
+produto[1] => Decoder9.IN2
+produto[1] => Decoder10.IN2
+produto[1] => Equal0.IN2
+produto[2] => Decoder5.IN1
+produto[2] => Decoder6.IN1
+produto[2] => Decoder7.IN1
+produto[2] => Decoder8.IN1
+produto[2] => Decoder9.IN1
+produto[2] => Decoder10.IN1
+produto[2] => Equal0.IN1
+produto[3] => Decoder5.IN0
+produto[3] => Decoder6.IN0
+produto[3] => Decoder7.IN0
+produto[3] => Decoder8.IN0
+produto[3] => Decoder9.IN0
+produto[3] => Decoder10.IN0
+produto[3] => Equal0.IN0
+valorMoedas[0] => Decoder0.IN3
+valorMoedas[0] => Decoder2.IN1
+valorMoedas[0] => Decoder4.IN3
+valorMoedas[0] => Equal1.IN3
+valorMoedas[1] => Decoder0.IN2
+valorMoedas[1] => Decoder1.IN1
+valorMoedas[1] => Decoder3.IN1
+valorMoedas[1] => Decoder4.IN2
+valorMoedas[1] => Equal1.IN2
+valorMoedas[2] => Decoder0.IN1
+valorMoedas[2] => Decoder4.IN1
+valorMoedas[2] => Equal1.IN1
+valorMoedas[3] => Decoder0.IN0
+valorMoedas[3] => Decoder1.IN0
+valorMoedas[3] => Decoder2.IN0
+valorMoedas[3] => Decoder3.IN0
+valorMoedas[3] => Decoder4.IN0
+valorMoedas[3] => Equal1.IN0
+devolver => L1.OUTPUTSELECT
+devolver => L1.OUTPUTSELECT
+devolver => L1.OUTPUTSELECT
+devolver => L1.OUTPUTSELECT
+devolver => L2.OUTPUTSELECT
+devolver => L2.OUTPUTSELECT
+devolver => L2.OUTPUTSELECT
+devolver => L3.OUTPUTSELECT
+devolver => L3.OUTPUTSELECT
+devolver => L3.OUTPUTSELECT
+devolver => L3.OUTPUTSELECT
+devolver => L4.OUTPUTSELECT
+devolver => L4.OUTPUTSELECT
+devolver => L4.OUTPUTSELECT
+devolver => L4.OUTPUTSELECT
+devolver => Mux5.IN5
+clk => clk.IN1
+
+
+|maquina_de_vendas|acionarDisplay:display|count:contador
+out[0] <= out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+out[1] <= out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+clk => out[0]~reg0.CLK
+clk => out[1]~reg0.CLK
+max[0] => Equal0.IN3
+max[1] => Equal0.IN2
+reset => out[0]~reg0.ACLR
+reset => out[1]~reg0.ACLR
+
+
+|maquina_de_vendas|acionarDisplay:display|demux:selecionarDigito
+D1 <= D1.DB_MAX_OUTPUT_PORT_TYPE
+D2 <= D2.DB_MAX_OUTPUT_PORT_TYPE
+D3 <= D3.DB_MAX_OUTPUT_PORT_TYPE
+D4 <= D4.DB_MAX_OUTPUT_PORT_TYPE
+S[0] => Decoder0.IN1
+S[1] => Decoder0.IN0
+G => D4.DATAB
+G => D1.DATAB
+G => D2.DATAB
+G => D3.DATAB
+
+
+|maquina_de_vendas|acionarDisplay:display|mux_4bits:selecionarLetra
+a[0] => Mux3.IN0
+a[1] => Mux2.IN0
+a[2] => Mux1.IN0
+a[3] => Mux0.IN0
+b[0] => Mux3.IN1
+b[1] => Mux2.IN1
+b[2] => Mux1.IN1
+b[3] => Mux0.IN1
+c[0] => Mux3.IN2
+c[1] => Mux2.IN2
+c[2] => Mux1.IN2
+c[3] => Mux0.IN2
+d[0] => Mux3.IN3
+d[1] => Mux2.IN3
+d[2] => Mux1.IN3
+d[3] => Mux0.IN3
+selbit[0] => Mux0.IN5
+selbit[0] => Mux1.IN5
+selbit[0] => Mux2.IN5
+selbit[0] => Mux3.IN5
+selbit[1] => Mux0.IN4
+selbit[1] => Mux1.IN4
+selbit[1] => Mux2.IN4
+selbit[1] => Mux3.IN4
+out[0] <= Mux3.DB_MAX_OUTPUT_PORT_TYPE
+out[1] <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+out[2] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+out[3] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|maquina_de_vendas|acionarDisplay:display|decodificador:decoder7segs
+s[0] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+s[1] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+s[2] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+s[3] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+s[4] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+s[5] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+s[6] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+s[7] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+E[0] => Decoder0.IN3
+E[1] => Decoder0.IN2
+E[2] => Decoder0.IN1
+E[3] => Decoder0.IN0
 
 

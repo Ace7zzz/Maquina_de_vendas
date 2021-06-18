@@ -1,4 +1,5 @@
-module acumulador(input wire clk, input wire reset, input wire tempoLimite, input wire [1:0] valorMoeda, output reg [3:0] valorAcumulado);
+module acumulador(input wire clk, input wire reset, input wire tempoLimite, 
+input wire [1:0] valorMoeda, output reg [3:0] valorAcumulado);
 
     reg [3:0] estadoAtual, proxEstado;
 
@@ -11,7 +12,7 @@ module acumulador(input wire clk, input wire reset, input wire tempoLimite, inpu
                E1_50 = 4'b0110,   //1,50
                E1_75 = 4'b0111,   //1,75
                E2_00 = 4'b1000,   //2,00
-			    EX    = 4'b1111,
+					EX   = 4'b1111,
 
                // Valor Moedas
                M0_25 = 2'b01,

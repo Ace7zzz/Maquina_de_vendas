@@ -1,15 +1,17 @@
 module timeOut (
 	input clk,
-	output clk30segs
+	output reg clk15segs
 	);
 	
 	reg [3:0] contar;
-	assign clk30segs = contar[3];
 	
 	always @ (posedge clk) begin
-		contar <= contar + 1;
-		if (contar == 4'b1111) begin
-			contar <= 4'b0;
+		if (clk15segs) begin
+			clk15segs <= 0;
 		end
-	end
+		contar <= contar + 1;
+		if (contar == 4'd15) begin 	// contar ate 15
+			clk15segs <= 1;
+		end 
+	end 
 endmodule 

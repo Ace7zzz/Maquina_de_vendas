@@ -1,11 +1,11 @@
-Fitter Status : Successful - Thu Jun 17 15:22:36 2021
+Fitter Status : Successful - Fri Jun 18 16:36:49 2021
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : Maquina_de_vendas
-Top-level Entity Name : timeOut
+Top-level Entity Name : maquina_de_vendas
 Family : MAX II
 Device : EPM240T100C5
 Timing Models : Final
-Total logic elements : 5 / 240 ( 2 % )
-Total pins : 2 / 80 ( 3 % )
+Total logic elements : 139 / 240 ( 58 % )
+Total pins : 25 / 80 ( 31 % )
 Total virtual pins : 0
 UFM blocks : 0 / 1 ( 0 % )

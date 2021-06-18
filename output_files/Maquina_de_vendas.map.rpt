@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Maquina_de_vendas
-Thu Jun 17 15:22:32 2021
+Fri Jun 18 16:36:45 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -13,9 +13,20 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Analysis & Synthesis Messages
- 10. Analysis & Synthesis Suppressed Messages
+  8. State Machine - |maquina_de_vendas|acumulador:acumulador|estadoAtual
+  9. State Machine - |maquina_de_vendas|controlePrincipal:mef_principal|estadoAtual
+ 10. State Machine - |maquina_de_vendas|controleDigitos:controleDigitos|estadoAtual
+ 11. User-Specified and Inferred Latches
+ 12. Registers Removed During Synthesis
+ 13. General Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Port Connectivity Checks: "acionarDisplay:display|demux:selecionarDigito"
+ 16. Port Connectivity Checks: "acionarDisplay:display|count:contador"
+ 17. Port Connectivity Checks: "acionarDisplay:display"
+ 18. Port Connectivity Checks: "comparador:comparador"
+ 19. Port Connectivity Checks: "acumulador:acumulador"
+ 20. Analysis & Synthesis Messages
+ 21. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -42,13 +53,13 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Thu Jun 17 15:22:32 2021       ;
+; Analysis & Synthesis Status ; Successful - Fri Jun 18 16:36:45 2021       ;
 ; Quartus Prime Version       ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name               ; Maquina_de_vendas                           ;
-; Top-level Entity Name       ; timeOut                                     ;
+; Top-level Entity Name       ; maquina_de_vendas                           ;
 ; Family                      ; MAX II                                      ;
-; Total logic elements        ; 5                                           ;
-; Total pins                  ; 2                                           ;
+; Total logic elements        ; 144                                         ;
+; Total pins                  ; 25                                          ;
 ; Total virtual pins          ; 0                                           ;
 ; UFM blocks                  ; 0 / 1 ( 0 % )                               ;
 +-----------------------------+---------------------------------------------+
@@ -60,7 +71,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; EPM240T100C5       ;                    ;
-; Top-level entity name                                            ; timeOut            ; Maquina_de_vendas  ;
+; Top-level entity name                                            ; maquina_de_vendas  ; Maquina_de_vendas  ;
 ; Family name                                                      ; MAX II             ; Cyclone V          ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
@@ -141,13 +152,29 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                    ;
-+----------------------------------+-----------------+------------------------+-------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                      ; Library ;
-+----------------------------------+-----------------+------------------------+-------------------------------------------------------------------+---------+
-; timeOut.v                        ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/timeOut.v ;         ;
-+----------------------------------+-----------------+------------------------+-------------------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                        ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                          ; Library ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------------+---------+
+; maquina_de_vendas.v              ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v  ;         ;
+; clkVis.v                         ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/clkVis.v             ;         ;
+; clk_1Hz.v                        ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/clk_1Hz.v            ;         ;
+; reg_fim.v                        ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/reg_fim.v            ;         ;
+; codificadorTeclado.v             ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/codificadorTeclado.v ;         ;
+; selecionador.v                   ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/selecionador.v       ;         ;
+; registradores.v                  ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/registradores.v      ;         ;
+; comparador.v                     ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/comparador.v         ;         ;
+; controlePrincipal.v              ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/controlePrincipal.v  ;         ;
+; controleDigitos.v                ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/controleDigitos.v    ;         ;
+; acumulador.v                     ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acumulador.v         ;         ;
+; mux_4bits.v                      ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/mux_4bits.v          ;         ;
+; demux.v                          ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/demux.v              ;         ;
+; decodificador.v                  ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/decodificador.v      ;         ;
+; count.v                          ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/count.v              ;         ;
+; acionarDisplay.v                 ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v     ;         ;
+; timeOut.v                        ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/timeOut.v            ;         ;
++----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -155,44 +182,137 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Total logic elements                        ; 5     ;
-;     -- Combinational with no register       ; 0     ;
-;     -- Register only                        ; 0     ;
-;     -- Combinational with a register        ; 5     ;
+; Total logic elements                        ; 144   ;
+;     -- Combinational with no register       ; 103   ;
+;     -- Register only                        ; 9     ;
+;     -- Combinational with a register        ; 32    ;
 ;                                             ;       ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 0     ;
-;     -- 3 input functions                    ; 0     ;
-;     -- 2 input functions                    ; 4     ;
-;     -- 1 input functions                    ; 1     ;
+;     -- 4 input functions                    ; 79    ;
+;     -- 3 input functions                    ; 33    ;
+;     -- 2 input functions                    ; 19    ;
+;     -- 1 input functions                    ; 4     ;
 ;     -- 0 input functions                    ; 0     ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 1     ;
-;     -- arithmetic mode                      ; 4     ;
+;     -- normal mode                          ; 141   ;
+;     -- arithmetic mode                      ; 3     ;
 ;     -- qfbk mode                            ; 0     ;
 ;     -- register cascade mode                ; 0     ;
-;     -- synchronous clear/load mode          ; 0     ;
-;     -- asynchronous clear/load mode         ; 0     ;
+;     -- synchronous clear/load mode          ; 9     ;
+;     -- asynchronous clear/load mode         ; 8     ;
 ;                                             ;       ;
-; Total registers                             ; 5     ;
-; Total logic cells in carry chains           ; 5     ;
-; I/O pins                                    ; 2     ;
+; Total registers                             ; 41    ;
+; Total logic cells in carry chains           ; 4     ;
+; I/O pins                                    ; 25    ;
 ; Maximum fan-out node                        ; clk   ;
-; Maximum fan-out                             ; 5     ;
-; Total fan-out                               ; 15    ;
-; Average fan-out                             ; 2.14  ;
+; Maximum fan-out                             ; 30    ;
+; Total fan-out                               ; 552   ;
+; Average fan-out                             ; 3.27  ;
 +---------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                ;
-+----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
-; |timeOut                   ; 5 (5)       ; 5            ; 0          ; 2    ; 0            ; 0 (0)        ; 0 (0)             ; 5 (5)            ; 5 (5)           ; 0 (0)      ; |timeOut            ; timeOut     ; work         ;
-+----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                        ;
++--------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+----------------------------------------------------------------------+--------------------+--------------+
+; Compilation Hierarchy Node                 ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name                                                  ; Entity Name        ; Library Name ;
++--------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+----------------------------------------------------------------------+--------------------+--------------+
+; |maquina_de_vendas                         ; 144 (0)     ; 41           ; 0          ; 25   ; 0            ; 103 (0)      ; 9 (0)             ; 32 (0)           ; 4 (0)           ; 0 (0)      ; |maquina_de_vendas                                                   ; maquina_de_vendas  ; work         ;
+;    |acionarDisplay:display|                ; 46 (24)     ; 2            ; 0          ; 0    ; 0            ; 44 (24)      ; 0 (0)             ; 2 (0)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|acionarDisplay:display                            ; acionarDisplay     ; work         ;
+;       |count:contador|                     ; 2 (2)       ; 2            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 2 (2)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|acionarDisplay:display|count:contador             ; count              ; work         ;
+;       |decodificador:decoder7segs|         ; 8 (8)       ; 0            ; 0          ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|acionarDisplay:display|decodificador:decoder7segs ; decodificador      ; work         ;
+;       |demux:selecionarDigito|             ; 4 (4)       ; 0            ; 0          ; 0    ; 0            ; 4 (4)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|acionarDisplay:display|demux:selecionarDigito     ; demux              ; work         ;
+;       |mux_4bits:selecionarLetra|          ; 8 (8)       ; 0            ; 0          ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|acionarDisplay:display|mux_4bits:selecionarLetra  ; mux_4bits          ; work         ;
+;    |acumulador:acumulador|                 ; 43 (43)     ; 10           ; 0          ; 0    ; 0            ; 33 (33)      ; 1 (1)             ; 9 (9)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|acumulador:acumulador                             ; acumulador         ; work         ;
+;    |clkVis:clkDisplay|                     ; 4 (4)       ; 4            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 4 (4)            ; 4 (4)           ; 0 (0)      ; |maquina_de_vendas|clkVis:clkDisplay                                 ; clkVis             ; work         ;
+;    |clk_1Hz:clk_1HZ|                       ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 1 (1)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|clk_1Hz:clk_1HZ                                   ; clk_1Hz            ; work         ;
+;    |codificadorTeclado:codificadorTeclado| ; 1 (1)       ; 0            ; 0          ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|codificadorTeclado:codificadorTeclado             ; codificadorTeclado ; work         ;
+;    |comparador:comparador|                 ; 11 (11)     ; 0            ; 0          ; 0    ; 0            ; 11 (11)      ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|comparador:comparador                             ; comparador         ; work         ;
+;    |controleDigitos:controleDigitos|       ; 7 (7)       ; 4            ; 0          ; 0    ; 0            ; 3 (3)        ; 0 (0)             ; 4 (4)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|controleDigitos:controleDigitos                   ; controleDigitos    ; work         ;
+;    |controlePrincipal:mef_principal|       ; 4 (4)       ; 3            ; 0          ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 3 (3)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|controlePrincipal:mef_principal                   ; controlePrincipal  ; work         ;
+;    |reg_fim:final|                         ; 4 (0)       ; 4            ; 0          ; 0    ; 0            ; 0 (0)        ; 3 (0)             ; 1 (0)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|reg_fim:final                                     ; reg_fim            ; work         ;
+;       |DFlipFlop:D0|                       ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|reg_fim:final|DFlipFlop:D0                        ; DFlipFlop          ; work         ;
+;       |DFlipFlop:D1|                       ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|reg_fim:final|DFlipFlop:D1                        ; DFlipFlop          ; work         ;
+;       |DFlipFlop:D2|                       ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 1 (1)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|reg_fim:final|DFlipFlop:D2                        ; DFlipFlop          ; work         ;
+;       |DFlipFlop:D3|                       ; 1 (1)       ; 1            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 1 (1)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|reg_fim:final|DFlipFlop:D3                        ; DFlipFlop          ; work         ;
+;    |registradores:regs|                    ; 10 (10)     ; 8            ; 0          ; 0    ; 0            ; 2 (2)        ; 5 (5)             ; 3 (3)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|registradores:regs                                ; registradores      ; work         ;
+;    |selecionador:selecionador|             ; 8 (8)       ; 0            ; 0          ; 0    ; 0            ; 8 (8)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|selecionador:selecionador                         ; selecionador       ; work         ;
+;    |timeOut:temporizador|                  ; 5 (5)       ; 5            ; 0          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 5 (5)            ; 0 (0)           ; 0 (0)      ; |maquina_de_vendas|timeOut:temporizador                              ; timeOut            ; work         ;
++--------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+----------------------------------------------------------------------+--------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |maquina_de_vendas|acumulador:acumulador|estadoAtual                                                                                                                                                   ;
++-------------------+----------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+
+; Name              ; estadoAtual.EX ; estadoAtual.E2_00 ; estadoAtual.E1_75 ; estadoAtual.E1_50 ; estadoAtual.E1_25 ; estadoAtual.E1_00 ; estadoAtual.E0_75 ; estadoAtual.E0_50 ; estadoAtual.E0_25 ; estadoAtual.E0_00 ;
++-------------------+----------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+
+; estadoAtual.E0_00 ; 0              ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ;
+; estadoAtual.E0_25 ; 0              ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ; 1                 ;
+; estadoAtual.E0_50 ; 0              ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ; 0                 ; 1                 ;
+; estadoAtual.E0_75 ; 0              ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ; 0                 ; 0                 ; 1                 ;
+; estadoAtual.E1_00 ; 0              ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ; 0                 ; 0                 ; 0                 ; 1                 ;
+; estadoAtual.E1_25 ; 0              ; 0                 ; 0                 ; 0                 ; 1                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ;
+; estadoAtual.E1_50 ; 0              ; 0                 ; 0                 ; 1                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ;
+; estadoAtual.E1_75 ; 0              ; 0                 ; 1                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ;
+; estadoAtual.E2_00 ; 0              ; 1                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ;
+; estadoAtual.EX    ; 1              ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ;
++-------------------+----------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------+
+; State Machine - |maquina_de_vendas|controlePrincipal:mef_principal|estadoAtual             ;
++------------------------+--------------------+------------------------+---------------------+
+; Name                   ; estadoAtual.ESPERA ; estadoAtual.COMPARADOR ; estadoAtual.PRODUTO ;
++------------------------+--------------------+------------------------+---------------------+
+; estadoAtual.ESPERA     ; 0                  ; 0                      ; 0                   ;
+; estadoAtual.PRODUTO    ; 1                  ; 0                      ; 1                   ;
+; estadoAtual.COMPARADOR ; 1                  ; 1                      ; 0                   ;
++------------------------+--------------------+------------------------+---------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------+
+; State Machine - |maquina_de_vendas|controleDigitos:controleDigitos|estadoAtual                              ;
++-----------------------+-----------------------+--------------------+-------------------+--------------------+
+; Name                  ; estadoAtual.BLOQUEADO ; estadoAtual.COLUNA ; estadoAtual.LINHA ; estadoAtual.ESPERA ;
++-----------------------+-----------------------+--------------------+-------------------+--------------------+
+; estadoAtual.ESPERA    ; 0                     ; 0                  ; 0                 ; 0                  ;
+; estadoAtual.LINHA     ; 0                     ; 0                  ; 1                 ; 1                  ;
+; estadoAtual.COLUNA    ; 0                     ; 1                  ; 0                 ; 1                  ;
+; estadoAtual.BLOQUEADO ; 1                     ; 0                  ; 0                 ; 1                  ;
++-----------------------+-----------------------+--------------------+-------------------+--------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                ;
++----------------------------------------------------+--------------------------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal                  ; Free of Timing Hazards ;
++----------------------------------------------------+--------------------------------------+------------------------+
+; comparador:comparador|devolverMoedas               ; comparador:comparador|liberarProduto ; yes                    ;
+; comparador:comparador|liberarProduto               ; comparador:comparador|liberarProduto ; yes                    ;
+; Number of user-specified and inferred latches = 2  ;                                      ;                        ;
++----------------------------------------------------+--------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++--------------------------------------------------------------------+
+; Registers Removed During Synthesis                                 ;
++-----------------------------------------------+--------------------+
+; Register name                                 ; Reason for Removal ;
++-----------------------------------------------+--------------------+
+; acumulador:acumulador|estadoAtual~4           ; Lost fanout        ;
+; acumulador:acumulador|estadoAtual~5           ; Lost fanout        ;
+; acumulador:acumulador|estadoAtual~6           ; Lost fanout        ;
+; acumulador:acumulador|estadoAtual~7           ; Lost fanout        ;
+; controleDigitos:controleDigitos|estadoAtual~2 ; Lost fanout        ;
+; controleDigitos:controleDigitos|estadoAtual~3 ; Lost fanout        ;
+; clkVis:clkDisplay|contar[4..15]               ; Lost fanout        ;
+; clk_1Hz:clk_1HZ|contar[1..25]                 ; Lost fanout        ;
+; Total Number of Removed Registers = 43        ;                    ;
++-----------------------------------------------+--------------------+
 
 
 +------------------------------------------------------+
@@ -200,14 +320,72 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 5     ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 41    ;
+; Number of registers using Synchronous Clear  ; 9     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
-; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Asynchronous Clear ; 4     ;
+; Number of registers using Asynchronous Load  ; 4     ;
+; Number of registers using Clock Enable       ; 8     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |maquina_de_vendas|registradores:regs|linha[0]               ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |maquina_de_vendas|controlePrincipal:mef_principal|Selector0 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "acionarDisplay:display|demux:selecionarDigito"                                                                                                                                     ;
++-------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port  ; Type  ; Severity ; Details                                                                                                                                                                            ;
++-------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; G     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; G[-1] ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
++-------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "acionarDisplay:display|count:contador"                                                                                                                                                 ;
++-----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type  ; Severity ; Details                                                                                                                                                                            ;
++-----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; max       ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (2 bits) it drives.  The 30 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; max[1..0] ; Input ; Info     ; Stuck at VCC                                                                                                                                                                       ;
+; reset     ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND.                                       ;
++-----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "acionarDisplay:display"                                                                                                                                   ;
++-------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port        ; Type  ; Severity ; Details                                                                                                                                             ;
++-------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; valorMoedas ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (4 bits) it drives.  Extra input bit(s) "valorMoedas[3..1]" will be connected to GND. ;
++-------------+-------+----------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "comparador:comparador"                                                                                                              ;
++------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                                                                       ;
++------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; valorTotal ; Output ; Warning  ; Output or bidir port (4 bits) is wider than the port expression (1 bits) it drives; bit(s) "valorTotal[3..1]" have no fanouts ;
++------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------+
+; Port Connectivity Checks: "acumulador:acumulador" ;
++-------+-------+----------+------------------------+
+; Port  ; Type  ; Severity ; Details                ;
++-------+-------+----------+------------------------+
+; reset ; Input ; Info     ; Explicitly unconnected ;
++-------+-------+----------+------------------------+
 
 
 +-------------------------------+
@@ -216,60 +394,119 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Thu Jun 17 15:22:17 2021
+    Info: Processing started: Fri Jun 18 16:36:31 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Maquina_de_vendas -c Maquina_de_vendas
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Warning (10463): Verilog HDL Declaration warning at maquina_de_vendas.v(55): "final" is SystemVerilog-2005 keyword File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 55
+Info (12021): Found 1 design units, including 1 entities, in source file maquina_de_vendas.v
+    Info (12023): Found entity 1: maquina_de_vendas File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file digitacao.v
+    Info (12023): Found entity 1: digitacao File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/digitacao.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file clkvis.v
+    Info (12023): Found entity 1: clkVis File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/clkVis.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file acumula_compara.v
+    Info (12023): Found entity 1: acumula_compara File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acumula_compara.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file clk_1hz.v
-    Info (12023): Found entity 1: clk_1Hz File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/clk_1Hz.v Line: 1
+    Info (12023): Found entity 1: clk_1Hz File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/clk_1Hz.v Line: 1
 Info (12021): Found 2 design units, including 2 entities, in source file reg_fim.v
-    Info (12023): Found entity 1: reg_fim File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/reg_fim.v Line: 1
-    Info (12023): Found entity 2: DFlipFlop File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/reg_fim.v Line: 15
+    Info (12023): Found entity 1: reg_fim File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/reg_fim.v Line: 1
+    Info (12023): Found entity 2: DFlipFlop File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/reg_fim.v Line: 15
 Info (12021): Found 1 design units, including 1 entities, in source file codificadorteclado.v
-    Info (12023): Found entity 1: codificadorTeclado File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/codificadorTeclado.v Line: 1
+    Info (12023): Found entity 1: codificadorTeclado File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/codificadorTeclado.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file selecionador.v
-    Info (12023): Found entity 1: selecionador File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/selecionador.v Line: 1
+    Info (12023): Found entity 1: selecionador File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/selecionador.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file registradores.v
-    Info (12023): Found entity 1: registradores File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/registradores.v Line: 1
+    Info (12023): Found entity 1: registradores File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/registradores.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file comparador.v
-    Info (12023): Found entity 1: comparador File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/comparador.v Line: 1
+    Info (12023): Found entity 1: comparador File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/comparador.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file controleprincipal.v
-    Info (12023): Found entity 1: controlePrincipal File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/controlePrincipal.v Line: 1
+    Info (12023): Found entity 1: controlePrincipal File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/controlePrincipal.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file controledigitos.v
-    Info (12023): Found entity 1: controleDigitos File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/controleDigitos.v Line: 1
+    Info (12023): Found entity 1: controleDigitos File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/controleDigitos.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file acumulador.v
-    Info (12023): Found entity 1: acumulador File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/acumulador.v Line: 1
+    Info (12023): Found entity 1: acumulador File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acumulador.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file mux_4bits.v
-    Info (12023): Found entity 1: mux_4bits File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/mux_4bits.v Line: 1
+    Info (12023): Found entity 1: mux_4bits File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/mux_4bits.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file demux.v
-    Info (12023): Found entity 1: demux File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/demux.v Line: 1
+    Info (12023): Found entity 1: demux File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/demux.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file decodificador.v
-    Info (12023): Found entity 1: decodificador File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/decodificador.v Line: 1
+    Info (12023): Found entity 1: decodificador File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/decodificador.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file count.v
-    Info (12023): Found entity 1: count File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/count.v Line: 1
+    Info (12023): Found entity 1: count File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/count.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file acionardisplay.v
-    Info (12023): Found entity 1: acionarDisplay File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/acionarDisplay.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file teclado.v
-    Info (12023): Found entity 1: teclado File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/teclado.v Line: 1
+    Info (12023): Found entity 1: acionarDisplay File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file timeout.v
-    Info (12023): Found entity 1: timeOut File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/timeOut.v Line: 1
-Info (12127): Elaborating entity "timeOut" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at timeOut.v(10): truncated value with size 32 to match size of target (5) File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/timeOut.v Line: 10
-Info (21057): Implemented 7 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 1 input pins
-    Info (21059): Implemented 1 output pins
-    Info (21061): Implemented 5 logic cells
-Info (144001): Generated suppressed messages file C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/output_files/Maquina_de_vendas.map.smsg
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 2 warnings
-    Info: Peak virtual memory: 4700 megabytes
-    Info: Processing ended: Thu Jun 17 15:22:32 2021
-    Info: Elapsed time: 00:00:15
+    Info (12023): Found entity 1: timeOut File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/timeOut.v Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at maquina_de_vendas.v(38): created implicit net for "clk1Hz" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 38
+Critical Warning (10846): Verilog HDL Instantiation warning at digitacao.v(21): instance has no name File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/digitacao.v Line: 21
+Info (12127): Elaborating entity "maquina_de_vendas" for the top level hierarchy
+Info (12128): Elaborating entity "codificadorTeclado" for hierarchy "codificadorTeclado:codificadorTeclado" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 25
+Info (12128): Elaborating entity "controleDigitos" for hierarchy "controleDigitos:controleDigitos" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 28
+Info (10264): Verilog HDL Case Statement information at controleDigitos.v(46): all case item expressions in this case statement are onehot File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/controleDigitos.v Line: 46
+Info (12128): Elaborating entity "registradores" for hierarchy "registradores:regs" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 30
+Info (12128): Elaborating entity "selecionador" for hierarchy "selecionador:selecionador" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 32
+Info (12128): Elaborating entity "timeOut" for hierarchy "timeOut:temporizador" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 38
+Warning (10230): Verilog HDL assignment warning at timeOut.v(12): truncated value with size 32 to match size of target (4) File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/timeOut.v Line: 12
+Info (12128): Elaborating entity "controlePrincipal" for hierarchy "controlePrincipal:mef_principal" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 40
+Info (10264): Verilog HDL Case Statement information at controlePrincipal.v(44): all case item expressions in this case statement are onehot File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/controlePrincipal.v Line: 44
+Info (12128): Elaborating entity "acumulador" for hierarchy "acumulador:acumulador" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 46
+Info (12128): Elaborating entity "comparador" for hierarchy "comparador:comparador" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 52
+Warning (10240): Verilog HDL Always Construct warning at comparador.v(10): inferring latch(es) for variable "liberarProduto", which holds its previous value in one or more paths through the always construct File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/comparador.v Line: 10
+Warning (10240): Verilog HDL Always Construct warning at comparador.v(10): inferring latch(es) for variable "devolverMoedas", which holds its previous value in one or more paths through the always construct File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/comparador.v Line: 10
+Info (10041): Inferred latch for "devolverMoedas" at comparador.v(10) File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/comparador.v Line: 10
+Info (10041): Inferred latch for "liberarProduto" at comparador.v(10) File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/comparador.v Line: 10
+Info (12128): Elaborating entity "reg_fim" for hierarchy "reg_fim:final" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 55
+Info (12128): Elaborating entity "DFlipFlop" for hierarchy "reg_fim:final|DFlipFlop:D3" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/reg_fim.v Line: 8
+Info (12128): Elaborating entity "clk_1Hz" for hierarchy "clk_1Hz:clk_1HZ" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 57
+Warning (10230): Verilog HDL assignment warning at clk_1Hz.v(6): truncated value with size 32 to match size of target (26) File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/clk_1Hz.v Line: 6
+Info (12128): Elaborating entity "clkVis" for hierarchy "clkVis:clkDisplay" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 61
+Warning (10230): Verilog HDL assignment warning at clkVis.v(8): truncated value with size 32 to match size of target (16) File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/clkVis.v Line: 8
+Info (12128): Elaborating entity "acionarDisplay" for hierarchy "acionarDisplay:display" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/maquina_de_vendas.v Line: 69
+Warning (10235): Verilog HDL Always Construct warning at acionarDisplay.v(130): variable "produto" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 130
+Warning (10235): Verilog HDL Always Construct warning at acionarDisplay.v(137): variable "codigo1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 137
+Warning (10235): Verilog HDL Always Construct warning at acionarDisplay.v(138): variable "codigo2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 138
+Warning (10235): Verilog HDL Always Construct warning at acionarDisplay.v(146): variable "valorMoedas" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 146
+Warning (10235): Verilog HDL Always Construct warning at acionarDisplay.v(148): variable "codigo1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 148
+Warning (10235): Verilog HDL Always Construct warning at acionarDisplay.v(149): variable "codigo2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 149
+Warning (10235): Verilog HDL Always Construct warning at acionarDisplay.v(155): variable "vM1" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 155
+Warning (10235): Verilog HDL Always Construct warning at acionarDisplay.v(157): variable "vM2" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 157
+Warning (10235): Verilog HDL Always Construct warning at acionarDisplay.v(158): variable "vM3" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 158
+Warning (10235): Verilog HDL Always Construct warning at acionarDisplay.v(160): variable "devolver" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 160
+Info (12128): Elaborating entity "count" for hierarchy "acionarDisplay:display|count:contador" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 178
+Warning (10230): Verilog HDL assignment warning at count.v(15): truncated value with size 32 to match size of target (2) File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/count.v Line: 15
+Info (12128): Elaborating entity "demux" for hierarchy "acionarDisplay:display|demux:selecionarDigito" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 180
+Warning (10235): Verilog HDL Always Construct warning at demux.v(13): variable "G" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/demux.v Line: 13
+Warning (10235): Verilog HDL Always Construct warning at demux.v(19): variable "G" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/demux.v Line: 19
+Warning (10235): Verilog HDL Always Construct warning at demux.v(25): variable "G" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/demux.v Line: 25
+Warning (10235): Verilog HDL Always Construct warning at demux.v(31): variable "G" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/demux.v Line: 31
+Info (12128): Elaborating entity "mux_4bits" for hierarchy "acionarDisplay:display|mux_4bits:selecionarLetra" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 182
+Warning (10235): Verilog HDL Always Construct warning at mux_4bits.v(5): variable "a" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/mux_4bits.v Line: 5
+Warning (10235): Verilog HDL Always Construct warning at mux_4bits.v(6): variable "b" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/mux_4bits.v Line: 6
+Warning (10235): Verilog HDL Always Construct warning at mux_4bits.v(7): variable "c" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/mux_4bits.v Line: 7
+Warning (10235): Verilog HDL Always Construct warning at mux_4bits.v(8): variable "d" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/mux_4bits.v Line: 8
+Info (12128): Elaborating entity "decodificador" for hierarchy "acionarDisplay:display|decodificador:decoder7segs" File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/acionarDisplay.v Line: 184
+Warning (12241): 4 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13012): Latch comparador:comparador|devolverMoedas has unsafe behavior File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/comparador.v Line: 5
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal timeOut:temporizador|clk15segs File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/timeOut.v Line: 4
+Warning (13012): Latch comparador:comparador|liberarProduto has unsafe behavior File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/comparador.v Line: 5
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal timeOut:temporizador|clk15segs File: C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/timeOut.v Line: 4
+Info (17049): 43 registers lost all their fanouts during netlist optimizations.
+Info (21057): Implemented 169 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 7 input pins
+    Info (21059): Implemented 18 output pins
+    Info (21061): Implemented 144 logic cells
+Info (144001): Generated suppressed messages file C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/output_files/Maquina_de_vendas.map.smsg
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 33 warnings
+    Info: Peak virtual memory: 4698 megabytes
+    Info: Processing ended: Fri Jun 18 16:36:45 2021
+    Info: Elapsed time: 00:00:14
     Info: Total CPU time (on all processors): 00:00:31
 
 
 +------------------------------------------+
 ; Analysis & Synthesis Suppressed Messages ;
 +------------------------------------------+
-The suppressed messages can be found in C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/output_files/Maquina_de_vendas.map.smsg.
+The suppressed messages can be found in C:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/output_files/Maquina_de_vendas.map.smsg.
 
 

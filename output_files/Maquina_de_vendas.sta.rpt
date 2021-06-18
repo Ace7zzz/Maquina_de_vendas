@@ -1,5 +1,5 @@
 Timing Analyzer report for Maquina_de_vendas
-Thu Jun 17 15:22:40 2021
+Fri Jun 18 16:36:53 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -16,17 +16,29 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   8. Recovery Summary
   9. Removal Summary
  10. Minimum Pulse Width Summary
- 11. Setup: 'clk'
- 12. Hold: 'clk'
- 13. Setup Transfers
- 14. Hold Transfers
- 15. Report TCCS
- 16. Report RSKM
- 17. Unconstrained Paths Summary
- 18. Clock Status Summary
- 19. Unconstrained Output Ports
- 20. Unconstrained Output Ports
- 21. Timing Analyzer Messages
+ 11. Setup: 'timeOut:temporizador|clk15segs'
+ 12. Setup: 'clk'
+ 13. Setup: 'clk_1Hz:clk_1HZ|contar[0]'
+ 14. Setup: 'clkVis:clkDisplay|contar[3]'
+ 15. Hold: 'timeOut:temporizador|clk15segs'
+ 16. Hold: 'clk'
+ 17. Hold: 'clk_1Hz:clk_1HZ|contar[0]'
+ 18. Hold: 'clkVis:clkDisplay|contar[3]'
+ 19. Recovery: 'clk'
+ 20. Removal: 'clk'
+ 21. Setup Transfers
+ 22. Hold Transfers
+ 23. Recovery Transfers
+ 24. Removal Transfers
+ 25. Report TCCS
+ 26. Report RSKM
+ 27. Unconstrained Paths Summary
+ 28. Clock Status Summary
+ 29. Unconstrained Input Ports
+ 30. Unconstrained Output Ports
+ 31. Unconstrained Input Ports
+ 32. Unconstrained Output Ports
+ 33. Timing Analyzer Messages
 
 
 
@@ -80,126 +92,545 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Clocks                                                                                                                                                                          ;
-+------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
-; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets ;
-+------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
-; clk        ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clk } ;
-+------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                                                                         ;
++--------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------------------------------+
+; Clock Name                     ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets                            ;
++--------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------------------------------+
+; clk                            ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clk }                            ;
+; clk_1Hz:clk_1HZ|contar[0]      ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clk_1Hz:clk_1HZ|contar[0] }      ;
+; clkVis:clkDisplay|contar[3]    ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clkVis:clkDisplay|contar[3] }    ;
+; timeOut:temporizador|clk15segs ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { timeOut:temporizador|clk15segs } ;
++--------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+------------------------------------+
 
 
-+--------------------------------------------------+
-; Fmax Summary                                     ;
-+------------+-----------------+------------+------+
-; Fmax       ; Restricted Fmax ; Clock Name ; Note ;
-+------------+-----------------+------------+------+
-; 257.93 MHz ; 257.93 MHz      ; clk        ;      ;
-+------------+-----------------+------------+------+
++-----------------------------------------------------------------------------------------+
+; Fmax Summary                                                                            ;
++------------+-----------------+--------------------------------+-------------------------+
+; Fmax       ; Restricted Fmax ; Clock Name                     ; Note                    ;
++------------+-----------------+--------------------------------+-------------------------+
+; INF MHz    ; 165.51 MHz      ; timeOut:temporizador|clk15segs ; limit due to hold check ;
+; 148.68 MHz ; 148.68 MHz      ; clk                            ;                         ;
+; 338.87 MHz ; 338.87 MHz      ; clk_1Hz:clk_1HZ|contar[0]      ;                         ;
+; 388.35 MHz ; 388.35 MHz      ; clkVis:clkDisplay|contar[3]    ;                         ;
++------------+-----------------+--------------------------------+-------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
++---------------------------------------------------------+
+; Setup Summary                                           ;
++--------------------------------+--------+---------------+
+; Clock                          ; Slack  ; End Point TNS ;
++--------------------------------+--------+---------------+
+; timeOut:temporizador|clk15segs ; -8.179 ; -16.128       ;
+; clk                            ; -5.726 ; -98.631       ;
+; clk_1Hz:clk_1HZ|contar[0]      ; -4.701 ; -17.539       ;
+; clkVis:clkDisplay|contar[3]    ; -1.575 ; -2.790        ;
++--------------------------------+--------+---------------+
+
+
++---------------------------------------------------------+
+; Hold Summary                                            ;
++--------------------------------+--------+---------------+
+; Clock                          ; Slack  ; End Point TNS ;
++--------------------------------+--------+---------------+
+; timeOut:temporizador|clk15segs ; -3.021 ; -5.999        ;
+; clk                            ; -1.660 ; -4.563        ;
+; clk_1Hz:clk_1HZ|contar[0]      ; 1.386  ; 0.000         ;
+; clkVis:clkDisplay|contar[3]    ; 1.661  ; 0.000         ;
++--------------------------------+--------+---------------+
+
+
 +--------------------------------+
-; Setup Summary                  ;
+; Recovery Summary               ;
 +-------+--------+---------------+
 ; Clock ; Slack  ; End Point TNS ;
 +-------+--------+---------------+
-; clk   ; -2.877 ; -12.431       ;
+; clk   ; -3.438 ; -25.020       ;
 +-------+--------+---------------+
 
 
 +-------------------------------+
-; Hold Summary                  ;
+; Removal Summary               ;
 +-------+-------+---------------+
 ; Clock ; Slack ; End Point TNS ;
 +-------+-------+---------------+
-; clk   ; 2.107 ; 0.000         ;
+; clk   ; 2.917 ; 0.000         ;
 +-------+-------+---------------+
 
 
---------------------
-; Recovery Summary ;
---------------------
-No paths to report.
++---------------------------------------------------------+
+; Minimum Pulse Width Summary                             ;
++--------------------------------+--------+---------------+
+; Clock                          ; Slack  ; End Point TNS ;
++--------------------------------+--------+---------------+
+; clk                            ; -2.289 ; -2.289        ;
+; clkVis:clkDisplay|contar[3]    ; 0.234  ; 0.000         ;
+; clk_1Hz:clk_1HZ|contar[0]      ; 0.234  ; 0.000         ;
+; timeOut:temporizador|clk15segs ; 0.500  ; 0.000         ;
++--------------------------------+--------+---------------+
 
 
--------------------
-; Removal Summary ;
--------------------
-No paths to report.
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Setup: 'timeOut:temporizador|clk15segs'                                                                                                                                                            ;
++--------+-----------------------------------------+--------------------------------------+--------------------------------+--------------------------------+--------------+------------+------------+
+; Slack  ; From Node                               ; To Node                              ; Launch Clock                   ; Latch Clock                    ; Relationship ; Clock Skew ; Data Delay ;
++--------+-----------------------------------------+--------------------------------------+--------------------------------+--------------------------------+--------------+------------+------------+
+; -8.179 ; acumulador:acumulador|estadoAtual.E2_00 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 9.914      ;
+; -7.949 ; acumulador:acumulador|estadoAtual.E2_00 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 9.913      ;
+; -7.654 ; acumulador:acumulador|estadoAtual.E0_50 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 9.389      ;
+; -7.548 ; acumulador:acumulador|estadoAtual.E0_00 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 9.283      ;
+; -7.424 ; acumulador:acumulador|estadoAtual.E0_50 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 9.388      ;
+; -7.318 ; acumulador:acumulador|estadoAtual.E0_00 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 9.282      ;
+; -7.147 ; acumulador:acumulador|estadoAtual.E0_25 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 8.882      ;
+; -6.964 ; registradores:regs|linha[0]             ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 8.699      ;
+; -6.955 ; acumulador:acumulador|estadoAtual.E0_75 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 8.690      ;
+; -6.917 ; acumulador:acumulador|estadoAtual.E0_25 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 8.881      ;
+; -6.826 ; acumulador:acumulador|estadoAtual.E1_25 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 8.561      ;
+; -6.734 ; registradores:regs|linha[0]             ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 8.698      ;
+; -6.725 ; acumulador:acumulador|estadoAtual.E0_75 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 8.689      ;
+; -6.701 ; registradores:regs|coluna[0]            ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 8.436      ;
+; -6.596 ; acumulador:acumulador|estadoAtual.E1_25 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 8.560      ;
+; -6.530 ; acumulador:acumulador|estadoAtual.E1_00 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 8.265      ;
+; -6.471 ; registradores:regs|coluna[0]            ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 8.435      ;
+; -6.469 ; registradores:regs|coluna[1]            ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 8.204      ;
+; -6.300 ; acumulador:acumulador|estadoAtual.E1_00 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 8.264      ;
+; -6.239 ; registradores:regs|coluna[1]            ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 8.203      ;
+; -6.212 ; acumulador:acumulador|estadoAtual.E1_50 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 7.947      ;
+; -5.982 ; acumulador:acumulador|estadoAtual.E1_50 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 7.946      ;
+; -5.913 ; registradores:regs|linha[1]             ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 7.648      ;
+; -5.833 ; acumulador:acumulador|estadoAtual.EX    ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.617      ; 7.568      ;
+; -5.683 ; registradores:regs|linha[1]             ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 7.647      ;
+; -5.603 ; acumulador:acumulador|estadoAtual.EX    ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; 0.500        ; 3.615      ; 7.567      ;
+; 1.096  ; timeOut:temporizador|clk15segs          ; comparador:comparador|devolverMoedas ; timeOut:temporizador|clk15segs ; timeOut:temporizador|clk15segs ; 0.500        ; 6.965      ; 4.363      ;
+; 1.370  ; timeOut:temporizador|clk15segs          ; comparador:comparador|liberarProduto ; timeOut:temporizador|clk15segs ; timeOut:temporizador|clk15segs ; 0.500        ; 6.963      ; 4.318      ;
+; 1.596  ; timeOut:temporizador|clk15segs          ; comparador:comparador|devolverMoedas ; timeOut:temporizador|clk15segs ; timeOut:temporizador|clk15segs ; 1.000        ; 6.965      ; 4.363      ;
+; 1.870  ; timeOut:temporizador|clk15segs          ; comparador:comparador|liberarProduto ; timeOut:temporizador|clk15segs ; timeOut:temporizador|clk15segs ; 1.000        ; 6.963      ; 4.318      ;
++--------+-----------------------------------------+--------------------------------------+--------------------------------+--------------------------------+--------------+------------+------------+
 
 
-+--------------------------------+
-; Minimum Pulse Width Summary    ;
-+-------+--------+---------------+
-; Clock ; Slack  ; End Point TNS ;
-+-------+--------+---------------+
-; clk   ; -2.289 ; -2.289        ;
-+-------+--------+---------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Setup: 'clk'                                                                                                                                                                                                ;
++--------+--------------------------------------------------------+--------------------------------------------------------+---------------------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                                              ; To Node                                                ; Launch Clock              ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+--------------------------------------------------------+--------------------------------------------------------+---------------------------+-------------+--------------+------------+------------+
+; -5.726 ; registradores:regs|linha[1]                            ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; clk                       ; clk         ; 1.000        ; 0.000      ; 6.393      ;
+; -5.598 ; registradores:regs|linha[0]                            ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; clk                       ; clk         ; 1.000        ; 0.000      ; 6.265      ;
+; -5.425 ; registradores:regs|coluna[1]                           ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; clk                       ; clk         ; 1.000        ; 0.000      ; 6.092      ;
+; -5.356 ; registradores:regs|linha[1]                            ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 6.023      ;
+; -5.228 ; registradores:regs|linha[0]                            ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.895      ;
+; -5.134 ; registradores:regs|coluna[0]                           ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.801      ;
+; -5.055 ; registradores:regs|coluna[1]                           ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.722      ;
+; -5.024 ; registradores:regs|linha[1]                            ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.691      ;
+; -4.896 ; registradores:regs|linha[0]                            ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.563      ;
+; -4.870 ; registradores:regs|linha[1]                            ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.537      ;
+; -4.764 ; registradores:regs|coluna[0]                           ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.431      ;
+; -4.742 ; registradores:regs|linha[0]                            ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.409      ;
+; -4.723 ; registradores:regs|coluna[1]                           ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.390      ;
+; -4.684 ; registradores:regs|codeC[0]                            ; registradores:regs|codeC[0]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.351      ;
+; -4.596 ; registradores:regs|codeC[1]                            ; registradores:regs|codeC[1]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.263      ;
+; -4.569 ; registradores:regs|coluna[1]                           ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.236      ;
+; -4.548 ; controlePrincipal:mef_principal|estadoAtual.PRODUTO    ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.215      ;
+; -4.537 ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.204      ;
+; -4.432 ; registradores:regs|coluna[0]                           ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.099      ;
+; -4.417 ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 5.084      ;
+; -4.278 ; registradores:regs|coluna[0]                           ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.945      ;
+; -4.160 ; acumulador:acumulador|estadoAtual.E0_50                ; acumulador:acumulador|estadoAtual.E1_50                ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.827      ;
+; -4.108 ; acumulador:acumulador|estadoAtual.E1_75                ; acumulador:acumulador|estadoAtual.E2_00                ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.775      ;
+; -4.078 ; reg_fim:final|DFlipFlop:D0|Q                           ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; clk_1Hz:clk_1HZ|contar[0] ; clk         ; 1.000        ; -0.322     ; 4.423      ;
+; -3.870 ; acumulador:acumulador|estadoAtual.E0_75                ; acumulador:acumulador|estadoAtual.E1_00                ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.537      ;
+; -3.864 ; acumulador:acumulador|estadoAtual.E0_50                ; acumulador:acumulador|estadoAtual.E1_00                ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.531      ;
+; -3.812 ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|coluna[0]                           ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.479      ;
+; -3.812 ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|coluna[1]                           ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.479      ;
+; -3.749 ; acumulador:acumulador|estadoAtual.E1_25                ; acumulador:acumulador|estadoAtual.E1_50                ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.416      ;
+; -3.732 ; acumulador:acumulador|estadoAtual.E2_00                ; acumulador:acumulador|estadoAtual.EX                   ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.399      ;
+; -3.687 ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; registradores:regs|codeC[1]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.354      ;
+; -3.679 ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.346      ;
+; -3.663 ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; registradores:regs|codeC[0]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.330      ;
+; -3.569 ; acumulador:acumulador|estadoAtual.E1_00                ; acumulador:acumulador|estadoAtual.E1_50                ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.236      ;
+; -3.501 ; acumulador:acumulador|estadoAtual.E1_50                ; acumulador:acumulador|estadoAtual.E1_75                ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.168      ;
+; -3.473 ; acumulador:acumulador|estadoAtual.E1_25                ; acumulador:acumulador|estadoAtual.E1_75                ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.140      ;
+; -3.376 ; reg_fim:final|DFlipFlop:D0|Q                           ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; clk_1Hz:clk_1HZ|contar[0] ; clk         ; 1.000        ; -0.322     ; 3.721      ;
+; -3.334 ; acumulador:acumulador|estadoAtual.E2_00                ; acumulador:acumulador|estadoAtual.E2_00                ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.001      ;
+; -3.333 ; acumulador:acumulador|estadoAtual.E1_00                ; acumulador:acumulador|estadoAtual.E2_00                ; clk                       ; clk         ; 1.000        ; 0.000      ; 4.000      ;
+; -3.329 ; acumulador:acumulador|estadoAtual.E0_00                ; acumulador:acumulador|estadoAtual.E1_00                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.996      ;
+; -3.310 ; acumulador:acumulador|estadoAtual.E1_25                ; acumulador:acumulador|estadoAtual.EX                   ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.977      ;
+; -3.302 ; acumulador:acumulador|estadoAtual.E1_50                ; acumulador:acumulador|estadoAtual.E1_50                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.969      ;
+; -3.261 ; acumulador:acumulador|estadoAtual.E0_75                ; acumulador:acumulador|estadoAtual.E1_25                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.928      ;
+; -3.256 ; acumulador:acumulador|estadoAtual.E0_00                ; acumulador:acumulador|estadoAtual.E0_50                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.923      ;
+; -3.164 ; acumulador:acumulador|estadoAtual.E1_50                ; acumulador:acumulador|estadoAtual.E2_00                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.831      ;
+; -3.117 ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; controlePrincipal:mef_principal|estadoAtual.PRODUTO    ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.784      ;
+; -3.079 ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; registradores:regs|linha[0]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.746      ;
+; -3.079 ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; registradores:regs|linha[1]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.746      ;
+; -3.078 ; acumulador:acumulador|estadoAtual.E0_75                ; acumulador:acumulador|estadoAtual.E1_75                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.745      ;
+; -3.006 ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|linha[1]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.673      ;
+; -2.977 ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.644      ;
+; -2.972 ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.639      ;
+; -2.958 ; acumulador:acumulador|estadoAtual.E1_00                ; acumulador:acumulador|estadoAtual.E1_00                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.625      ;
+; -2.953 ; acumulador:acumulador|estadoAtual.E1_75                ; acumulador:acumulador|estadoAtual.E1_75                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.620      ;
+; -2.940 ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.607      ;
+; -2.927 ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.594      ;
+; -2.882 ; acumulador:acumulador|estadoAtual.E0_25                ; acumulador:acumulador|estadoAtual.E0_50                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.549      ;
+; -2.853 ; acumulador:acumulador|estadoAtual.E0_25                ; acumulador:acumulador|estadoAtual.E1_25                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.520      ;
+; -2.829 ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.496      ;
+; -2.816 ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.483      ;
+; -2.793 ; acumulador:acumulador|estadoAtual.E1_00                ; acumulador:acumulador|estadoAtual.E1_25                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.460      ;
+; -2.771 ; acumulador:acumulador|estadoAtual.E1_75                ; acumulador:acumulador|estadoAtual.EX                   ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.438      ;
+; -2.765 ; acumulador:acumulador|estadoAtual.E0_50                ; acumulador:acumulador|estadoAtual.E0_75                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.432      ;
+; -2.764 ; clkVis:clkDisplay|contar[0]                            ; clkVis:clkDisplay|contar[3]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.431      ;
+; -2.743 ; controlePrincipal:mef_principal|estadoAtual.PRODUTO    ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.410      ;
+; -2.722 ; clkVis:clkDisplay|contar[2]                            ; clkVis:clkDisplay|contar[3]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.389      ;
+; -2.709 ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; controlePrincipal:mef_principal|estadoAtual.PRODUTO    ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.376      ;
+; -2.676 ; reg_fim:final|DFlipFlop:D0|Q                           ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; clk_1Hz:clk_1HZ|contar[0] ; clk         ; 1.000        ; -0.322     ; 3.021      ;
+; -2.645 ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.312      ;
+; -2.641 ; clkVis:clkDisplay|contar[0]                            ; clkVis:clkDisplay|contar[2]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.308      ;
+; -2.641 ; clkVis:clkDisplay|contar[1]                            ; clkVis:clkDisplay|contar[3]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.308      ;
+; -2.601 ; acumulador:acumulador|estadoAtual.E1_25                ; acumulador:acumulador|estadoAtual.E1_25                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.268      ;
+; -2.583 ; registradores:regs|codeC[0]                            ; registradores:regs|coluna[0]                           ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.250      ;
+; -2.518 ; clkVis:clkDisplay|contar[0]                            ; clkVis:clkDisplay|contar[1]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.185      ;
+; -2.518 ; clkVis:clkDisplay|contar[1]                            ; clkVis:clkDisplay|contar[2]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.185      ;
+; -2.497 ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.164      ;
+; -2.472 ; registradores:regs|codeC[1]                            ; registradores:regs|coluna[1]                           ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.139      ;
+; -2.392 ; acumulador:acumulador|estadoAtual.E0_00                ; acumulador:acumulador|estadoAtual.E0_25                ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.059      ;
+; -2.375 ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|linha[0]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 3.042      ;
+; -2.313 ; acumulador:acumulador|estadoAtual.E1_50                ; acumulador:acumulador|estadoAtual.EX                   ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.980      ;
+; -2.287 ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|codeC[0]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.954      ;
+; -2.287 ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|codeC[1]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.954      ;
+; -2.247 ; acumulador:acumulador|estadoAtual.E0_75                ; acumulador:acumulador|estadoAtual.E0_75                ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.914      ;
+; -2.162 ; acumulador:acumulador|estadoAtual.E0_25                ; acumulador:acumulador|estadoAtual.E0_75                ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.829      ;
+; -2.155 ; acumulador:acumulador|estadoAtual.E0_25                ; acumulador:acumulador|estadoAtual.E0_25                ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.822      ;
+; -2.086 ; acumulador:acumulador|estadoAtual.E0_50                ; acumulador:acumulador|estadoAtual.E0_50                ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.753      ;
+; -1.989 ; reg_fim:final|DFlipFlop:D0|Q                           ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk_1Hz:clk_1HZ|contar[0] ; clk         ; 1.000        ; -0.322     ; 2.334      ;
+; -1.953 ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.620      ;
+; -1.901 ; registradores:regs|codeL[1]                            ; registradores:regs|linha[1]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.568      ;
+; -1.899 ; registradores:regs|codeL[0]                            ; registradores:regs|linha[0]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.566      ;
+; -1.857 ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|codeL[0]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.524      ;
+; -1.857 ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|codeL[1]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.524      ;
+; -1.828 ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.495      ;
+; -1.766 ; clkVis:clkDisplay|contar[2]                            ; clkVis:clkDisplay|contar[2]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.433      ;
+; -1.711 ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.378      ;
+; -1.671 ; clkVis:clkDisplay|contar[1]                            ; clkVis:clkDisplay|contar[1]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.338      ;
+; -1.671 ; clkVis:clkDisplay|contar[0]                            ; clkVis:clkDisplay|contar[0]                            ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.338      ;
+; -1.661 ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; registradores:regs|coluna[1]                           ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.328      ;
+; -1.660 ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; registradores:regs|coluna[0]                           ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.327      ;
+; -1.491 ; acumulador:acumulador|estadoAtual.E0_00                ; acumulador:acumulador|estadoAtual.E0_00                ; clk                       ; clk         ; 1.000        ; 0.000      ; 2.158      ;
++--------+--------------------------------------------------------+--------------------------------------------------------+---------------------------+-------------+--------------+------------+------------+
 
 
-+------------------------------------------------------------------------------------------------------+
-; Setup: 'clk'                                                                                         ;
-+--------+-----------+-----------+--------------+-------------+--------------+------------+------------+
-; Slack  ; From Node ; To Node   ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
-+--------+-----------+-----------+--------------+-------------+--------------+------------+------------+
-; -2.877 ; contar[0] ; contar[4] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.544      ;
-; -2.764 ; contar[1] ; contar[4] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.431      ;
-; -2.754 ; contar[0] ; contar[3] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.421      ;
-; -2.722 ; contar[3] ; contar[4] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.389      ;
-; -2.641 ; contar[2] ; contar[4] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.308      ;
-; -2.641 ; contar[1] ; contar[3] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.308      ;
-; -2.631 ; contar[0] ; contar[2] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.298      ;
-; -2.518 ; contar[2] ; contar[3] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.185      ;
-; -2.518 ; contar[1] ; contar[2] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.185      ;
-; -2.508 ; contar[0] ; contar[1] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.175      ;
-; -1.767 ; contar[4] ; contar[4] ; clk          ; clk         ; 1.000        ; 0.000      ; 2.434      ;
-; -1.766 ; contar[3] ; contar[3] ; clk          ; clk         ; 1.000        ; 0.000      ; 2.433      ;
-; -1.671 ; contar[2] ; contar[2] ; clk          ; clk         ; 1.000        ; 0.000      ; 2.338      ;
-; -1.671 ; contar[1] ; contar[1] ; clk          ; clk         ; 1.000        ; 0.000      ; 2.338      ;
-; -1.661 ; contar[0] ; contar[0] ; clk          ; clk         ; 1.000        ; 0.000      ; 2.328      ;
-+--------+-----------+-----------+--------------+-------------+--------------+------------+------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Setup: 'clk_1Hz:clk_1HZ|contar[0]'                                                                                                                                                   ;
++--------+--------------------------------------+--------------------------------+--------------------------------+---------------------------+--------------+------------+------------+
+; Slack  ; From Node                            ; To Node                        ; Launch Clock                   ; Latch Clock               ; Relationship ; Clock Skew ; Data Delay ;
++--------+--------------------------------------+--------------------------------+--------------------------------+---------------------------+--------------+------------+------------+
+; -4.701 ; comparador:comparador|devolverMoedas ; reg_fim:final|DFlipFlop:D3|Q   ; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0] ; 0.500        ; -3.295     ; 1.573      ;
+; -4.469 ; comparador:comparador|liberarProduto ; reg_fim:final|DFlipFlop:D3|Q   ; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0] ; 0.500        ; -3.293     ; 1.343      ;
+; -1.951 ; reg_fim:final|DFlipFlop:D1|Q         ; reg_fim:final|DFlipFlop:D0|Q   ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 2.618      ;
+; -1.864 ; timeOut:temporizador|contar[1]       ; timeOut:temporizador|contar[2] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 2.531      ;
+; -1.862 ; timeOut:temporizador|contar[1]       ; timeOut:temporizador|contar[3] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 2.529      ;
+; -1.852 ; timeOut:temporizador|contar[1]       ; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 2.519      ;
+; -1.851 ; timeOut:temporizador|contar[1]       ; timeOut:temporizador|contar[1] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 2.518      ;
+; -1.742 ; timeOut:temporizador|contar[3]       ; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 2.409      ;
+; -1.729 ; timeOut:temporizador|contar[3]       ; timeOut:temporizador|contar[3] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 2.396      ;
+; -1.512 ; timeOut:temporizador|contar[2]       ; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 2.179      ;
+; -1.503 ; timeOut:temporizador|contar[2]       ; timeOut:temporizador|contar[3] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 2.170      ;
+; -1.498 ; timeOut:temporizador|contar[2]       ; timeOut:temporizador|contar[2] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 2.165      ;
+; -1.307 ; timeOut:temporizador|contar[0]       ; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 1.974      ;
+; -1.305 ; timeOut:temporizador|contar[0]       ; timeOut:temporizador|contar[1] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 1.972      ;
+; -1.297 ; timeOut:temporizador|contar[0]       ; timeOut:temporizador|contar[3] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 1.964      ;
+; -1.295 ; timeOut:temporizador|contar[0]       ; timeOut:temporizador|contar[2] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 1.962      ;
+; -1.295 ; timeOut:temporizador|contar[0]       ; timeOut:temporizador|contar[0] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 1.962      ;
+; -1.223 ; reg_fim:final|DFlipFlop:D2|Q         ; reg_fim:final|DFlipFlop:D1|Q   ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 1.890      ;
+; -0.940 ; reg_fim:final|DFlipFlop:D3|Q         ; reg_fim:final|DFlipFlop:D2|Q   ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 1.000        ; 0.000      ; 1.607      ;
++--------+--------------------------------------+--------------------------------+--------------------------------+---------------------------+--------------+------------+------------+
 
 
-+-----------------------------------------------------------------------------------------------------+
-; Hold: 'clk'                                                                                         ;
-+-------+-----------+-----------+--------------+-------------+--------------+------------+------------+
-; Slack ; From Node ; To Node   ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
-+-------+-----------+-----------+--------------+-------------+--------------+------------+------------+
-; 2.107 ; contar[0] ; contar[0] ; clk          ; clk         ; 0.000        ; 0.000      ; 2.328      ;
-; 2.117 ; contar[2] ; contar[2] ; clk          ; clk         ; 0.000        ; 0.000      ; 2.338      ;
-; 2.117 ; contar[1] ; contar[1] ; clk          ; clk         ; 0.000        ; 0.000      ; 2.338      ;
-; 2.212 ; contar[3] ; contar[3] ; clk          ; clk         ; 0.000        ; 0.000      ; 2.433      ;
-; 2.213 ; contar[4] ; contar[4] ; clk          ; clk         ; 0.000        ; 0.000      ; 2.434      ;
-; 2.939 ; contar[0] ; contar[1] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.160      ;
-; 2.949 ; contar[2] ; contar[3] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.170      ;
-; 2.949 ; contar[1] ; contar[2] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.170      ;
-; 3.050 ; contar[0] ; contar[2] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.271      ;
-; 3.060 ; contar[2] ; contar[4] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.281      ;
-; 3.060 ; contar[1] ; contar[3] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.281      ;
-; 3.152 ; contar[3] ; contar[4] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.373      ;
-; 3.161 ; contar[0] ; contar[3] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.382      ;
-; 3.171 ; contar[1] ; contar[4] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.392      ;
-; 3.272 ; contar[0] ; contar[4] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.493      ;
-+-------+-----------+-----------+--------------+-------------+--------------+------------+------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Setup: 'clkVis:clkDisplay|contar[3]'                                                                                                                                                                      ;
++--------+----------------------------------------------+----------------------------------------------+-----------------------------+-----------------------------+--------------+------------+------------+
+; Slack  ; From Node                                    ; To Node                                      ; Launch Clock                ; Latch Clock                 ; Relationship ; Clock Skew ; Data Delay ;
++--------+----------------------------------------------+----------------------------------------------+-----------------------------+-----------------------------+--------------+------------+------------+
+; -1.575 ; acionarDisplay:display|count:contador|out[1] ; acionarDisplay:display|count:contador|out[1] ; clkVis:clkDisplay|contar[3] ; clkVis:clkDisplay|contar[3] ; 1.000        ; 0.000      ; 2.242      ;
+; -1.216 ; acionarDisplay:display|count:contador|out[0] ; acionarDisplay:display|count:contador|out[1] ; clkVis:clkDisplay|contar[3] ; clkVis:clkDisplay|contar[3] ; 1.000        ; 0.000      ; 1.883      ;
+; -1.215 ; acionarDisplay:display|count:contador|out[0] ; acionarDisplay:display|count:contador|out[0] ; clkVis:clkDisplay|contar[3] ; clkVis:clkDisplay|contar[3] ; 1.000        ; 0.000      ; 1.882      ;
++--------+----------------------------------------------+----------------------------------------------+-----------------------------+-----------------------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Hold: 'timeOut:temporizador|clk15segs'                                                                                                                                                             ;
++--------+-----------------------------------------+--------------------------------------+--------------------------------+--------------------------------+--------------+------------+------------+
+; Slack  ; From Node                               ; To Node                              ; Launch Clock                   ; Latch Clock                    ; Relationship ; Clock Skew ; Data Delay ;
++--------+-----------------------------------------+--------------------------------------+--------------------------------+--------------------------------+--------------+------------+------------+
+; -3.021 ; timeOut:temporizador|clk15segs          ; comparador:comparador|liberarProduto ; timeOut:temporizador|clk15segs ; timeOut:temporizador|clk15segs ; 0.000        ; 6.963      ; 4.318      ;
+; -2.978 ; timeOut:temporizador|clk15segs          ; comparador:comparador|devolverMoedas ; timeOut:temporizador|clk15segs ; timeOut:temporizador|clk15segs ; 0.000        ; 6.965      ; 4.363      ;
+; -2.521 ; timeOut:temporizador|clk15segs          ; comparador:comparador|liberarProduto ; timeOut:temporizador|clk15segs ; timeOut:temporizador|clk15segs ; -0.500       ; 6.963      ; 4.318      ;
+; -2.478 ; timeOut:temporizador|clk15segs          ; comparador:comparador|devolverMoedas ; timeOut:temporizador|clk15segs ; timeOut:temporizador|clk15segs ; -0.500       ; 6.965      ; 4.363      ;
+; 3.174  ; registradores:regs|linha[0]             ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 6.291      ;
+; 3.175  ; registradores:regs|linha[0]             ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 6.290      ;
+; 3.267  ; registradores:regs|coluna[1]            ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 6.384      ;
+; 3.268  ; registradores:regs|coluna[1]            ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 6.383      ;
+; 3.514  ; registradores:regs|linha[1]             ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 6.631      ;
+; 3.515  ; registradores:regs|linha[1]             ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 6.630      ;
+; 3.860  ; registradores:regs|coluna[0]            ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 6.977      ;
+; 3.861  ; registradores:regs|coluna[0]            ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 6.976      ;
+; 4.108  ; acumulador:acumulador|estadoAtual.E0_00 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 7.225      ;
+; 4.109  ; acumulador:acumulador|estadoAtual.E0_00 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 7.224      ;
+; 4.118  ; acumulador:acumulador|estadoAtual.EX    ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 7.235      ;
+; 4.119  ; acumulador:acumulador|estadoAtual.EX    ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 7.234      ;
+; 4.125  ; acumulador:acumulador|estadoAtual.E2_00 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 7.242      ;
+; 4.126  ; acumulador:acumulador|estadoAtual.E2_00 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 7.241      ;
+; 4.217  ; acumulador:acumulador|estadoAtual.E1_00 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 7.334      ;
+; 4.218  ; acumulador:acumulador|estadoAtual.E1_00 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 7.333      ;
+; 4.289  ; acumulador:acumulador|estadoAtual.E1_50 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 7.406      ;
+; 4.290  ; acumulador:acumulador|estadoAtual.E1_50 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 7.405      ;
+; 4.430  ; acumulador:acumulador|estadoAtual.E0_75 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 7.547      ;
+; 4.431  ; acumulador:acumulador|estadoAtual.E0_75 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 7.546      ;
+; 4.622  ; acumulador:acumulador|estadoAtual.E0_25 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 7.739      ;
+; 4.623  ; acumulador:acumulador|estadoAtual.E0_25 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 7.738      ;
+; 4.966  ; acumulador:acumulador|estadoAtual.E1_25 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 8.083      ;
+; 4.967  ; acumulador:acumulador|estadoAtual.E1_25 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 8.082      ;
+; 5.129  ; acumulador:acumulador|estadoAtual.E0_50 ; comparador:comparador|devolverMoedas ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.617      ; 8.246      ;
+; 5.130  ; acumulador:acumulador|estadoAtual.E0_50 ; comparador:comparador|liberarProduto ; clk                            ; timeOut:temporizador|clk15segs ; -0.500       ; 3.615      ; 8.245      ;
++--------+-----------------------------------------+--------------------------------------+--------------------------------+--------------------------------+--------------+------------+------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Hold: 'clk'                                                                                                                                                                                                      ;
++--------+--------------------------------------------------------+--------------------------------------------------------+--------------------------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                                              ; To Node                                                ; Launch Clock                   ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+--------------------------------------------------------+--------------------------------------------------------+--------------------------------+-------------+--------------+------------+------------+
+; -1.660 ; clkVis:clkDisplay|contar[3]                            ; clkVis:clkDisplay|contar[3]                            ; clkVis:clkDisplay|contar[3]    ; clk         ; 0.000        ; 3.348      ; 2.285      ;
+; -1.357 ; clk_1Hz:clk_1HZ|contar[0]                              ; clk_1Hz:clk_1HZ|contar[0]                              ; clk_1Hz:clk_1HZ|contar[0]      ; clk         ; 0.000        ; 3.348      ; 2.588      ;
+; -1.160 ; clkVis:clkDisplay|contar[3]                            ; clkVis:clkDisplay|contar[3]                            ; clkVis:clkDisplay|contar[3]    ; clk         ; -0.500       ; 3.348      ; 2.285      ;
+; -0.896 ; timeOut:temporizador|clk15segs                         ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 3.049      ;
+; -0.857 ; clk_1Hz:clk_1HZ|contar[0]                              ; clk_1Hz:clk_1HZ|contar[0]                              ; clk_1Hz:clk_1HZ|contar[0]      ; clk         ; -0.500       ; 3.348      ; 2.588      ;
+; -0.650 ; timeOut:temporizador|clk15segs                         ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 3.295      ;
+; -0.396 ; timeOut:temporizador|clk15segs                         ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 3.049      ;
+; -0.150 ; timeOut:temporizador|clk15segs                         ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 3.295      ;
+; 0.223  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E1_00                ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 4.168      ;
+; 0.223  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E0_50                ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 4.168      ;
+; 0.223  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E0_75                ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 4.168      ;
+; 0.223  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E0_25                ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 4.168      ;
+; 0.227  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E1_50                ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 4.172      ;
+; 0.227  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.EX                   ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 4.172      ;
+; 0.229  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E1_25                ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 4.174      ;
+; 0.230  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E0_00                ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 4.175      ;
+; 0.234  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E1_75                ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 4.179      ;
+; 0.256  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E2_00                ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 4.201      ;
+; 0.723  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E1_00                ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 4.168      ;
+; 0.723  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E0_50                ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 4.168      ;
+; 0.723  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E0_75                ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 4.168      ;
+; 0.723  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E0_25                ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 4.168      ;
+; 0.727  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E1_50                ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 4.172      ;
+; 0.727  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.EX                   ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 4.172      ;
+; 0.729  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E1_25                ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 4.174      ;
+; 0.730  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E0_00                ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 4.175      ;
+; 0.734  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E1_75                ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 4.179      ;
+; 0.756  ; timeOut:temporizador|clk15segs                         ; acumulador:acumulador|estadoAtual.E2_00                ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 4.201      ;
+; 0.867  ; timeOut:temporizador|clk15segs                         ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; timeOut:temporizador|clk15segs ; clk         ; 0.000        ; 3.348      ; 4.812      ;
+; 1.078  ; acumulador:acumulador|estadoAtual.EX                   ; acumulador:acumulador|estadoAtual.EX                   ; clk                            ; clk         ; 0.000        ; 0.000      ; 1.299      ;
+; 1.367  ; timeOut:temporizador|clk15segs                         ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; timeOut:temporizador|clk15segs ; clk         ; -0.500       ; 3.348      ; 4.812      ;
+; 1.937  ; acumulador:acumulador|estadoAtual.E0_00                ; acumulador:acumulador|estadoAtual.E0_00                ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.158      ;
+; 2.106  ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; registradores:regs|coluna[0]                           ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.327      ;
+; 2.107  ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; registradores:regs|coluna[1]                           ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.328      ;
+; 2.117  ; clkVis:clkDisplay|contar[1]                            ; clkVis:clkDisplay|contar[1]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.338      ;
+; 2.117  ; clkVis:clkDisplay|contar[0]                            ; clkVis:clkDisplay|contar[0]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.338      ;
+; 2.157  ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.378      ;
+; 2.212  ; clkVis:clkDisplay|contar[2]                            ; clkVis:clkDisplay|contar[2]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.433      ;
+; 2.274  ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.495      ;
+; 2.303  ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|codeL[0]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.524      ;
+; 2.303  ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|codeL[1]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.524      ;
+; 2.345  ; registradores:regs|codeL[0]                            ; registradores:regs|linha[0]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.566      ;
+; 2.347  ; registradores:regs|codeL[1]                            ; registradores:regs|linha[1]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.568      ;
+; 2.399  ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.620      ;
+; 2.435  ; reg_fim:final|DFlipFlop:D0|Q                           ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk_1Hz:clk_1HZ|contar[0]      ; clk         ; 0.000        ; -0.322     ; 2.334      ;
+; 2.532  ; acumulador:acumulador|estadoAtual.E0_50                ; acumulador:acumulador|estadoAtual.E0_50                ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.753      ;
+; 2.601  ; acumulador:acumulador|estadoAtual.E0_25                ; acumulador:acumulador|estadoAtual.E0_25                ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.822      ;
+; 2.608  ; acumulador:acumulador|estadoAtual.E0_25                ; acumulador:acumulador|estadoAtual.E0_75                ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.829      ;
+; 2.693  ; acumulador:acumulador|estadoAtual.E0_75                ; acumulador:acumulador|estadoAtual.E0_75                ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.914      ;
+; 2.733  ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|codeC[0]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.954      ;
+; 2.733  ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|codeC[1]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.954      ;
+; 2.759  ; acumulador:acumulador|estadoAtual.E1_50                ; acumulador:acumulador|estadoAtual.EX                   ; clk                            ; clk         ; 0.000        ; 0.000      ; 2.980      ;
+; 2.821  ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|linha[0]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.042      ;
+; 2.838  ; acumulador:acumulador|estadoAtual.E0_00                ; acumulador:acumulador|estadoAtual.E0_25                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.059      ;
+; 2.918  ; registradores:regs|codeC[1]                            ; registradores:regs|coluna[1]                           ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.139      ;
+; 2.943  ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.164      ;
+; 2.949  ; clkVis:clkDisplay|contar[1]                            ; clkVis:clkDisplay|contar[2]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.170      ;
+; 2.949  ; clkVis:clkDisplay|contar[0]                            ; clkVis:clkDisplay|contar[1]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.170      ;
+; 3.029  ; registradores:regs|codeC[0]                            ; registradores:regs|coluna[0]                           ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.250      ;
+; 3.047  ; acumulador:acumulador|estadoAtual.E1_25                ; acumulador:acumulador|estadoAtual.E1_25                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.268      ;
+; 3.060  ; clkVis:clkDisplay|contar[1]                            ; clkVis:clkDisplay|contar[3]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.281      ;
+; 3.060  ; clkVis:clkDisplay|contar[0]                            ; clkVis:clkDisplay|contar[2]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.281      ;
+; 3.091  ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.312      ;
+; 3.122  ; reg_fim:final|DFlipFlop:D0|Q                           ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; clk_1Hz:clk_1HZ|contar[0]      ; clk         ; 0.000        ; -0.322     ; 3.021      ;
+; 3.152  ; clkVis:clkDisplay|contar[2]                            ; clkVis:clkDisplay|contar[3]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.373      ;
+; 3.155  ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; controlePrincipal:mef_principal|estadoAtual.PRODUTO    ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.376      ;
+; 3.171  ; clkVis:clkDisplay|contar[0]                            ; clkVis:clkDisplay|contar[3]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.392      ;
+; 3.187  ; controlePrincipal:mef_principal|estadoAtual.PRODUTO    ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.408      ;
+; 3.189  ; controlePrincipal:mef_principal|estadoAtual.PRODUTO    ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.410      ;
+; 3.211  ; acumulador:acumulador|estadoAtual.E0_50                ; acumulador:acumulador|estadoAtual.E0_75                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.432      ;
+; 3.217  ; acumulador:acumulador|estadoAtual.E1_75                ; acumulador:acumulador|estadoAtual.EX                   ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.438      ;
+; 3.239  ; acumulador:acumulador|estadoAtual.E1_00                ; acumulador:acumulador|estadoAtual.E1_25                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.460      ;
+; 3.262  ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.483      ;
+; 3.275  ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.496      ;
+; 3.299  ; acumulador:acumulador|estadoAtual.E0_25                ; acumulador:acumulador|estadoAtual.E1_25                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.520      ;
+; 3.328  ; acumulador:acumulador|estadoAtual.E0_25                ; acumulador:acumulador|estadoAtual.E0_50                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.549      ;
+; 3.373  ; controlePrincipal:mef_principal|estadoAtual.COMPARADOR ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.594      ;
+; 3.386  ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; controleDigitos:controleDigitos|estadoAtual.BLOQUEADO  ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.607      ;
+; 3.399  ; acumulador:acumulador|estadoAtual.E1_75                ; acumulador:acumulador|estadoAtual.E1_75                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.620      ;
+; 3.404  ; acumulador:acumulador|estadoAtual.E1_00                ; acumulador:acumulador|estadoAtual.E1_00                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.625      ;
+; 3.418  ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.639      ;
+; 3.423  ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; controlePrincipal:mef_principal|estadoAtual.ESPERA     ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.644      ;
+; 3.452  ; controleDigitos:controleDigitos|estadoAtual.LINHA      ; registradores:regs|linha[1]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.673      ;
+; 3.524  ; acumulador:acumulador|estadoAtual.E0_75                ; acumulador:acumulador|estadoAtual.E1_75                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.745      ;
+; 3.525  ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; registradores:regs|linha[0]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.746      ;
+; 3.525  ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; registradores:regs|linha[1]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.746      ;
+; 3.563  ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; controlePrincipal:mef_principal|estadoAtual.PRODUTO    ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.784      ;
+; 3.610  ; acumulador:acumulador|estadoAtual.E1_50                ; acumulador:acumulador|estadoAtual.E2_00                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.831      ;
+; 3.702  ; acumulador:acumulador|estadoAtual.E0_00                ; acumulador:acumulador|estadoAtual.E0_50                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.923      ;
+; 3.707  ; acumulador:acumulador|estadoAtual.E0_75                ; acumulador:acumulador|estadoAtual.E1_25                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.928      ;
+; 3.748  ; acumulador:acumulador|estadoAtual.E1_50                ; acumulador:acumulador|estadoAtual.E1_50                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.969      ;
+; 3.756  ; acumulador:acumulador|estadoAtual.E1_25                ; acumulador:acumulador|estadoAtual.EX                   ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.977      ;
+; 3.775  ; acumulador:acumulador|estadoAtual.E0_00                ; acumulador:acumulador|estadoAtual.E1_00                ; clk                            ; clk         ; 0.000        ; 0.000      ; 3.996      ;
+; 3.779  ; acumulador:acumulador|estadoAtual.E1_00                ; acumulador:acumulador|estadoAtual.E2_00                ; clk                            ; clk         ; 0.000        ; 0.000      ; 4.000      ;
+; 3.780  ; acumulador:acumulador|estadoAtual.E2_00                ; acumulador:acumulador|estadoAtual.E2_00                ; clk                            ; clk         ; 0.000        ; 0.000      ; 4.001      ;
+; 3.822  ; reg_fim:final|DFlipFlop:D0|Q                           ; controleDigitos:controleDigitos|estadoAtual.ESPERA     ; clk_1Hz:clk_1HZ|contar[0]      ; clk         ; 0.000        ; -0.322     ; 3.721      ;
+; 3.919  ; acumulador:acumulador|estadoAtual.E1_25                ; acumulador:acumulador|estadoAtual.E1_75                ; clk                            ; clk         ; 0.000        ; 0.000      ; 4.140      ;
+; 3.947  ; acumulador:acumulador|estadoAtual.E1_50                ; acumulador:acumulador|estadoAtual.E1_75                ; clk                            ; clk         ; 0.000        ; 0.000      ; 4.168      ;
+; 4.015  ; acumulador:acumulador|estadoAtual.E1_00                ; acumulador:acumulador|estadoAtual.E1_50                ; clk                            ; clk         ; 0.000        ; 0.000      ; 4.236      ;
+; 4.109  ; controleDigitos:controleDigitos|estadoAtual.COLUNA     ; registradores:regs|codeC[0]                            ; clk                            ; clk         ; 0.000        ; 0.000      ; 4.330      ;
++--------+--------------------------------------------------------+--------------------------------------------------------+--------------------------------+-------------+--------------+------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Hold: 'clk_1Hz:clk_1HZ|contar[0]'                                                                                                                                                   ;
++-------+--------------------------------------+--------------------------------+--------------------------------+---------------------------+--------------+------------+------------+
+; Slack ; From Node                            ; To Node                        ; Launch Clock                   ; Latch Clock               ; Relationship ; Clock Skew ; Data Delay ;
++-------+--------------------------------------+--------------------------------+--------------------------------+---------------------------+--------------+------------+------------+
+; 1.386 ; reg_fim:final|DFlipFlop:D3|Q         ; reg_fim:final|DFlipFlop:D2|Q   ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 1.607      ;
+; 1.669 ; reg_fim:final|DFlipFlop:D2|Q         ; reg_fim:final|DFlipFlop:D1|Q   ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 1.890      ;
+; 1.741 ; timeOut:temporizador|contar[0]       ; timeOut:temporizador|contar[2] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 1.962      ;
+; 1.741 ; timeOut:temporizador|contar[0]       ; timeOut:temporizador|contar[0] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 1.962      ;
+; 1.743 ; timeOut:temporizador|contar[0]       ; timeOut:temporizador|contar[3] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 1.964      ;
+; 1.751 ; timeOut:temporizador|contar[0]       ; timeOut:temporizador|contar[1] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 1.972      ;
+; 1.753 ; timeOut:temporizador|contar[0]       ; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 1.974      ;
+; 1.944 ; timeOut:temporizador|contar[2]       ; timeOut:temporizador|contar[2] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 2.165      ;
+; 1.949 ; timeOut:temporizador|contar[2]       ; timeOut:temporizador|contar[3] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 2.170      ;
+; 1.958 ; timeOut:temporizador|contar[2]       ; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 2.179      ;
+; 2.175 ; timeOut:temporizador|contar[3]       ; timeOut:temporizador|contar[3] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 2.396      ;
+; 2.188 ; timeOut:temporizador|contar[3]       ; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 2.409      ;
+; 2.297 ; timeOut:temporizador|contar[1]       ; timeOut:temporizador|contar[1] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 2.518      ;
+; 2.298 ; timeOut:temporizador|contar[1]       ; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 2.519      ;
+; 2.308 ; timeOut:temporizador|contar[1]       ; timeOut:temporizador|contar[3] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 2.529      ;
+; 2.310 ; timeOut:temporizador|contar[1]       ; timeOut:temporizador|contar[2] ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 2.531      ;
+; 2.397 ; reg_fim:final|DFlipFlop:D1|Q         ; reg_fim:final|DFlipFlop:D0|Q   ; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0] ; 0.000        ; 0.000      ; 2.618      ;
+; 4.915 ; comparador:comparador|liberarProduto ; reg_fim:final|DFlipFlop:D3|Q   ; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0] ; -0.500       ; -3.293     ; 1.343      ;
+; 5.147 ; comparador:comparador|devolverMoedas ; reg_fim:final|DFlipFlop:D3|Q   ; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0] ; -0.500       ; -3.295     ; 1.573      ;
++-------+--------------------------------------+--------------------------------+--------------------------------+---------------------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Hold: 'clkVis:clkDisplay|contar[3]'                                                                                                                                                                      ;
++-------+----------------------------------------------+----------------------------------------------+-----------------------------+-----------------------------+--------------+------------+------------+
+; Slack ; From Node                                    ; To Node                                      ; Launch Clock                ; Latch Clock                 ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------------------------------+----------------------------------------------+-----------------------------+-----------------------------+--------------+------------+------------+
+; 1.661 ; acionarDisplay:display|count:contador|out[0] ; acionarDisplay:display|count:contador|out[0] ; clkVis:clkDisplay|contar[3] ; clkVis:clkDisplay|contar[3] ; 0.000        ; 0.000      ; 1.882      ;
+; 1.662 ; acionarDisplay:display|count:contador|out[0] ; acionarDisplay:display|count:contador|out[1] ; clkVis:clkDisplay|contar[3] ; clkVis:clkDisplay|contar[3] ; 0.000        ; 0.000      ; 1.883      ;
+; 2.021 ; acionarDisplay:display|count:contador|out[1] ; acionarDisplay:display|count:contador|out[1] ; clkVis:clkDisplay|contar[3] ; clkVis:clkDisplay|contar[3] ; 0.000        ; 0.000      ; 2.242      ;
++-------+----------------------------------------------+----------------------------------------------+-----------------------------+-----------------------------+--------------+------------+------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Recovery: 'clk'                                                                                                                                                  ;
++--------+----------------------------------------------------+------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node                                          ; To Node                      ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+----------------------------------------------------+------------------------------+--------------+-------------+--------------+------------+------------+
+; -3.438 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|codeC[0]  ; clk          ; clk         ; 1.000        ; 0.000      ; 4.105      ;
+; -3.438 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|codeC[1]  ; clk          ; clk         ; 1.000        ; 0.000      ; 4.105      ;
+; -3.226 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|coluna[0] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.893      ;
+; -3.226 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|coluna[1] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.893      ;
+; -3.155 ; registradores:regs|codeC[0]                        ; registradores:regs|coluna[0] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.822      ;
+; -3.044 ; registradores:regs|codeC[1]                        ; registradores:regs|coluna[1] ; clk          ; clk         ; 1.000        ; 0.000      ; 3.711      ;
+; -3.020 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|codeL[0]  ; clk          ; clk         ; 1.000        ; 0.000      ; 3.687      ;
+; -3.020 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|codeL[1]  ; clk          ; clk         ; 1.000        ; 0.000      ; 3.687      ;
+; -2.826 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|linha[0]  ; clk          ; clk         ; 1.000        ; 0.000      ; 3.493      ;
+; -2.826 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|linha[1]  ; clk          ; clk         ; 1.000        ; 0.000      ; 3.493      ;
+; -2.473 ; registradores:regs|codeL[1]                        ; registradores:regs|linha[1]  ; clk          ; clk         ; 1.000        ; 0.000      ; 3.140      ;
+; -2.471 ; registradores:regs|codeL[0]                        ; registradores:regs|linha[0]  ; clk          ; clk         ; 1.000        ; 0.000      ; 3.138      ;
++--------+----------------------------------------------------+------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removal: 'clk'                                                                                                                                                  ;
++-------+----------------------------------------------------+------------------------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node                                          ; To Node                      ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+----------------------------------------------------+------------------------------+--------------+-------------+--------------+------------+------------+
+; 2.917 ; registradores:regs|codeL[0]                        ; registradores:regs|linha[0]  ; clk          ; clk         ; 0.000        ; 0.000      ; 3.138      ;
+; 2.919 ; registradores:regs|codeL[1]                        ; registradores:regs|linha[1]  ; clk          ; clk         ; 0.000        ; 0.000      ; 3.140      ;
+; 3.272 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|linha[0]  ; clk          ; clk         ; 0.000        ; 0.000      ; 3.493      ;
+; 3.272 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|linha[1]  ; clk          ; clk         ; 0.000        ; 0.000      ; 3.493      ;
+; 3.466 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|codeL[0]  ; clk          ; clk         ; 0.000        ; 0.000      ; 3.687      ;
+; 3.466 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|codeL[1]  ; clk          ; clk         ; 0.000        ; 0.000      ; 3.687      ;
+; 3.490 ; registradores:regs|codeC[1]                        ; registradores:regs|coluna[1] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.711      ;
+; 3.601 ; registradores:regs|codeC[0]                        ; registradores:regs|coluna[0] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.822      ;
+; 3.672 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|coluna[0] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.893      ;
+; 3.672 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|coluna[1] ; clk          ; clk         ; 0.000        ; 0.000      ; 3.893      ;
+; 3.884 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|codeC[0]  ; clk          ; clk         ; 0.000        ; 0.000      ; 4.105      ;
+; 3.884 ; controleDigitos:controleDigitos|estadoAtual.ESPERA ; registradores:regs|codeC[1]  ; clk          ; clk         ; 0.000        ; 0.000      ; 4.105      ;
++-------+----------------------------------------------------+------------------------------+--------------+-------------+--------------+------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------+
+; Setup Transfers                                                                                             ;
++--------------------------------+--------------------------------+----------+----------+----------+----------+
+; From Clock                     ; To Clock                       ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++--------------------------------+--------------------------------+----------+----------+----------+----------+
+; clk                            ; clk                            ; 104      ; 0        ; 0        ; 0        ;
+; clk_1Hz:clk_1HZ|contar[0]      ; clk                            ; 5        ; 1        ; 0        ; 0        ;
+; clkVis:clkDisplay|contar[3]    ; clk                            ; 1        ; 1        ; 0        ; 0        ;
+; timeOut:temporizador|clk15segs ; clk                            ; 13       ; 13       ; 0        ; 0        ;
+; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0]      ; 17       ; 0        ; 0        ; 0        ;
+; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0]      ; 0        ; 2        ; 0        ; 0        ;
+; clkVis:clkDisplay|contar[3]    ; clkVis:clkDisplay|contar[3]    ; 3        ; 0        ; 0        ; 0        ;
+; clk                            ; timeOut:temporizador|clk15segs ; 0        ; 0        ; 174      ; 0        ;
+; timeOut:temporizador|clk15segs ; timeOut:temporizador|clk15segs ; 0        ; 0        ; 2        ; 2        ;
++--------------------------------+--------------------------------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
+
+
++-------------------------------------------------------------------------------------------------------------+
+; Hold Transfers                                                                                              ;
++--------------------------------+--------------------------------+----------+----------+----------+----------+
+; From Clock                     ; To Clock                       ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
++--------------------------------+--------------------------------+----------+----------+----------+----------+
+; clk                            ; clk                            ; 104      ; 0        ; 0        ; 0        ;
+; clk_1Hz:clk_1HZ|contar[0]      ; clk                            ; 5        ; 1        ; 0        ; 0        ;
+; clkVis:clkDisplay|contar[3]    ; clk                            ; 1        ; 1        ; 0        ; 0        ;
+; timeOut:temporizador|clk15segs ; clk                            ; 13       ; 13       ; 0        ; 0        ;
+; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0]      ; 17       ; 0        ; 0        ; 0        ;
+; timeOut:temporizador|clk15segs ; clk_1Hz:clk_1HZ|contar[0]      ; 0        ; 2        ; 0        ; 0        ;
+; clkVis:clkDisplay|contar[3]    ; clkVis:clkDisplay|contar[3]    ; 3        ; 0        ; 0        ; 0        ;
+; clk                            ; timeOut:temporizador|clk15segs ; 0        ; 0        ; 174      ; 0        ;
+; timeOut:temporizador|clk15segs ; timeOut:temporizador|clk15segs ; 0        ; 0        ; 2        ; 2        ;
++--------------------------------+--------------------------------+----------+----------+----------+----------+
+Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
 +-------------------------------------------------------------------+
-; Setup Transfers                                                   ;
+; Recovery Transfers                                                ;
 +------------+----------+----------+----------+----------+----------+
 ; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------+----------+----------+----------+----------+----------+
-; clk        ; clk      ; 25       ; 0        ; 0        ; 0        ;
+; clk        ; clk      ; 12       ; 0        ; 0        ; 0        ;
 +------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
 +-------------------------------------------------------------------+
-; Hold Transfers                                                    ;
+; Removal Transfers                                                 ;
 +------------+----------+----------+----------+----------+----------+
 ; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------+----------+----------+----------+----------+----------+
-; clk        ; clk      ; 25       ; 0        ; 0        ; 0        ;
+; clk        ; clk      ; 12       ; 0        ; 0        ; 0        ;
 +------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -223,38 +654,103 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
-; Unconstrained Input Ports       ; 0     ; 0    ;
-; Unconstrained Input Port Paths  ; 0     ; 0    ;
-; Unconstrained Output Ports      ; 1     ; 1    ;
-; Unconstrained Output Port Paths ; 1     ; 1    ;
+; Unconstrained Input Ports       ; 6     ; 6    ;
+; Unconstrained Input Port Paths  ; 56    ; 56   ;
+; Unconstrained Output Ports      ; 18    ; 18   ;
+; Unconstrained Output Port Paths ; 137   ; 137  ;
 +---------------------------------+-------+------+
 
 
-+-------------------------------------+
-; Clock Status Summary                ;
-+--------+-------+------+-------------+
-; Target ; Clock ; Type ; Status      ;
-+--------+-------+------+-------------+
-; clk    ; clk   ; Base ; Constrained ;
-+--------+-------+------+-------------+
++--------------------------------------------------------------------------------------+
+; Clock Status Summary                                                                 ;
++--------------------------------+--------------------------------+------+-------------+
+; Target                         ; Clock                          ; Type ; Status      ;
++--------------------------------+--------------------------------+------+-------------+
+; clk                            ; clk                            ; Base ; Constrained ;
+; clkVis:clkDisplay|contar[3]    ; clkVis:clkDisplay|contar[3]    ; Base ; Constrained ;
+; clk_1Hz:clk_1HZ|contar[0]      ; clk_1Hz:clk_1HZ|contar[0]      ; Base ; Constrained ;
+; timeOut:temporizador|clk15segs ; timeOut:temporizador|clk15segs ; Base ; Constrained ;
++--------------------------------+--------------------------------+------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------+
-; Unconstrained Output Ports                                                                          ;
-+-------------+---------------------------------------------------------------------------------------+
-; Output Port ; Comment                                                                               ;
-+-------------+---------------------------------------------------------------------------------------+
-; clk30segs   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-+-------------+---------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; moeda[0]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; moeda[1]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tecla[0]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tecla[1]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tecla[2]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tecla[3]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------+
-; Unconstrained Output Ports                                                                          ;
-+-------------+---------------------------------------------------------------------------------------+
-; Output Port ; Comment                                                                               ;
-+-------------+---------------------------------------------------------------------------------------+
-; clk30segs   ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
-+-------------+---------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                            ;
++---------------+---------------------------------------------------------------------------------------+
+; Output Port   ; Comment                                                                               ;
++---------------+---------------------------------------------------------------------------------------+
+; D1            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; D2            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; D3            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; D4            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; DM            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LP            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; existeProduto ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[0]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[1]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[2]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[3]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[4]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[5]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[6]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[7]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; state[0]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; state[1]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; timeOut       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++---------------+---------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Unconstrained Input Ports                                                                         ;
++------------+--------------------------------------------------------------------------------------+
+; Input Port ; Comment                                                                              ;
++------------+--------------------------------------------------------------------------------------+
+; moeda[0]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; moeda[1]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tecla[0]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tecla[1]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tecla[2]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; tecla[3]   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
++------------+--------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------+
+; Unconstrained Output Ports                                                                            ;
++---------------+---------------------------------------------------------------------------------------+
+; Output Port   ; Comment                                                                               ;
++---------------+---------------------------------------------------------------------------------------+
+; D1            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; D2            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; D3            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; D4            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; DM            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; LP            ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; existeProduto ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[0]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[1]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[2]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[3]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[4]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[5]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[6]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; segmentos[7]  ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; state[0]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; state[1]      ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; timeOut       ; No output delay, min/max delays, false-path exceptions, or max skew assignments found ;
++---------------+---------------------------------------------------------------------------------------+
 
 
 +--------------------------+
@@ -263,7 +759,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Thu Jun 17 15:22:39 2021
+    Info: Processing started: Fri Jun 18 16:36:51 2021
 Info: Command: quartus_sta Maquina_de_vendas -c Maquina_de_vendas
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -272,34 +768,53 @@ Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
+Warning (335093): The Timing Analyzer is analyzing 2 combinational loops as latches. For more details, run the Check Timing command in the Timing Analyzer or view the "User-Specified and Inferred Latches" table in the Analysis & Synthesis report.
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'Maquina_de_vendas.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
 Info (332105): Deriving Clocks
+    Info (332105): create_clock -period 1.000 -name timeOut:temporizador|clk15segs timeOut:temporizador|clk15segs
     Info (332105): create_clock -period 1.000 -name clk clk
+    Info (332105): create_clock -period 1.000 -name clk_1Hz:clk_1HZ|contar[0] clk_1Hz:clk_1HZ|contar[0]
+    Info (332105): create_clock -period 1.000 -name clkVis:clkDisplay|contar[3] clkVis:clkDisplay|contar[3]
 Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Can't run Report Timing Closure Recommendations. The current device family is not supported.
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -2.877
+Info (332146): Worst-case setup slack is -8.179
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.877             -12.431 clk 
-Info (332146): Worst-case hold slack is 2.107
+    Info (332119):    -8.179             -16.128 timeOut:temporizador|clk15segs 
+    Info (332119):    -5.726             -98.631 clk 
+    Info (332119):    -4.701             -17.539 clk_1Hz:clk_1HZ|contar[0] 
+    Info (332119):    -1.575              -2.790 clkVis:clkDisplay|contar[3] 
+Info (332146): Worst-case hold slack is -3.021
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     2.107               0.000 clk 
-Info (332140): No Recovery paths to report
-Info (332140): No Removal paths to report
+    Info (332119):    -3.021              -5.999 timeOut:temporizador|clk15segs 
+    Info (332119):    -1.660              -4.563 clk 
+    Info (332119):     1.386               0.000 clk_1Hz:clk_1HZ|contar[0] 
+    Info (332119):     1.661               0.000 clkVis:clkDisplay|contar[3] 
+Info (332146): Worst-case recovery slack is -3.438
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):    -3.438             -25.020 clk 
+Info (332146): Worst-case removal slack is 2.917
+    Info (332119):     Slack       End Point TNS Clock 
+    Info (332119): ========= =================== =====================
+    Info (332119):     2.917               0.000 clk 
 Info (332146): Worst-case minimum pulse width slack is -2.289
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
     Info (332119):    -2.289              -2.289 clk 
+    Info (332119):     0.234               0.000 clkVis:clkDisplay|contar[3] 
+    Info (332119):     0.234               0.000 clk_1Hz:clk_1HZ|contar[0] 
+    Info (332119):     0.500               0.000 timeOut:temporizador|clk15segs 
 Info (332001): The selected device family is not supported by the report_metastability command.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info: Quartus Prime Timing Analyzer was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 4657 megabytes
-    Info: Processing ended: Thu Jun 17 15:22:40 2021
-    Info: Elapsed time: 00:00:01
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 4659 megabytes
+    Info: Processing ended: Fri Jun 18 16:36:53 2021
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:01
 
 

@@ -197,8 +197,54 @@ r1
 !i113 1
 R10
 R11
+vmaquina_de_vendas
+Z15 !s110 1624045064
+!i10b 1
+!s100 Q@U4KERJ>RD5Xm5GIiJQF0
+R2
+IzeCkD_WQMjdzZ^[PO0Bg@1
+R3
+Z16 dC:/Users/A/OneDrive/Documentos/PDFS UNI/2020.1/Maquina_de_vendas/simulation/qsim
+w1624045062
+R4
+R5
+!i122 86
+L0 32 5492
+R6
+r1
+!s85 0
+31
+Z17 !s108 1624045064.000000
+R8
+R9
+!i113 1
+R10
+R11
+vmaquina_de_vendas_vlg_vec_tst
+R15
+!i10b 1
+!s100 HNF1_?K=elRlNiM6M`VW[2
+R2
+IWfnDkQN6MdalF=Jg`@Kf21
+R3
+R16
+w1624045061
+8Waveform_maquina_de_vendas.vwf.vt
+FWaveform_maquina_de_vendas.vwf.vt
+!i122 87
+L0 30 84
+R6
+r1
+!s85 0
+31
+R17
+!s107 Waveform_maquina_de_vendas.vwf.vt|
+!s90 -work|work|Waveform_maquina_de_vendas.vwf.vt|
+!i113 1
+R10
+R11
 vreg_fim
-Z15 !s110 1623882555
+Z18 !s110 1623882555
 !i10b 1
 !s100 ai3:KKn]DokS51kQ9f?4Z2
 R2
@@ -214,14 +260,14 @@ R6
 r1
 !s85 0
 31
-Z16 !s108 1623882555.000000
+Z19 !s108 1623882555.000000
 R8
 R9
 !i113 1
 R10
 R11
 vreg_fim_vlg_vec_tst
-R15
+R18
 !i10b 1
 !s100 e3F`7[khzcY0P=MXj=NfU0
 R2
@@ -237,7 +283,7 @@ R6
 r1
 !s85 0
 31
-R16
+R19
 !s107 Waveform_fim.vwf.vt|
 !s90 -work|work|Waveform_fim.vwf.vt|
 !i113 1

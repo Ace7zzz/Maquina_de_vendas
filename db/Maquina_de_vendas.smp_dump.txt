@@ -1,6 +1,26 @@
 
-State Machine - |controlePrincipal|estadoAtual
+State Machine - |maquina_de_vendas|acumulador:acumulador|estadoAtual
+Name estadoAtual.EX estadoAtual.E2_00 estadoAtual.E1_75 estadoAtual.E1_50 estadoAtual.E1_25 estadoAtual.E1_00 estadoAtual.E0_75 estadoAtual.E0_50 estadoAtual.E0_25 estadoAtual.E0_00 
+estadoAtual.E0_00 0 0 0 0 0 0 0 0 0 0 
+estadoAtual.E0_25 0 0 0 0 0 0 0 0 1 1 
+estadoAtual.E0_50 0 0 0 0 0 0 0 1 0 1 
+estadoAtual.E0_75 0 0 0 0 0 0 1 0 0 1 
+estadoAtual.E1_00 0 0 0 0 0 1 0 0 0 1 
+estadoAtual.E1_25 0 0 0 0 1 0 0 0 0 1 
+estadoAtual.E1_50 0 0 0 1 0 0 0 0 0 1 
+estadoAtual.E1_75 0 0 1 0 0 0 0 0 0 1 
+estadoAtual.E2_00 0 1 0 0 0 0 0 0 0 1 
+estadoAtual.EX 1 0 0 0 0 0 0 0 0 1 
+
+State Machine - |maquina_de_vendas|controlePrincipal:mef_principal|estadoAtual
 Name estadoAtual.ESPERA estadoAtual.COMPARADOR estadoAtual.PRODUTO 
 estadoAtual.ESPERA 0 0 0 
 estadoAtual.PRODUTO 1 0 1 
 estadoAtual.COMPARADOR 1 1 0 
+
+State Machine - |maquina_de_vendas|controleDigitos:controleDigitos|estadoAtual
+Name estadoAtual.BLOQUEADO estadoAtual.COLUNA estadoAtual.LINHA estadoAtual.ESPERA 
+estadoAtual.ESPERA 0 0 0 0 
+estadoAtual.LINHA 0 0 1 1 
+estadoAtual.COLUNA 0 1 0 1 
+estadoAtual.BLOQUEADO 1 0 0 1 

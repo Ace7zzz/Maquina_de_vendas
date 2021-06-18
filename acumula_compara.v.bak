@@ -1,0 +1,15 @@
+module acumula_compara (
+    input CLK, rst, TL, [1:0] VM,[2:0] vProduto,
+     output LP, DM, [3:0] vTotal);
+
+wire [3:0] vAcumulado;
+
+acumulador AC (.clk(CLK), .reset(rst), .tempoLimite(TL), .valorMoeda(VM), 
+                .valorAcumulado(vAcumulado));
+comparador COMP (
+		.valorMoedas(vAcumulado),
+		.valorProduto(vProduto),    // que vai vir do selecionador
+		.enable(TL),                // tempo limite
+		.liberarProduto(LP), .devolverMoedas(DM),
+		.valorTotal(vTotal));
+endmodule 

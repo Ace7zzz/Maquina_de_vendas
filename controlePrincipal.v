@@ -1,4 +1,5 @@
-module controlePrincipal (input wire clk, input wire codigoDigitado, input wire existeProduto, input wire OK, output reg [1:0] estados);
+module controlePrincipal (input wire clk, input wire codigoDigitado, 
+input wire existeProduto, input wire OK, output reg [1:0] estados);
 
 reg[1:0] estadoAtual, proxEstado;
 
@@ -56,4 +57,4 @@ end
 
 
 
-endmodule
+endmodule 

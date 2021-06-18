@@ -2,16 +2,60 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Setup 'timeOut:temporizador|clk15segs'
+Slack : -8.179
+TNS   : -16.128
+
 Type  : Setup 'clk'
-Slack : -2.877
-TNS   : -12.431
+Slack : -5.726
+TNS   : -98.631
+
+Type  : Setup 'clk_1Hz:clk_1HZ|contar[0]'
+Slack : -4.701
+TNS   : -17.539
+
+Type  : Setup 'clkVis:clkDisplay|contar[3]'
+Slack : -1.575
+TNS   : -2.790
+
+Type  : Hold 'timeOut:temporizador|clk15segs'
+Slack : -3.021
+TNS   : -5.999
 
 Type  : Hold 'clk'
-Slack : 2.107
+Slack : -1.660
+TNS   : -4.563
+
+Type  : Hold 'clk_1Hz:clk_1HZ|contar[0]'
+Slack : 1.386
+TNS   : 0.000
+
+Type  : Hold 'clkVis:clkDisplay|contar[3]'
+Slack : 1.661
+TNS   : 0.000
+
+Type  : Recovery 'clk'
+Slack : -3.438
+TNS   : -25.020
+
+Type  : Removal 'clk'
+Slack : 2.917
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'clk'
 Slack : -2.289
 TNS   : -2.289
+
+Type  : Minimum Pulse Width 'clkVis:clkDisplay|contar[3]'
+Slack : 0.234
+TNS   : 0.000
+
+Type  : Minimum Pulse Width 'clk_1Hz:clk_1HZ|contar[0]'
+Slack : 0.234
+TNS   : 0.000
+
+Type  : Minimum Pulse Width 'timeOut:temporizador|clk15segs'
+Slack : 0.500
+TNS   : 0.000
 
 ------------------------------------------------------------
