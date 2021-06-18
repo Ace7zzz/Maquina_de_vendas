@@ -1,13 +1,17 @@
 module comparador(
 		input [3:0] valorMoedas,
 		input [2:0] valorProduto,
-		input enable,
+		input enable, reset,
 		output reg liberarProduto, devolverMoedas,
 		output reg [3:0] valorTotal);
 		
 		
 		always @(*) begin
 			valorTotal <= valorMoedas;
+			if (reset) begin
+				liberarProduto <= 0;
+				devolverMoedas <= 0;
+			end
 			if(enable) begin
 				case(valorProduto)
 				3'b001: begin

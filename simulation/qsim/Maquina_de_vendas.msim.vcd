@@ -3,7 +3,7 @@ $comment
 		vcd file Maquina_de_vendas.msim.vcd -direction
 $end
 $date
-	Wed Jun 16 18:58:28 2021
+	Thu Jun 17 14:22:45 2021
 $end
 $version
 	ModelSim Version 2020.1
@@ -12,26 +12,89 @@ $timescale
 	1ps
 $end
 
-$scope module reg_fim_vlg_vec_tst $end
-$var reg 1 ! DM $end
-$var reg 1 " LP $end
-$var reg 1 # clk $end
-$var wire 1 $ FIM $end
+$scope module clk_1Hz_vlg_vec_tst $end
+$var reg 1 ! clk $end
+$var wire 1 " out1Hz $end
 
 $scope module i1 $end
-$var wire 1 % gnd $end
-$var wire 1 & vcc $end
-$var wire 1 ' unknown $end
-$var tri1 1 ( devclrn $end
-$var tri1 1 ) devpor $end
-$var tri1 1 * devoe $end
-$var wire 1 + clk~combout $end
-$var wire 1 , DM~combout $end
-$var wire 1 - LP~combout $end
-$var wire 1 . D3~regout $end
-$var wire 1 / D2~regout $end
-$var wire 1 0 D1~regout $end
-$var wire 1 1 D0~regout $end
+$var wire 1 # gnd $end
+$var wire 1 $ vcc $end
+$var wire 1 % unknown $end
+$var tri1 1 & devclrn $end
+$var tri1 1 ' devpor $end
+$var tri1 1 ( devoe $end
+$var wire 1 ) clk~combout $end
+$var wire 1 * contar[0]~51 $end
+$var wire 1 + contar[0]~51COUT1_53 $end
+$var wire 1 , contar[1]~49 $end
+$var wire 1 - contar[1]~49COUT1_54 $end
+$var wire 1 . contar[2]~47 $end
+$var wire 1 / contar[3]~45 $end
+$var wire 1 0 contar[3]~45COUT1_55 $end
+$var wire 1 1 contar[4]~43 $end
+$var wire 1 2 contar[4]~43COUT1_56 $end
+$var wire 1 3 contar[5]~41 $end
+$var wire 1 4 contar[5]~41COUT1_57 $end
+$var wire 1 5 contar[6]~39 $end
+$var wire 1 6 contar[6]~39COUT1_58 $end
+$var wire 1 7 contar[7]~37 $end
+$var wire 1 8 contar[8]~35 $end
+$var wire 1 9 contar[8]~35COUT1_59 $end
+$var wire 1 : contar[9]~33 $end
+$var wire 1 ; contar[9]~33COUT1_60 $end
+$var wire 1 < contar[10]~31 $end
+$var wire 1 = contar[10]~31COUT1_61 $end
+$var wire 1 > contar[11]~29 $end
+$var wire 1 ? contar[11]~29COUT1_62 $end
+$var wire 1 @ contar[12]~27 $end
+$var wire 1 A contar[13]~25 $end
+$var wire 1 B contar[13]~25COUT1_63 $end
+$var wire 1 C contar[14]~23 $end
+$var wire 1 D contar[14]~23COUT1_64 $end
+$var wire 1 E contar[15]~21 $end
+$var wire 1 F contar[15]~21COUT1_65 $end
+$var wire 1 G contar[16]~19 $end
+$var wire 1 H contar[16]~19COUT1_66 $end
+$var wire 1 I contar[17]~17 $end
+$var wire 1 J contar[18]~15 $end
+$var wire 1 K contar[18]~15COUT1_67 $end
+$var wire 1 L contar[19]~13 $end
+$var wire 1 M contar[19]~13COUT1_68 $end
+$var wire 1 N contar[20]~11 $end
+$var wire 1 O contar[20]~11COUT1_69 $end
+$var wire 1 P contar[21]~9 $end
+$var wire 1 Q contar[21]~9COUT1_70 $end
+$var wire 1 R contar[22]~7 $end
+$var wire 1 S contar[23]~5 $end
+$var wire 1 T contar[23]~5COUT1_71 $end
+$var wire 1 U contar[24]~3 $end
+$var wire 1 V contar[24]~3COUT1_72 $end
+$var wire 1 W contar [25] $end
+$var wire 1 X contar [24] $end
+$var wire 1 Y contar [23] $end
+$var wire 1 Z contar [22] $end
+$var wire 1 [ contar [21] $end
+$var wire 1 \ contar [20] $end
+$var wire 1 ] contar [19] $end
+$var wire 1 ^ contar [18] $end
+$var wire 1 _ contar [17] $end
+$var wire 1 ` contar [16] $end
+$var wire 1 a contar [15] $end
+$var wire 1 b contar [14] $end
+$var wire 1 c contar [13] $end
+$var wire 1 d contar [12] $end
+$var wire 1 e contar [11] $end
+$var wire 1 f contar [10] $end
+$var wire 1 g contar [9] $end
+$var wire 1 h contar [8] $end
+$var wire 1 i contar [7] $end
+$var wire 1 j contar [6] $end
+$var wire 1 k contar [5] $end
+$var wire 1 l contar [4] $end
+$var wire 1 m contar [3] $end
+$var wire 1 n contar [2] $end
+$var wire 1 o contar [1] $end
+$var wire 1 p contar [0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
@@ -40,102 +103,728 @@ $dumpvars
 0!
 0"
 0#
-0$
-0%
-1&
-x'
-1(
-1)
-1*
-0+
-0,
-0-
-0.
-0/
-00
-01
-$end
-#50000
-1#
-1+
-#100000
-1"
-0#
-1-
-0+
-#150000
-1#
-1+
-1.
-#200000
-0"
-0#
-0-
-0+
-#250000
-1#
-1+
-1/
-0.
-#300000
-0#
-0+
-#350000
-1#
-1+
-10
-0/
-#400000
-0#
-0+
-#450000
-1#
-1+
-11
-00
 1$
-#500000
-0#
+x%
+1&
+1'
+1(
+0)
+0*
 0+
-#550000
-1#
-1+
+1,
+1-
+0.
+1/
+10
 01
-0$
-#600000
+02
+13
+14
+05
+06
+17
+08
+09
+1:
+1;
+0<
+0=
+1>
+1?
+0@
+1A
+1B
+0C
+0D
+1E
+1F
+0G
+0H
+1I
+0J
+0K
+1L
+1M
+0N
+0O
+1P
+1Q
+0R
+1S
+1T
+0U
+0V
+0p
+0o
+0n
+0m
+0l
+0k
+0j
+0i
+0h
+0g
+0f
+0e
+0d
+0c
+0b
+0a
+0`
+0_
+0^
+0]
+0\
+0[
+0Z
+0Y
+0X
+0W
+$end
+#10000
 1!
-0#
+1)
+1p
+1+
+1*
+#20000
+0!
+0)
+#30000
+1!
+1)
+1o
+0p
+0-
+0,
+0+
+0*
+1-
+1,
+#40000
+0!
+0)
+#50000
+1!
+1)
+1p
+1+
+1*
+0-
+0,
+#60000
+0!
+0)
+#70000
+1!
+1)
+1n
+0o
+0p
+1.
+1-
 1,
 0+
-#650000
-0!
-1#
-0,
-1+
-1.
-#700000
-0#
-0+
-#750000
-1#
-1+
-1/
+0*
 0.
-#800000
-0#
-0+
-#850000
-1#
+#80000
+0!
+0)
+#90000
+1!
+1)
+1p
 1+
-10
-0/
-#900000
-0#
+1*
+#100000
+0!
+0)
+#110000
+1!
+1)
+1o
+0p
+0-
+0,
 0+
-#950000
-1#
+0*
+1.
+1-
+1,
+0.
+#120000
+0!
+0)
+#130000
+1!
+1)
+1p
 1+
-11
+1*
+0-
+0,
+1.
+#140000
+0!
+0)
+#150000
+1!
+1)
+1m
+0n
+0o
+0p
 00
-1$
+0.
+1-
+1,
+0+
+0*
+#160000
+0!
+0)
+#170000
+1!
+1)
+1p
+1+
+1*
+#180000
+0!
+0)
+#190000
+1!
+1)
+1o
+0p
+0-
+0,
+0+
+0*
+1-
+1,
+#200000
+0!
+0)
+#210000
+1!
+1)
+1p
+1+
+1*
+0-
+0,
+#220000
+0!
+0)
+#230000
+1!
+1)
+1n
+0o
+0p
+1.
+1-
+1,
+0+
+0*
+0.
+#240000
+0!
+0)
+#250000
+1!
+1)
+1p
+1+
+1*
+#260000
+0!
+0)
+#270000
+1!
+1)
+1o
+0p
+0-
+0,
+0+
+0*
+1.
+1-
+1,
+0.
+#280000
+0!
+0)
+#290000
+1!
+1)
+1p
+1+
+1*
+0-
+0,
+1.
+#300000
+0!
+0)
+#310000
+1!
+1)
+1l
+0m
+0n
+0o
+0p
+12
+10
+0.
+1-
+1,
+0+
+0*
+02
+#320000
+0!
+0)
+#330000
+1!
+1)
+1p
+1+
+1*
+#340000
+0!
+0)
+#350000
+1!
+1)
+1o
+0p
+0-
+0,
+0+
+0*
+1-
+1,
+#360000
+0!
+0)
+#370000
+1!
+1)
+1p
+1+
+1*
+0-
+0,
+#380000
+0!
+0)
+#390000
+1!
+1)
+1n
+0o
+0p
+1.
+1-
+1,
+0+
+0*
+0.
+#400000
+0!
+0)
+#410000
+1!
+1)
+1p
+1+
+1*
+#420000
+0!
+0)
+#430000
+1!
+1)
+1o
+0p
+0-
+0,
+0+
+0*
+1.
+1-
+1,
+0.
+#440000
+0!
+0)
+#450000
+1!
+1)
+1p
+1+
+1*
+0-
+0,
+1.
+#460000
+0!
+0)
+#470000
+1!
+1)
+1m
+0n
+0o
+0p
+00
+0.
+1-
+1,
+0+
+0*
+12
+#480000
+0!
+0)
+#490000
+1!
+1)
+1p
+1+
+1*
+#500000
+0!
+0)
+#510000
+1!
+1)
+1o
+0p
+0-
+0,
+0+
+0*
+1-
+1,
+#520000
+0!
+0)
+#530000
+1!
+1)
+1p
+1+
+1*
+0-
+0,
+#540000
+0!
+0)
+#550000
+1!
+1)
+1n
+0o
+0p
+1.
+1-
+1,
+0+
+0*
+0.
+#560000
+0!
+0)
+#570000
+1!
+1)
+1p
+1+
+1*
+#580000
+0!
+0)
+#590000
+1!
+1)
+1o
+0p
+0-
+0,
+0+
+0*
+1.
+1-
+1,
+0.
+#600000
+0!
+0)
+#610000
+1!
+1)
+1p
+1+
+1*
+0-
+0,
+1.
+#620000
+0!
+0)
+#630000
+1!
+1)
+1k
+0l
+0m
+0n
+0o
+0p
+04
+02
+10
+0.
+1-
+1,
+0+
+0*
+14
+#640000
+0!
+0)
+#650000
+1!
+1)
+1p
+1+
+1*
+#660000
+0!
+0)
+#670000
+1!
+1)
+1o
+0p
+0-
+0,
+0+
+0*
+1-
+1,
+#680000
+0!
+0)
+#690000
+1!
+1)
+1p
+1+
+1*
+0-
+0,
+#700000
+0!
+0)
+#710000
+1!
+1)
+1n
+0o
+0p
+1.
+1-
+1,
+0+
+0*
+0.
+#720000
+0!
+0)
+#730000
+1!
+1)
+1p
+1+
+1*
+#740000
+0!
+0)
+#750000
+1!
+1)
+1o
+0p
+0-
+0,
+0+
+0*
+1.
+1-
+1,
+0.
+#760000
+0!
+0)
+#770000
+1!
+1)
+1p
+1+
+1*
+0-
+0,
+1.
+#780000
+0!
+0)
+#790000
+1!
+1)
+1m
+0n
+0o
+0p
+00
+0.
+1-
+1,
+0+
+0*
+#800000
+0!
+0)
+#810000
+1!
+1)
+1p
+1+
+1*
+#820000
+0!
+0)
+#830000
+1!
+1)
+1o
+0p
+0-
+0,
+0+
+0*
+1-
+1,
+#840000
+0!
+0)
+#850000
+1!
+1)
+1p
+1+
+1*
+0-
+0,
+#860000
+0!
+0)
+#870000
+1!
+1)
+1n
+0o
+0p
+1.
+1-
+1,
+0+
+0*
+0.
+#880000
+0!
+0)
+#890000
+1!
+1)
+1p
+1+
+1*
+#900000
+0!
+0)
+#910000
+1!
+1)
+1o
+0p
+0-
+0,
+0+
+0*
+1.
+1-
+1,
+0.
+#920000
+0!
+0)
+#930000
+1!
+1)
+1p
+1+
+1*
+0-
+0,
+1.
+#940000
+0!
+0)
+#950000
+1!
+1)
+1l
+0m
+0n
+0o
+0p
+12
+10
+0.
+1-
+1,
+0+
+0*
+04
+02
+14
+#960000
+0!
+0)
+#970000
+1!
+1)
+1p
+1+
+1*
+#980000
+0!
+0)
+#990000
+1!
+1)
+1o
+0p
+0-
+0,
+0+
+0*
+1-
+1,
 #1000000

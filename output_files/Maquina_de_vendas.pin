@@ -123,7 +123,7 @@ GND*                         : 57        :        :                   :         
 GND*                         : 58        :        :                   :         : 2         :                
 VCCIO2                       : 59        : power  :                   : 3.3V    : 2         :                
 GNDIO                        : 60        : gnd    :                   :         :           :                
-GND*                         : 61        :        :                   :         : 2         :                
+clk30segs                    : 61        : output : 3.3-V LVTTL       :         : 2         : N              
 GND*                         : 62        :        :                   :         : 2         :                
 VCCINT                       : 63        : power  :                   : 2.5V/3.3V :           :                
 GND*                         : 64        :        :                   :         : 2         :                
@@ -144,9 +144,9 @@ GND*                         : 78        :        :                   :         
 GNDIO                        : 79        : gnd    :                   :         :           :                
 VCCIO2                       : 80        : power  :                   : 3.3V    : 2         :                
 GND*                         : 81        :        :                   :         : 2         :                
-FIM                          : 82        : output : 3.3-V LVTTL       :         : 2         : N              
-DM                           : 83        : input  : 3.3-V LVTTL       :         : 2         : N              
-LP                           : 84        : input  : 3.3-V LVTTL       :         : 2         : N              
+GND*                         : 82        :        :                   :         : 2         :                
+GND*                         : 83        :        :                   :         : 2         :                
+GND*                         : 84        :        :                   :         : 2         :                
 GND*                         : 85        :        :                   :         : 2         :                
 GND*                         : 86        :        :                   :         : 2         :                
 GND*                         : 87        :        :                   :         : 2         :                

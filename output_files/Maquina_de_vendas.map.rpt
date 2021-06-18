@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Maquina_de_vendas
-Wed Jun 16 18:55:02 2021
+Thu Jun 17 15:22:32 2021
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -42,13 +42,13 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Wed Jun 16 18:55:01 2021       ;
+; Analysis & Synthesis Status ; Successful - Thu Jun 17 15:22:32 2021       ;
 ; Quartus Prime Version       ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name               ; Maquina_de_vendas                           ;
-; Top-level Entity Name       ; reg_fim                                     ;
+; Top-level Entity Name       ; timeOut                                     ;
 ; Family                      ; MAX II                                      ;
-; Total logic elements        ; 4                                           ;
-; Total pins                  ; 4                                           ;
+; Total logic elements        ; 5                                           ;
+; Total pins                  ; 2                                           ;
 ; Total virtual pins          ; 0                                           ;
 ; UFM blocks                  ; 0 / 1 ( 0 % )                               ;
 +-----------------------------+---------------------------------------------+
@@ -60,7 +60,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; EPM240T100C5       ;                    ;
-; Top-level entity name                                            ; reg_fim            ; Maquina_de_vendas  ;
+; Top-level entity name                                            ; timeOut            ; Maquina_de_vendas  ;
 ; Family name                                                      ; MAX II             ; Cyclone V          ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
@@ -146,7 +146,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+------------------------+-------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                      ; Library ;
 +----------------------------------+-----------------+------------------------+-------------------------------------------------------------------+---------+
-; reg_fim.v                        ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/reg_fim.v ;         ;
+; timeOut.v                        ; yes             ; User Verilog HDL File  ; C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/timeOut.v ;         ;
 +----------------------------------+-----------------+------------------------+-------------------------------------------------------------------+---------+
 
 
@@ -155,32 +155,33 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Total logic elements                        ; 4     ;
+; Total logic elements                        ; 5     ;
 ;     -- Combinational with no register       ; 0     ;
-;     -- Register only                        ; 3     ;
-;     -- Combinational with a register        ; 1     ;
+;     -- Register only                        ; 0     ;
+;     -- Combinational with a register        ; 5     ;
 ;                                             ;       ;
 ; Logic element usage by number of LUT inputs ;       ;
 ;     -- 4 input functions                    ; 0     ;
 ;     -- 3 input functions                    ; 0     ;
-;     -- 2 input functions                    ; 1     ;
-;     -- 1 input functions                    ; 0     ;
+;     -- 2 input functions                    ; 4     ;
+;     -- 1 input functions                    ; 1     ;
 ;     -- 0 input functions                    ; 0     ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 4     ;
-;     -- arithmetic mode                      ; 0     ;
+;     -- normal mode                          ; 1     ;
+;     -- arithmetic mode                      ; 4     ;
 ;     -- qfbk mode                            ; 0     ;
 ;     -- register cascade mode                ; 0     ;
 ;     -- synchronous clear/load mode          ; 0     ;
 ;     -- asynchronous clear/load mode         ; 0     ;
 ;                                             ;       ;
-; Total registers                             ; 4     ;
-; I/O pins                                    ; 4     ;
+; Total registers                             ; 5     ;
+; Total logic cells in carry chains           ; 5     ;
+; I/O pins                                    ; 2     ;
 ; Maximum fan-out node                        ; clk   ;
-; Maximum fan-out                             ; 4     ;
-; Total fan-out                               ; 10    ;
-; Average fan-out                             ; 1.25  ;
+; Maximum fan-out                             ; 5     ;
+; Total fan-out                               ; 15    ;
+; Average fan-out                             ; 2.14  ;
 +---------------------------------------------+-------+
 
 
@@ -189,7 +190,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
-; |reg_fim                   ; 4 (4)       ; 4            ; 0          ; 4    ; 0            ; 0 (0)        ; 3 (3)             ; 1 (1)            ; 0 (0)           ; 0 (0)      ; |reg_fim            ; reg_fim     ; work         ;
+; |timeOut                   ; 5 (5)       ; 5            ; 0          ; 2    ; 0            ; 0 (0)        ; 0 (0)             ; 5 (5)            ; 5 (5)           ; 0 (0)      ; |timeOut            ; timeOut     ; work         ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -199,7 +200,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 4     ;
+; Total registers                              ; 5     ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
@@ -215,13 +216,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Wed Jun 16 18:54:50 2021
+    Info: Processing started: Thu Jun 17 15:22:17 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Maquina_de_vendas -c Maquina_de_vendas
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Warning (12018): Entity "DFF" will be ignored because it conflicts with Quartus Prime primitive name File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/reg_fim.v Line: 15
+Info (12021): Found 1 design units, including 1 entities, in source file clk_1hz.v
+    Info (12023): Found entity 1: clk_1Hz File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/clk_1Hz.v Line: 1
 Info (12021): Found 2 design units, including 2 entities, in source file reg_fim.v
     Info (12023): Found entity 1: reg_fim File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/reg_fim.v Line: 1
+    Info (12023): Found entity 2: DFlipFlop File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/reg_fim.v Line: 15
 Info (12021): Found 1 design units, including 1 entities, in source file codificadorteclado.v
     Info (12023): Found entity 1: codificadorTeclado File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/codificadorTeclado.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file selecionador.v
@@ -248,17 +251,20 @@ Info (12021): Found 1 design units, including 1 entities, in source file acionar
     Info (12023): Found entity 1: acionarDisplay File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/acionarDisplay.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file teclado.v
     Info (12023): Found entity 1: teclado File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/teclado.v Line: 1
-Info (12127): Elaborating entity "reg_fim" for the top level hierarchy
-Info (21057): Implemented 8 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 3 input pins
+Info (12021): Found 1 design units, including 1 entities, in source file timeout.v
+    Info (12023): Found entity 1: timeOut File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/timeOut.v Line: 1
+Info (12127): Elaborating entity "timeOut" for the top level hierarchy
+Warning (10230): Verilog HDL assignment warning at timeOut.v(10): truncated value with size 32 to match size of target (5) File: C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/timeOut.v Line: 10
+Info (21057): Implemented 7 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
     Info (21059): Implemented 1 output pins
-    Info (21061): Implemented 4 logic cells
+    Info (21061): Implemented 5 logic cells
 Info (144001): Generated suppressed messages file C:/Users/A/OneDrive/Documentos/GitHub/Maquina_de_vendas/output_files/Maquina_de_vendas.map.smsg
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 2 warnings
-    Info: Peak virtual memory: 4699 megabytes
-    Info: Processing ended: Wed Jun 16 18:55:02 2021
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:27
+    Info: Peak virtual memory: 4700 megabytes
+    Info: Processing ended: Thu Jun 17 15:22:32 2021
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:31
 
 
 +------------------------------------------+

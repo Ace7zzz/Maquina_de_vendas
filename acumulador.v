@@ -125,7 +125,9 @@ module acumulador(input wire clk, input wire reset, input wire tempoLimite, inpu
 						 default: proxEstado <= estadoAtual;
 						 endcase
 					end
-					
+					EX: begin
+						proxEstado <= EX;
+					end
 					default: proxEstado <= E0_00; //Estado Inválidos
 				endcase
 		  end

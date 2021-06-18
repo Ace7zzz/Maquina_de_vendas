@@ -55,8 +55,56 @@ R7
 !i113 1
 R10
 R11
+vclk_1Hz
+!s110 1623950563
+!i10b 1
+!s100 E9Rb8;09=QBj2oXCFe?IO3
+R2
+I1_cln3[AoLQni=08N3e>02
+R3
+R0
+w1623950556
+R4
+R5
+!i122 58
+L0 32 1134
+R6
+r1
+!s85 0
+31
+Z12 !s108 1623950563.000000
+R8
+R9
+!i113 1
+R10
+R11
+nclk_1@hz
+vclk_1Hz_vlg_vec_tst
+!s110 1623950564
+!i10b 1
+!s100 Yb<JlQS6NXNdhaZ5ECXDY2
+R2
+IO4]XNP5M5O5NhACO4`=9>0
+R3
+R0
+w1623950553
+8Waveform_clk1Hz.vwf.vt
+FWaveform_clk1Hz.vwf.vt
+!i122 59
+L0 30 26
+R6
+r1
+!s85 0
+31
+R12
+!s107 Waveform_clk1Hz.vwf.vt|
+!s90 -work|work|Waveform_clk1Hz.vwf.vt|
+!i113 1
+R10
+R11
+nclk_1@hz_vlg_vec_tst
 vcodificadorTeclado
-Z12 !s110 1623872834
+Z13 !s110 1623872834
 !i10b 1
 !s100 R]`=B7PaPIRM3oI:I8HV`2
 R2
@@ -72,7 +120,7 @@ R6
 r1
 !s85 0
 31
-Z13 !s108 1623872834.000000
+Z14 !s108 1623872834.000000
 R8
 R9
 !i113 1
@@ -80,7 +128,7 @@ R10
 R11
 ncodificador@teclado
 vcodificadorTeclado_vlg_vec_tst
-R12
+R13
 !i10b 1
 !s100 Mgaz<P6]ccl0za3`9<:dX0
 R2
@@ -96,7 +144,7 @@ R6
 r1
 !s85 0
 31
-R13
+R14
 !s107 Waveform_teclado.vwf.vt|
 !s90 -work|work|Waveform_teclado.vwf.vt|
 !i113 1
@@ -150,46 +198,46 @@ r1
 R10
 R11
 vreg_fim
-Z14 !s110 1623880708
+Z15 !s110 1623882555
 !i10b 1
 !s100 ai3:KKn]DokS51kQ9f?4Z2
 R2
 Ih:6NPR4TC]Ch8_L36b96A1
 R3
 R0
-w1623880706
+w1623882553
 R4
 R5
-!i122 54
+!i122 56
 L0 32 218
 R6
 r1
 !s85 0
 31
-Z15 !s108 1623880708.000000
+Z16 !s108 1623882555.000000
 R8
 R9
 !i113 1
 R10
 R11
 vreg_fim_vlg_vec_tst
-R14
+R15
 !i10b 1
 !s100 e3F`7[khzcY0P=MXj=NfU0
 R2
 I[6c9ZW1b0`7o3Ed8T?>1d3
 R3
 R0
-w1623880705
+w1623882552
 8Waveform_fim.vwf.vt
 FWaveform_fim.vwf.vt
-!i122 55
+!i122 57
 L0 30 46
 R6
 r1
 !s85 0
 31
-R15
+R16
 !s107 Waveform_fim.vwf.vt|
 !s90 -work|work|Waveform_fim.vwf.vt|
 !i113 1

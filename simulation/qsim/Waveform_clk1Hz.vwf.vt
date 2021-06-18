@@ -19,30 +19,26 @@
 // the top level entity of the current Quartus project .The user can use this   
 // testbench to simulate his design using a third-party simulation tool .       
 // *****************************************************************************
-// Generated on "06/16/2021 19:29:12"
+// Generated on "06/17/2021 14:22:33"
                                                                                 
-// Verilog Test Bench (with test vectors) for design :                          reg_fim
+// Verilog Test Bench (with test vectors) for design :                          clk_1Hz
 // 
 // Simulation tool : 3rd Party
 // 
 
 `timescale 1 ps/ 1 ps
-module reg_fim_vlg_vec_tst();
+module clk_1Hz_vlg_vec_tst();
 // constants                                           
 // general purpose registers
-reg DM;
-reg LP;
 reg clk;
 // wires                                               
-wire FIM;
+wire out1Hz;
 
 // assign statements (if any)                          
-reg_fim i1 (
+clk_1Hz i1 (
 // port map - connection between master ports and signals/registers   
-	.DM(DM),
-	.FIM(FIM),
-	.LP(LP),
-	.clk(clk)
+	.clk(clk),
+	.out1Hz(out1Hz)
 );
 initial 
 begin 
@@ -53,24 +49,8 @@ end
 always
 begin
 	clk = 1'b0;
-	clk = #50000 1'b1;
-	#50000;
-end 
-
-// DM
-initial
-begin
-	DM = 1'b0;
-	DM = #600000 1'b1;
-	DM = #50000 1'b0;
-end 
-
-// LP
-initial
-begin
-	LP = 1'b0;
-	LP = #100000 1'b1;
-	LP = #100000 1'b0;
+	clk = #10000 1'b1;
+	#10000;
 end 
 endmodule
 

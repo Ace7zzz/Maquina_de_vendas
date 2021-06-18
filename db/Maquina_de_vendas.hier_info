@@ -1,10 +1,9 @@
-|reg_fim
-LP => LP_DM.IN0
-DM => LP_DM.IN1
-clk => D3.CLK
-clk => D2.CLK
-clk => D1.CLK
-clk => D0.CLK
-FIM <= D0.DB_MAX_OUTPUT_PORT_TYPE
+|timeOut
+clk => contar[0].CLK
+clk => contar[1].CLK
+clk => contar[2].CLK
+clk => contar[3].CLK
+clk => contar[4].CLK
+clk30segs << contar[4].DB_MAX_OUTPUT_PORT_TYPE
 
 
