@@ -4,8 +4,15 @@ module maquina_de_vendas (
     input clk,
     output [7:0] segmentos, 
 	output D1,D2,D3,D4,
-    output LP, DM
+    output LP, DM,
+	 output [1:0] state,//
+	 output timeOut,//
+	 output existeProduto
+
 );
+assign existeProduto = existe;
+assign timeOut = tO_mefDig;
+assign state = estados;
 wire[1:0] codigo, linha, coluna, estados;
 wire press, CD, reset_comp, not_E0, not_E1;
 wire notEP, EL_regs, EC_regs, CLR_regs;
@@ -28,7 +35,7 @@ or (fim_dig, notEP, OK);
 not(notEP, existe);		// NO LUGAR DE notEP -> FIM + notEP
 wire OK;
 
-timeOut temporizador (.clk(clk), .clk30segs(tO_mefDig));
+timeOut temporizador (.clk(clk1Hz), .clk15segs(tO_mefDig));
 
 controlePrincipal mef_principal (clk, EC_regs, existe, OK, estados);
 not (not_E1, estados[1]);
