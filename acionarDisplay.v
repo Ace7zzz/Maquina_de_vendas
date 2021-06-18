@@ -137,6 +137,15 @@ module acionarDisplay(output [7:0] segmentos,
 			end
 			
 			2'b10: begin //Comparador 
+				if (valorMoedas == 4'b0000) begin	// enquanto nao inserir moedas
+					begin
+						L1<=codigo1;	// exibe codigo do produto
+						L2<=codigo2;
+						L3<=4'b1111;
+						L4<=4'b1111;
+
+					end
+				end
 				L1 <= vM1; 	   //1
 				L2 <= 4'b1010; //.
 				L3 <= vM2;     //7
