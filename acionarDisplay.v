@@ -15,50 +15,56 @@ module acionarDisplay(output [7:0] segmentos,
 	always @(valorMoedas) begin  //Equivalencias para apresentar as moedas no display
 		case (valorMoedas)
 			4'b0001: begin //0,25
-        		vM1 <= 0000;
-        		vM2 <= 0010;
-        		vM3 <= 0101;
+        		vM1 <= 4'b0000;
+        		vM2 <= 4'b0010;
+        		vM3 <= 4'b0101;
 			end
 
 			4'b0010: begin //0,50
-        		vM1 <= 0000;
-        		vM2 <= 0101;
-        		vM3 <= 0000;
+        		vM1 <= 4'b0000;
+        		vM2 <= 4'b0101;
+        		vM3 <= 4'b0000;
+			end
+			
+			4'b0011: begin //0,75
+				vM1 <= 4'b0000;
+        		vM2 <= 4'b0111;
+        		vM3 <= 4'b0101;
 			end
 
 			4'b0100: begin //1,00
-				vM1 <= 0001;
-				vM2 <= 0000;
-				vM3 <= 0000;
+				vM1 <= 4'b0001;
+				vM2 <= 4'b0000;
+				vM3 <= 4'b0000;
 			end
 
 			4'b0101: begin //1,25
-				vM1 <= 0001;
-				vM2 <= 0010;
-				vM3 <= 0101;
+				vM1 <= 4'b0001;
+				vM2 <= 4'b0010;
+				vM3 <= 4'b0101;
 			end
 			
 			4'b0110: begin //1,50
-				vM1 <= 0001;
-				vM2 <= 0101;
-				vM3 <= 0000;
+				vM1 <= 4'b0001;
+				vM2 <= 4'b0101;
+				vM3 <= 4'b0000;
 			end
 			
 			4'b0111: begin //1,75
-				vM1 <= 0001;
-				vM2 <= 0111;
-				vM3 <= 0101;
+				vM1 <= 4'b0001;
+				vM2 <= 4'b0111;
+				vM3 <= 4'b0101;
 			end
 
 			4'b1000: begin //2,00
-				vM1 <= 0010;
-				vM2 <= 0000;
-				vM3 <= 0000;
+				vM1 <= 4'b0010;
+				vM2 <= 4'b0000;
+				vM3 <= 4'b0000;
 			end
 			default: begin 
-				vM1 <= 0000;
-				vM2 <= 0000;
-				vM3 <= 0000;
+				vM1 <= 4'b0000;
+				vM2 <= 4'b0000;
+				vM3 <= 4'b0000;
 			end
 		endcase
 	end
@@ -137,7 +143,7 @@ module acionarDisplay(output [7:0] segmentos,
 			end
 			
 			2'b10: begin //Comparador 
-				if (valorMoedas == 4'b0000) begin	// enquanto nao inserir moedas
+				if (valorMoedas == 4'b0000)	// enquanto nao inserir moedas
 					begin
 						L1<=codigo1;	// exibe codigo do produto
 						L2<=codigo2;
@@ -145,11 +151,12 @@ module acionarDisplay(output [7:0] segmentos,
 						L4<=4'b1111;
 
 					end
-				end
-				L1 <= vM1; 	   //1
-				L2 <= 4'b1010; //.
-				L3 <= vM2;     //7
-				L4 <= vM3; 	   //5
+				else begin
+					L1 <= vM1; 	   //1
+					L2 <= 4'b1010; //.
+					L3 <= vM2;     //7
+					L4 <= vM3; 	   //5
+					end
 				if(devolver) begin							
 					L1 <= 4'b0110; //E //VALOR INSERIDO ERRADO
 					L2 <= 4'b0100; //4

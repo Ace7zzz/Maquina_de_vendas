@@ -12,7 +12,7 @@ module comparador(
 				liberarProduto <= 0;
 				devolverMoedas <= 0;
 			end
-			if(enable) begin
+			if(enable) begin		// "tempo limite"
 				case(valorProduto)
 				3'b001: begin
 					if(valorMoedas == 4'b0010) begin

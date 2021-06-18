@@ -15,7 +15,7 @@ module digitacao(input clk, tempoLimite, OK,  input[3:0] tecla, output [2:0] val
 		
 		selecionador selecionador(linha, coluna,valor, produto, existe);
 		
-		not(notEP, existe);
+		not(notEP, existe);		// NO LUGAR DE notEP -> FIM + notEP
 		
 		
 		controlePrincipal(clk, EC, existe, OK, estados);
