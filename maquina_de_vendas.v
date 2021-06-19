@@ -7,9 +7,13 @@ module maquina_de_vendas (
     output LP, DM,
 	 output [1:0] state,//
 	 output timeOut,//
-	 output existeProduto
+	 output existeProduto,
+	 output ativarSele, 
+	 output [3:0]valorAcumulador
 
 );
+assign valorAcumulador = valAcumulado;
+assign ativarSele = ativar;
 assign existeProduto = existe;
 assign timeOut = tO_mefDig;
 assign state = estados;
@@ -22,14 +26,18 @@ wire [3:0] codProd;
 wire existe;
 wire [3:0] valAcumulado;
 wire clk_1Hz;
+wire ativar;
+wire [1:0]eMef1;
 codificadorTeclado codificadorTeclado(tecla, codigo, press);
 
 controleDigitos controleDigitos(clk, press, tO_mefDig, fim_dig,
- EL_regs, EC_regs, CLR_regs);
+ EL_regs, EC_regs, CLR_regs, eMef1);
 
 registradores regs(clk, EL_regs, EC_regs, CLR_regs, codigo, linha, coluna);
 
-selecionador selecionador(linha, coluna,valorComparar, codProd, existe);
+and(ativar, eMef1[0], eMef1[1]);
+
+selecionador selecionador(ativar,linha, coluna,valorComparar, codProd, existe);
 wire fim_dig;
 or (fim_dig, notEP, OK);
 not(notEP, existe);		// NO LUGAR DE notEP -> FIM + notEP
@@ -37,7 +45,10 @@ wire OK;
 
 timeOut temporizador (.clk(clk1Hz), .clk15segs(tO_mefDig));
 
-controlePrincipal mef_principal (clk, EC_regs, existe, OK, estados);
+timeOut5segs temp5segs (.clk(clk1Hz), .iniciar(ativar), .clk5segs(TS));
+
+wire TS;
+controlePrincipal mef_principal (clk, ativar, TS , existe, OK, estados);
 not (not_E1, estados[1]);
 not (not_E0, estados[0]);
 and(reset_comp, not_E0, not_E1);        // reset comparador quando MEF_PRINCIPAL for 00
@@ -64,7 +75,7 @@ acionarDisplay display (.segmentos(segmentos),
 	.D1(D1), .D2(D2), .D3(D3), .D4(D4), 
 	.estado(estados), //MEF Principal
 	.produto(codProd), 
-	.valorMoedas(valorTot), 
+	.valorMoedas(valAcumulado), 
 	.devolver(DM),
 	.clk(clkVis));
 endmodule 

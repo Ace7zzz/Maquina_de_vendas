@@ -1,5 +1,7 @@
-    module controleDigitos (input wire clk, input wire enable, input wire tempoLimite, input wire OK, output reg enableLinha, enableColuna, clear);
+    module controleDigitos (input wire clk, input wire enable, input wire tempoLimite, input wire OK, 
+	 output reg enableLinha, enableColuna, clear, output [1:0] estadoMef1);
 
+	 assign estadoMef1 = estadoAtual;
     reg[1:0] estadoAtual, proxEstado;
 
     localparam ESPERA = 2'b00,

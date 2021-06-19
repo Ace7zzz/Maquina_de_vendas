@@ -5,14 +5,18 @@ module comparador(
 		output reg liberarProduto, devolverMoedas,
 		output reg [3:0] valorTotal);
 		
+		reg trava;
+		
 		
 		always @(*) begin
 			valorTotal <= valorMoedas;
 			if (reset) begin
 				liberarProduto <= 0;
 				devolverMoedas <= 0;
+				trava <= 0;
 			end
-			if(enable) begin		// "tempo limite"
+			if(enable & !trava) begin		// "tempo limite"
+				trava <=1;
 				case(valorProduto)
 				3'b001: begin
 					if(valorMoedas == 4'b0010) begin

@@ -1,11 +1,16 @@
 module selecionador (
+	 input wire enable,
     input  wire [1:0] linha, coluna,
 	 output reg [2:0] valor,
     output reg [3:0] codeOut,
     output reg existe
 );
 reg [3:0] code;
+
+initial existe =0;    
+
 always @ (linha or coluna) begin
+	if(enable) begin
     code = {linha[1], linha[0], coluna[1], coluna[0]};
     case (code)
 				4'b0000: begin     // refri
@@ -58,7 +63,8 @@ always @ (linha or coluna) begin
             codeOut <= 4'b1111;
             valor <= 0;
         end
-    endcase
+     endcase
+	 end
 end
 
 endmodule

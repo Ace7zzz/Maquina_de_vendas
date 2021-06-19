@@ -1,4 +1,4 @@
-module controlePrincipal (input wire clk, input wire codigoDigitado, 
+module controlePrincipal (input wire clk, input wire codigoDigitado, input wire TS,  
 input wire existeProduto, input wire OK, output reg [1:0] estados);
 
 reg[1:0] estadoAtual, proxEstado;
@@ -18,7 +18,7 @@ always @(posedge clk ) begin
 end
 
 
-always @(estadoAtual or OK or codigoDigitado or existeProduto) begin
+always @(estadoAtual or OK or codigoDigitado or existeProduto or TS) begin
     proxEstado <= estadoAtual;
     case (estadoAtual)
         ESPERA: begin
@@ -26,9 +26,9 @@ always @(estadoAtual or OK or codigoDigitado or existeProduto) begin
             proxEstado <= PRODUTO;
         end 
         PRODUTO: begin
-            if(existeProduto)
+            if(existeProduto & TS)
                 proxEstado <= COMPARADOR;
-            else
+            else if(!existeProduto & TS)
                 proxEstado <= ESPERA;
         end
         COMPARADOR: begin
