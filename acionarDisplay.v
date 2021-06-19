@@ -10,6 +10,7 @@ module acionarDisplay(output [7:0] segmentos,
 	reg[3:0] L1, L2, L3, L4, vM1, vM2, vM3;
 	wire[3:0] letraAtual;
 	reg[3:0] codigo1, codigo2;
+	reg DM;
 
 
 	always @(valorMoedas) begin  //Equivalencias para apresentar as moedas no display
@@ -119,7 +120,8 @@ module acionarDisplay(output [7:0] segmentos,
 	always @(estado) begin 
 		case(estado)
 			
-			2'b00: begin   //Espera
+			2'b00: begin   
+			DM <= 1'b0;				//Espera
 			L1 <= 4'b0000; //O
 			L2 <= 4'b1001; //P
 			L3 <= 4'b0110; //E
@@ -149,7 +151,6 @@ module acionarDisplay(output [7:0] segmentos,
 						L2<=codigo2;
 						L3<=4'b1111;
 						L4<=4'b1111;
-
 					end
 				else begin
 					L1 <= vM1; 	   //1
@@ -157,7 +158,10 @@ module acionarDisplay(output [7:0] segmentos,
 					L3 <= vM2;     //7
 					L4 <= vM3; 	   //5
 					end
-				if(devolver) begin							
+				if(devolver)
+					DM<=1'b1;
+				if(DM) begin	
+					DM <= 1'b1;
 					L1 <= 4'b0110; //E //VALOR INSERIDO ERRADO
 					L2 <= 4'b0100; //4
 					L3 <= 4'b0000; //0
