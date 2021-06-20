@@ -40,8 +40,8 @@ and(ativar, eMef1[0], eMef1[1]);
 
 selecionador selecionador(ativar,linha, coluna,valorComparar, codProd, existe);
 wire fim_dig;
+not(notEP, existe);		
 or (fim_dig, notEP, OK);
-not(notEP, existe);		// NO LUGAR DE notEP -> FIM + notEP
 wire OK;
 
 timeOut temporizador (.clk(clk1Hz), .clk15segs(tO_mefDig));
