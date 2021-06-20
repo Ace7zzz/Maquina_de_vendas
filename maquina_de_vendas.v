@@ -4,19 +4,20 @@ module maquina_de_vendas (
     input clk,
     output [7:0] segmentos, 
 	output D1,D2,D3,D4,
-    output LP, DM,
+    output LP, DM
+	/*,
 	 output [1:0] state,//
 	 output timeOut,//
 	 output existeProduto,
 	 output ativarSele, 
-	 output [3:0]valorAcumulador
+	 output [3:0]valorAcumulador*/
 
 );
-assign valorAcumulador = valAcumulado;
-assign ativarSele = ativar;
-assign existeProduto = existe;
-assign timeOut = tO_mefDig;
-assign state = estados;
+//assign valorAcumulador = valAcumulado;
+//assign ativarSele = ativar;
+//assign existeProduto = existe;
+//assign timeOut = tO_mefDig;
+//assign state = estados;
 wire[1:0] codigo, linha, coluna, estados;
 wire press, CD, reset_comp, not_E0, not_E1;
 wire notEP, EL_regs, EC_regs, CLR_regs;
