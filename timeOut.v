@@ -10,7 +10,7 @@ module timeOut (
 			clk15segs <= 0;
 		end
 		contar <= contar + 1;
-		if (contar == 5'd20) begin 	// contar ate 15
+		if (contar == 5'd15) begin 	// contar ate 15
 			clk15segs <= 1;
 		end 
 	end 
