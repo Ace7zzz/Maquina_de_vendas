@@ -2,14 +2,12 @@ module comparador(
 		input [3:0] valorMoedas,
 		input [2:0] valorProduto,
 		input enable, reset,
-		output reg liberarProduto, devolverMoedas,
-		output reg [3:0] valorTotal);
+		output reg liberarProduto, devolverMoedas);
 		
 		reg trava;
 		
 		
 		always @(*) begin
-			valorTotal <= valorMoedas;
 			if (reset) begin
 				liberarProduto <= 0;
 				devolverMoedas <= 0;
