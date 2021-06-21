@@ -5,23 +5,11 @@ module maquina_de_vendas (
     output [7:0] segmentos, 
 	output D1,D2,D3,D4,
     output LP, DM
-	/*,
-	 output [1:0] state,//
-	 output timeOut,//
-	 output existeProduto,
-	 output ativarSele, 
-	 output [3:0]valorAcumulador*/
-
 );
-//assign valorAcumulador = valAcumulado;
-//assign ativarSele = ativar;
-//assign existeProduto = existe;
-//assign timeOut = tO_mefDig;
-//assign state = estados;
 wire[1:0] codigo, linha, coluna, estados;
-wire press, CD, reset_comp, not_E0, not_E1;
+wire press, reset_comp, not_E0, not_E1;
 wire notEP, EL_regs, EC_regs, CLR_regs;
-wire tO_mefDig;     //
+wire tO_mefDig;     
 wire [2:0] valorComparar;
 wire [3:0] codProd;
 wire existe;
@@ -60,9 +48,8 @@ acumulador acumulador (.clk(clk), .reset(), .tempoLimite(tO_mefDig),
 comparador comparador (.valorMoedas(valAcumulado),
 		.valorProduto(valorComparar),
 		.enable(tO_mefDig), .reset(reset_comp),
-		.liberarProduto(LP), .devolverMoedas(DM),
-		.valorTotal(valorTot));
-wire valorTot;
+		.liberarProduto(LP), .devolverMoedas(DM));
+
 reg_fim final (.LP(LP), .DM(DM), .clk(clk1Hz),
     .FIM(OK));
 
